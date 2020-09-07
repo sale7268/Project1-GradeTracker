@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Project1-GradeTracker</string>
+    <string name="log_in_heading">Sign in</string>
+    <string name="username_login_page">Username</string>
+    <string name="password_login_page">Password</string>
+    <string name="btnLogin">Login</string>
+    <string name="welcomeUser">Welcome din_djarin</string>
 </resources>
