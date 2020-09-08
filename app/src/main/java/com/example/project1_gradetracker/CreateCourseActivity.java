@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.project1_gradetracker.DB.Course;
+
 import java.time.LocalDate;
 
 public class CreateCourseActivity extends AppCompatActivity {
@@ -42,6 +44,15 @@ public class CreateCourseActivity extends AppCompatActivity {
         Create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                boolean invalid = false;
+
+                Course course = new Course();
+                course.setTitle(Title.getText().toString());
+                course.setCourseID(Integer.parseInt(ID.getText().toString()));
+                course.setInstructor(Instructor.getText().toString());
+                course.setDateStart(Start.getText().toString());
+                course.setDateEnd(End.getText().toString());
+                course.setDescription(Description.getText().toString());
 
             }
         });
