@@ -8,11 +8,27 @@
 
     <Button
         android:id="@+id/btnLogIn"
-        android:layout_width="297dp"
-        android:layout_height="80dp"
-        android:text="@string/btnLogin"
+        android:layout_width="310dp"
+        android:layout_height="85dp"
+        android:text="@string/MainLogInOrSignUp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.757" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="325dp"
+        android:layout_height="76dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="#D50000"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.458" />
 </androidx.constraintlayout.widget.ConstraintLayout>

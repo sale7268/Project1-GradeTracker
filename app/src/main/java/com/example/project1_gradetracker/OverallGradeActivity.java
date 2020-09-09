@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class GarbageActivity extends AppCompatActivity {
+public class OverallGradeActivity extends AppCompatActivity {
 
     private Button buttonCreateC;
 
@@ -17,21 +17,24 @@ public class GarbageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_garbage);
+        setContentView(R.layout.activity_overallgrade);
 
         buttonCreateC = (Button)findViewById(R.id.buttonCreateCourse);
 
         buttonCreateC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GarbageActivity.this, CreateCourseActivity.class);
+                Intent intent = new Intent(OverallGradeActivity.this, CreateCourseActivity.class);
                 startActivity(intent);
             }
         });
     }
 
+
+
+
     public static Intent getIntent(Context context, String username){
-        Intent intent = new Intent(context, GarbageActivity.class);
+        Intent intent = new Intent(context, OverallGradeActivity.class);
         intent.putExtra(USER_NAME, username);
 
         return intent;
