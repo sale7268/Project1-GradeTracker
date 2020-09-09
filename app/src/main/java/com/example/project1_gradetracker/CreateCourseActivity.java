@@ -1,5 +1,6 @@
 package com.example.project1_gradetracker;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -36,7 +37,9 @@ public class CreateCourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_course);
 
+        // initialize the DAO and populate the list with current existing courses
         courseDAO = database.courseDAO();
+        courseList = courseDAO.getAllCourses();
 
         Title = (EditText)findViewById(R.id.etTitle);
         ID = (EditText)findViewById(R.id.etID);
@@ -51,19 +54,23 @@ public class CreateCourseActivity extends AppCompatActivity {
         Create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean invalid = false;
+                boolean courseExists = false;
 
                 Course course = createNewCourse();
 
                 // check if user entered course is already in the DB
-                // populate the list with current existing courses
-                
+                for(Course c : courseList){
+                    // course exists, add course to user course-list
+                    if(c.getCourseID() == course.getCourseID()){
+                        courseExists = true;
+                        // TODO: Add course and user connection in the DB
+                        break;
+                    }
+                }
                 // if the course does not exist, add it to the database
-                // if it does exist, add it to the list of courses under the current user
-
-
-                // After click Create button and success create a course, it will take u back to garbage page
-                backToGarbage();
+                if(!courseExists){
+                    database.courseDAO().insert(course);
+                }
             }
         });
     }
@@ -81,8 +88,9 @@ public class CreateCourseActivity extends AppCompatActivity {
         return course;
     }
 
-    public void backToGarbage(){
-        Intent intent = new Intent(CreateCourseActivity.this, GarbageActivity.class);
-        startActivity(intent);
+    public static Intent getIntent(Context context){
+        Intent intent = new Intent(context, CreateUserActivity.class);
+
+        return intent;
     }
 }
