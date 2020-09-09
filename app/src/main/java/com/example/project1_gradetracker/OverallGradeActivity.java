@@ -30,9 +30,6 @@ public class OverallGradeActivity extends AppCompatActivity {
         });
     }
 
-
-
-
     public static Intent getIntent(Context context, String username){
         Intent intent = new Intent(context, OverallGradeActivity.class);
         intent.putExtra(USER_NAME, username);
