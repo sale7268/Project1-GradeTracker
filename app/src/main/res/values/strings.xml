@@ -5,4 +5,5 @@
     <string name="password_login_page">Password</string>
     <string name="btnLogin">Login</string>
     <string name="welcomeUser">Welcome din_djarin</string>
+    <string name="MainLogInOrSignUp">Login or Create user</string>
 </resources>

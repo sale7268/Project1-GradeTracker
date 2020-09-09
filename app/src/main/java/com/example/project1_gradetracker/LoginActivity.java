@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                     BUILDER.setTitle("Success");
                     BUILDER.setMessage("Login Successful");
                     // todo: change garbage activity to course page
-                    Intent intent = GarbageActivity.getIntent(getApplicationContext(), username.getText().toString());
+                    Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), username.getText().toString());
                     startActivity(intent);
                 } else {
                     BUILDER.setTitle("Fail");
