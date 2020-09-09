@@ -49,6 +49,7 @@ public class CreateCourseActivity extends AppCompatActivity {
                 course.setDateStart(Start.getText().toString());
                 course.setDateEnd(End.getText().toString());
                 course.setDescription(Description.getText().toString());
+
             }
         });
     }
