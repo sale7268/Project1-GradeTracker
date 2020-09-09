@@ -6,7 +6,14 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {User.class, Course.class}, version = 2, exportSchema = false)
+/** RoomDB
+ * This database holds three tables (User, Course, and Assignment)
+ * Update the version (+1) any time you change anything on this page
+ * every time the version updates, the database gets wiped clean
+ * there is a way around this, I just don't know it ATM
+ */
+
+@Database(entities = {User.class, Course.class}, version = 3, exportSchema = false)
 public abstract class RoomDB extends RoomDatabase {
 
     private static RoomDB database;

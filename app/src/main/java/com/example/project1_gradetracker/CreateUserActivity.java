@@ -33,6 +33,9 @@ public class CreateUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_user);
 
+        //populate user list with current users in the DB
+        userList = userDAO.getAllUsers();
+
         createUser = findViewById(R.id.buttonCreateUser);
         username = findViewById(R.id.editTextUsername);
         password = findViewById(R.id.editTextPassword);
@@ -46,8 +49,6 @@ public class CreateUserActivity extends AppCompatActivity {
 
                 User u = createNewUser();
 
-                //populate user list with current users in the DB
-                userList = userDAO.getAllUsers();
                 // go through the database and check is username or ID are taken before adding user to database
                 // userID is the PK
                 for(User user : userList){

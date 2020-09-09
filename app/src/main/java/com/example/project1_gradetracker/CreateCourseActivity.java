@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,7 +26,8 @@ public class CreateCourseActivity extends AppCompatActivity {
     private EditText Start;
     private EditText End;
     private EditText Description;
-    //private EditText Catagory;
+    // TODO: make category a dropdown menu for the user to pick (Quiz/Project/Homework) or something
+    //private EditText Category;
     private Button Create;
     private TextView Remind;
 
@@ -37,6 +39,7 @@ public class CreateCourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_course);
 
+        // TODO: once course overview is finished, move the courseDAO initialization to that class
         // initialize the DAO and populate the list with current existing courses
         courseDAO = database.courseDAO();
         courseList = courseDAO.getAllCourses();
@@ -64,19 +67,21 @@ public class CreateCourseActivity extends AppCompatActivity {
                     if(c.getCourseID() == course.getCourseID()){
                         courseExists = true;
                         // TODO: Add course and user connection in the DB
+                        Toast.makeText(CreateCourseActivity.this, "Course Added to Course List", Toast.LENGTH_SHORT).show();
                         break;
                     }
                 }
                 // if the course does not exist, add it to the database
                 if(!courseExists){
                     database.courseDAO().insert(course);
+                    Toast.makeText(CreateCourseActivity.this, "Course Added to Database", Toast.LENGTH_SHORT).show();
+                    // add connection to User table
                 }
             }
         });
     }
 
     private Course createNewCourse(){
-        // Check database for courseID, if it doesn’t exist then add course.
         Course course = new Course();
         course.setTitle(Title.getText().toString());
         course.setCourseID(Integer.parseInt(ID.getText().toString()));
