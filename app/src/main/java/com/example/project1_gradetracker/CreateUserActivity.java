@@ -44,10 +44,7 @@ public class CreateUserActivity extends AppCompatActivity {
                 // check if user is valid
                 boolean invalid = false;
 
-                User u = new User();
-                u.setUsername(username.getText().toString());
-                u.setUserID(userID.getText().toString());
-                u.setPassword(password.getText().toString());
+                User u = createNewUser();
 
                 //populate user list with current users in the DB
                 userList = userDAO.getAllUsers();
@@ -86,6 +83,15 @@ public class CreateUserActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public User createNewUser(){
+        User u = new User();
+        u.setUsername(username.getText().toString());
+        u.setUserID(userID.getText().toString());
+        u.setPassword(password.getText().toString());
+
+        return u;
     }
 
     public static Intent getIntent(Context context, String username){

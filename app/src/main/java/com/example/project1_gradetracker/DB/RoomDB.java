@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase;
 public abstract class RoomDB extends RoomDatabase {
 
     private static RoomDB database;
-    private static String DB_Name = "User";
+    private static String DB_Name = "User-Course-Assignment";
 
     public synchronized static RoomDB getInstance(Context context){
         // initialize database
@@ -22,6 +22,9 @@ public abstract class RoomDB extends RoomDatabase {
         return database;
     }
 
-    // Create DAO
+    // Create userDAO
     public abstract UserDAO userDAO();
+
+    // Create courseDAO
+    public abstract CourseDAO courseDAO();
 }
