@@ -3,6 +3,7 @@ package com.example.project1_gradetracker;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -54,6 +55,8 @@ public class CreateCourseActivity extends AppCompatActivity {
                 course.setDateEnd(End.getText().toString());
                 course.setDescription(Description.getText().toString());
 
+                // After click Create button and success create a course, it will take u back to garbage page
+                backToGarbage();
             }
         });
     }
@@ -63,4 +66,9 @@ public class CreateCourseActivity extends AppCompatActivity {
         // Check database for courseID, if it doesn’t exist then add course.
 
     }*/
+
+    public void backToGarbage(){
+        Intent intent = new Intent(CreateCourseActivity.this, GarbageActivity.class);
+        startActivity(intent);
+    }
 }
