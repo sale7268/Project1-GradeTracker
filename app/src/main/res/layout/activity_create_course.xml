@@ -96,7 +96,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnCreate"
+        android:id="@+id/btnCreateC"
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
@@ -108,10 +108,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.064" />
 
     <TextView
         android:id="@+id/tvRemind"
@@ -126,7 +126,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreate"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateC"
         app:layout_constraintVertical_bias="0.421" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

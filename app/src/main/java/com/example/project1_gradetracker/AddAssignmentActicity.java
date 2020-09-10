@@ -2,6 +2,7 @@ package com.example.project1_gradetracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +10,7 @@ import android.widget.EditText;
 
 import com.example.project1_gradetracker.DB.Assignment;
 
-public class AddAssignment extends AppCompatActivity {
+public class AddAssignmentActicity extends AppCompatActivity {
 
     private EditText Title;
     private EditText ID;
@@ -34,10 +35,15 @@ public class AddAssignment extends AppCompatActivity {
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Need check assignment exist or not
                 boolean AssignmentExists = false;
 
+                // Create the new assignment
                 Assignment assignment = createNewAssignment();
 
+                // After success add new assignment, back to upper page.
+                Intent intent = new Intent(AddAssignmentActicity.this, AccountDetailsActivity.class);
+                startActivity(intent);
             }
         });
     }

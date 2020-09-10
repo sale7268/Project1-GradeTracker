@@ -51,7 +51,7 @@ public class CreateCourseActivity extends AppCompatActivity {
         End = (EditText)findViewById(R.id.etEnd);
         Description = (EditText)findViewById(R.id.etDescription);
         //Catagory = (EditText)findViewById(R.id.etCatagory);
-        Create = (Button)findViewById(R.id.btnCreate);
+        Create = (Button)findViewById(R.id.btnCreateC);
         Remind = (TextView)findViewById(R.id.tvRemind);
 
         Create.setOnClickListener(new View.OnClickListener() {
