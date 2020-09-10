@@ -21,6 +21,7 @@ public class OverallGradeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_overallgrade);
 
         buttonCreateC = (Button)findViewById(R.id.buttonCreateCourse);
+        buttonAddA = (Button)findViewById(R.id.buttonAddAssignment);
 
         buttonCreateC.setOnClickListener(new View.OnClickListener() {
             @Override
