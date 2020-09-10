@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff8fc4bc"
+    tools:context=".AddAssignment">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="394dp"
+        android:layout_height="59dp"
+        android:background="#68b2be"
+        android:gravity="center"
+        android:text="Add Assignment"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#CFB0B0"
+        android:textSize="33sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="370dp"
+        android:layout_height="440dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="3dp"
+        android:background="#68b2be"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <EditText
+            android:id="@+id/etAssignmentTitle"
+            android:layout_width="350dp"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:hint="Title"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etAssignmentID"
+            android:layout_width="350dp"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:hint="Assignment ID"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etAssignmentDue"
+            android:layout_width="350dp"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:hint="Due Date"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etAssignmentPoints"
+            android:layout_width="350dp"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:hint="Total Points"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etAssignmentCategory"
+            android:layout_width="350dp"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:hint="Category"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btAddAssignment"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
+        android:background="#F8a25D"
+        android:text="Add Assignment"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.257" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
