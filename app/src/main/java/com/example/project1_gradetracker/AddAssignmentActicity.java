@@ -42,7 +42,7 @@ public class AddAssignmentActicity extends AppCompatActivity {
                 Assignment assignment = createNewAssignment();
 
                 // After success add new assignment, back to upper page.
-                Intent intent = new Intent(AddAssignmentActicity.this, AccountDetailsActivity.class);
+                Intent intent = new Intent(AddAssignmentActicity.this, OverallGradeActivity.class);
                 startActivity(intent);
             }
         });
