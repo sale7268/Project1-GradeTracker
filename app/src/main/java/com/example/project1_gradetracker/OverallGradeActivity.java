@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class OverallGradeActivity extends AppCompatActivity {
 
     private Button buttonCreateC;
+    private Button buttonAddA;
 
     final static String USER_NAME = "USERNAME";
 
@@ -25,6 +26,14 @@ public class OverallGradeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(OverallGradeActivity.this, CreateCourseActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonAddA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(OverallGradeActivity.this, AddAssignmentActicity.class);
                 startActivity(intent);
             }
         });

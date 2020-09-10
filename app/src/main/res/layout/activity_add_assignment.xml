@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ff8fc4bc"
-    tools:context=".CreateCourseActivity">
-
+    tools:context=".AddAssignmentActicity">
 
     <TextView
         android:id="@+id/textView"
@@ -14,7 +13,7 @@
         android:layout_height="59dp"
         android:background="#68b2be"
         android:gravity="center"
-        android:text="Create Course"
+        android:text="Add Assignment"
         android:textColor="#FFFFFF"
         android:textColorHighlight="#CFB0B0"
         android:textSize="33sp"
@@ -43,67 +42,54 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0">
 
-        <EditText
-            android:id="@+id/etTitle"
-            android:layout_width="350dp"
-            android:layout_height="70dp"
-            android:ems="10"
-            android:hint="Course Title"
-            android:inputType="textPersonName"
-            android:textColorHint="@android:color/tertiary_text_dark" />
 
         <EditText
-            android:id="@+id/etID"
+            android:id="@+id/etAssignmentTitle"
             android:layout_width="350dp"
             android:layout_height="70dp"
             android:ems="10"
-            android:hint="Course ID"
-            android:inputType="textPersonName"
-            android:textColorHint="@android:color/tertiary_text_dark" />
-
-        <EditText
-            android:id="@+id/etInstructor"
-            android:layout_width="350dp"
-            android:layout_height="70dp"
-            android:ems="10"
-            android:hint="Instructor Name/ID"
+            android:hint="Title"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etStart"
+            android:id="@+id/etAssignmentID"
             android:layout_width="350dp"
             android:layout_height="70dp"
             android:ems="10"
-            android:hint="Start Date"
+            android:hint="Assignment ID"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etEnd"
+            android:id="@+id/etAssignmentDue"
             android:layout_width="350dp"
             android:layout_height="70dp"
             android:ems="10"
-            android:hint="End Date"
+            android:hint="Due Date"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etDescription"
+            android:id="@+id/etAssignmentPoints"
             android:layout_width="350dp"
             android:layout_height="70dp"
             android:ems="10"
-            android:hint="Description"
+            android:hint="Total Points"
             android:inputType="textPersonName" />
 
+        <EditText
+            android:id="@+id/etAssignmentCategory"
+            android:layout_width="350dp"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:hint="Category"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnCreateC"
+        android:id="@+id/btAddAssignment"
         android:layout_width="290dp"
         android:layout_height="50dp"
-        android:layout_marginTop="28dp"
         android:background="#F8a25D"
-        android:fontFamily="sans-serif-medium"
-        android:hapticFeedbackEnabled="false"
-        android:text="Create"
+        android:text="Add Assignment"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -111,22 +97,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.064" />
+        app:layout_constraintVertical_bias="0.257" />
 
-    <TextView
-        android:id="@+id/tvRemind"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:fontFamily="sans-serif"
-        android:gravity="center"
-        android:text="TextView"
-        android:textColor="#FF0000"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreateC"
-        app:layout_constraintVertical_bias="0.421" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
