@@ -64,7 +64,7 @@ public class CreateCourseActivity extends AppCompatActivity {
                 // check if user entered course is already in the DB
                 for(Course c : courseList){
                     // course exists, add course to user course-list
-                    if(c.getCourseID() == course.getCourseID()){
+                    if(c.getCOURSE_ID() == course.getCOURSE_ID()){
                         courseExists = true;
                         // TODO: Add course and user connection in the DB
                         Toast.makeText(CreateCourseActivity.this, "Course Added to Course List", Toast.LENGTH_SHORT).show();
@@ -82,15 +82,13 @@ public class CreateCourseActivity extends AppCompatActivity {
     }
 
     private Course createNewCourse(){
-        Course course = new Course();
-        course.setTitle(Title.getText().toString());
-        course.setCourseID(Integer.parseInt(ID.getText().toString()));
-        course.setInstructor(Instructor.getText().toString());
-        course.setDateStart(Start.getText().toString());
-        course.setDateEnd(End.getText().toString());
-        course.setDescription(Description.getText().toString());
-
-        return course;
+        return new Course(Integer.parseInt(ID.getText().toString()),
+                Title.getText().toString(),
+                Instructor.getText().toString(),
+                Description.getText().toString(),
+                "Default",
+                Start.getText().toString(),
+                End.getText().toString());
     }
 
     public static Intent getIntent(Context context){

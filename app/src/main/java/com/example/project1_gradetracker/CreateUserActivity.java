@@ -10,8 +10,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.project1_gradetracker.DB.Course;
 import com.example.project1_gradetracker.DB.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.project1_gradetracker.LoginActivity.database;
@@ -60,7 +62,7 @@ public class CreateUserActivity extends AppCompatActivity {
                     }
                     // for now we allow users to enter their own userID in so we have to check if it is valid
                     // TODO: we will auto generate userIDs if we have time
-                    if(user.getUserID().equals(u.getUserID())){
+                    if(user.getUSER_ID().equals(u.getUSER_ID())){
                         userID.setError("ID Taken");
                         Toast.makeText(CreateUserActivity.this, "ID Taken", Toast.LENGTH_SHORT).show();
                         invalid = true;
@@ -87,12 +89,12 @@ public class CreateUserActivity extends AppCompatActivity {
     }
 
     public User createNewUser(){
-        User u = new User();
-        u.setUsername(username.getText().toString());
-        u.setUserID(userID.getText().toString());
-        u.setPassword(password.getText().toString());
+        List<Course> courseList = new ArrayList<>();
 
-        return u;
+        return new User(userID.getText().toString(),
+                username.getText().toString(),
+                password.getText().toString(),
+                courseList);
     }
 
     public static Intent getIntent(Context context, String username){

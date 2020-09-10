@@ -1,29 +1,39 @@
 package com.example.project1_gradetracker.DB;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+
 @Entity
 public class Course {
-
+    @NonNull
     @PrimaryKey
-    private int courseID;
-
+    private final int COURSE_ID;
+    @NonNull
     private String title;
+    @NonNull
     private String instructor;
     private String description;
+    @NonNull
     private String category;
 
     // entered as a date, converted to a string so it can be stored in the DB
     private String dateStart;
     private String dateEnd;
 
-    public int getCourseID() {
-        return courseID;
+    public Course(int COURSE_ID, String title, String instructor, String description, String category, String dateStart, String dateEnd) {
+        this.COURSE_ID = COURSE_ID;
+        this.title = title;
+        this.instructor = instructor;
+        this.description = description;
+        this.category = category;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
     }
 
-    public void setCourseID(int courseID) {
-        this.courseID = courseID;
+    public int getCOURSE_ID() {
+        return COURSE_ID;
     }
 
     public String getTitle() {
