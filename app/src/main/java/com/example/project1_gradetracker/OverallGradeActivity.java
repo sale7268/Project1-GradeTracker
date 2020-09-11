@@ -36,20 +36,11 @@ public class OverallGradeActivity extends AppCompatActivity {
         }
 
         buttonCreateC = (Button)findViewById(R.id.buttonCreateCourse);
-        buttonAddA = (Button)findViewById(R.id.buttonAddAssignment);
 
         buttonCreateC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(OverallGradeActivity.this, CreateCourseActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        buttonAddA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(OverallGradeActivity.this, AddAssignmentActicity.class);
                 startActivity(intent);
             }
         });
