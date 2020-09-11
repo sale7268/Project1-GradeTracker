@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,10 @@ public class OverallGradeActivity extends AppCompatActivity {
 
     private Button buttonCreateC;
     private Button buttonAddA;
+    private TextView course1, course2, course3, course4;
+    private TextView courseGrade1, courseGrade2, courseGrade3, courseGrade4;
+
+
 
     final static String USER_NAME = "USERNAME";
 

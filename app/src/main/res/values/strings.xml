@@ -6,4 +6,12 @@
     <string name="btnLogin">Login</string>
     <string name="welcomeUser">Welcome din_djarin</string>
     <string name="MainLogInOrSignUp">Login or Create user</string>
+    <string name="course1Name" />
+    <string name="course2Name" />
+    <string name="course3Name" />
+    <string name="course4Name" />
+    <string name="course1Grade" />
+    <string name="course2Grade" />
+    <string name="course3Grade" />
+    <string name="course4Grade" />
 </resources>
