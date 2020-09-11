@@ -79,6 +79,15 @@ public class CreateCourseActivity extends AppCompatActivity {
                  * instructor
                  * title
                 * */
+                if(ID.getText().toString().isEmpty()){
+                    ID.setError("ID field cannot be empty");
+                }
+                if(Title.getText().toString().isEmpty()){
+                    Title.setError("Title field cannot be empty");
+                }
+                if(Instructor.getText().toString().isEmpty()){
+                    Instructor.setError("Instructor field cannot be empty");
+                }
                 Course course = createNewCourse();
 
                 // check if user entered course is already in the DB

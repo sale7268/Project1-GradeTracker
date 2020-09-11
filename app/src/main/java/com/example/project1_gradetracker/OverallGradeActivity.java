@@ -32,9 +32,11 @@ public class OverallGradeActivity extends AppCompatActivity {
         User user = null;
 
         // find the user data
-        for(User u : database.userDAO().getAllUsers()){
-            if(u.getUsername().equals(user_name))
+        for(User u : database.userDAO().getAllUsers()) {
+            if (u.getUsername().equals(user_name)) {
                 user = u;
+                break;
+            }
         }
         if(user == null){
             Toast.makeText(OverallGradeActivity.this, "no user found", Toast.LENGTH_SHORT).show();

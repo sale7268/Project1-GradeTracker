@@ -73,4 +73,6 @@ public class User {
     public void setCourseList(List<Course> courseList) {
         this.courseList = courseList;
     }
+
+    public void addCourse(Course course){ this.courseList.add(course); }
 }

@@ -45,8 +45,9 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 Assignment assignment = createNewAssignment();
 
                 Intent i = getIntent();
+                String user_name = i.getStringExtra(USER_NAME);
                 // After success add new assignment, back to upper page.
-                Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), i.getStringExtra(USER_NAME));
+                Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);
                 startActivity(intent);
             }
         });
@@ -65,7 +66,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
     }
 
     public static Intent getIntent(Context context, String username){
-        Intent intent = new Intent(context, CreateCourseActivity.class);
+        Intent intent = new Intent(context, CreateAssignmentActivity.class);
         intent.putExtra(USER_NAME, username);
 
         return intent;
