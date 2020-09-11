@@ -26,8 +26,7 @@ public class CreateCourseActivity extends AppCompatActivity {
     private EditText Start;
     private EditText End;
     private EditText Description;
-    // TODO: make category a dropdown menu for the user to pick (Quiz/Project/Homework) or something
-    //private EditText Category;
+
     private Button Create;
     private TextView Remind;
 
@@ -50,7 +49,6 @@ public class CreateCourseActivity extends AppCompatActivity {
         Start = (EditText)findViewById(R.id.etStart);
         End = (EditText)findViewById(R.id.etEnd);
         Description = (EditText)findViewById(R.id.etDescription);
-        //Catagory = (EditText)findViewById(R.id.etCatagory);
         Create = (Button)findViewById(R.id.btnCreateC);
         Remind = (TextView)findViewById(R.id.tvRemind);
 
@@ -86,7 +84,6 @@ public class CreateCourseActivity extends AppCompatActivity {
                 Title.getText().toString(),
                 Instructor.getText().toString(),
                 Description.getText().toString(),
-                "Default",
                 Start.getText().toString(),
                 End.getText().toString());
     }

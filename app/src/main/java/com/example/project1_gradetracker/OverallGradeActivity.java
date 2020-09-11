@@ -8,6 +8,10 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.project1_gradetracker.DB.User;
+
+import static com.example.project1_gradetracker.LoginActivity.database;
+
 public class OverallGradeActivity extends AppCompatActivity {
 
     private Button buttonCreateC;
@@ -19,6 +23,14 @@ public class OverallGradeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overallgrade);
+
+        Intent intent = getIntent();
+        String user_name = intent.getStringExtra("USER_NAME");
+        User user;
+        // find the user data
+        for(User u : database.userDAO().getAllUsers()){
+            if(u.getUsername().equals(user_name)) user = u;
+        }
 
         buttonCreateC = (Button)findViewById(R.id.buttonCreateCourse);
         buttonAddA = (Button)findViewById(R.id.buttonAddAssignment);

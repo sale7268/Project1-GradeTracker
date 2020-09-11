@@ -27,7 +27,7 @@ public class User {
 
     @Ignore
     private List<Course> courseList;
-
+// json string to be stored in DB
     public User(){
         this.userID = "USER_ID";
         this.username = "username";

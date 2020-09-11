@@ -15,19 +15,16 @@ public class Course {
     @NonNull
     private String instructor;
     private String description;
-    @NonNull
-    private String category;
 
     // entered as a date, converted to a string so it can be stored in the DB
     private String dateStart;
     private String dateEnd;
 
-    public Course(int COURSE_ID, String title, String instructor, String description, String category, String dateStart, String dateEnd) {
+    public Course(int COURSE_ID, String title, String instructor, String description, String dateStart, String dateEnd) {
         this.COURSE_ID = COURSE_ID;
         this.title = title;
         this.instructor = instructor;
         this.description = description;
-        this.category = category;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
     }
@@ -58,14 +55,6 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getDateStart() {
