@@ -20,8 +20,6 @@ public class OverallGradeActivity extends AppCompatActivity {
     private TextView course1, course2, course3, course4;
     private TextView courseGrade1, courseGrade2, courseGrade3, courseGrade4;
 
-
-
     final static String USER_NAME = "USERNAME";
 
     @Override
