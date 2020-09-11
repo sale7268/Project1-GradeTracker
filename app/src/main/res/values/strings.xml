@@ -14,4 +14,5 @@
     <string name="course2Grade" />
     <string name="course3Grade" />
     <string name="course4Grade" />
+    <string name="addAssignment">Add assignment</string>
 </resources>
