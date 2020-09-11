@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(logInValidation(username.getText().toString(), password.getText().toString())){
                     BUILDER.setTitle("Success");
                     BUILDER.setMessage("Login Successful");
-                    // todo: change garbage activity to course page
+                    System.out.println(username.getText().toString());
                     Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), username.getText().toString());
                     startActivity(intent);
                 } else {

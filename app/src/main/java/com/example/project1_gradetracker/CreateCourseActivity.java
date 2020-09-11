@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.project1_gradetracker.DB.Course;
 import com.example.project1_gradetracker.DB.CourseDAO;
 import com.example.project1_gradetracker.DB.User;
-import com.example.project1_gradetracker.DB.UserDAO;
 
 import java.util.List;
 
@@ -36,9 +35,6 @@ public class CreateCourseActivity extends AppCompatActivity {
     List<Course> courseList;
     public static CourseDAO courseDAO;
 
-    List<User> userList;
-    public static UserDAO userDAO;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,9 +44,6 @@ public class CreateCourseActivity extends AppCompatActivity {
         // initialize the DAO and populate the list with current existing courses
         courseDAO = database.courseDAO();
         courseList = courseDAO.getAllCourses();
-
-        userDAO = database.userDAO();
-        userList = userDAO.getAllUsers();
 
         Title = (EditText)findViewById(R.id.etTitle);
         ID = (EditText)findViewById(R.id.etID);
@@ -67,19 +60,17 @@ public class CreateCourseActivity extends AppCompatActivity {
                 boolean courseExists = false;
 
                 Intent i = getIntent();
-                String username = i.getStringExtra(USER_NAME);
-
+                String user_name = i.getStringExtra(USER_NAME);
                 User user = null;
 
-                for(User u : userList){
-                    if(u.getUsername().equals(username)){
+                for(User u : database.userDAO().getAllUsers()) {
+                    if (u.getUsername().equals(user_name)) {
                         user = u;
                         break;
                     }
                 }
-
                 if(user == null){
-                    Toast.makeText(CreateCourseActivity.this, "User " + username + " Not Found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateCourseActivity.this, "no user found", Toast.LENGTH_SHORT).show();
                 }
 
                 // TODO: only create course if all required fields are filled
@@ -106,6 +97,8 @@ public class CreateCourseActivity extends AppCompatActivity {
                     Toast.makeText(CreateCourseActivity.this, "Course Added to Database", Toast.LENGTH_SHORT).show();
                     // add connection to User table
                 }
+                Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);
+                startActivity(intent);
             }
         });
     }

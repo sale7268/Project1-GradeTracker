@@ -28,11 +28,13 @@ public class OverallGradeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_overallgrade);
 
         Intent intent = getIntent();
-        String user_name = intent.getStringExtra("USER_NAME");
+        final String user_name = intent.getStringExtra(USER_NAME);
         User user = null;
+
         // find the user data
         for(User u : database.userDAO().getAllUsers()){
-            if(u.getUsername().equals(user_name)) user = u;
+            if(u.getUsername().equals(user_name))
+                user = u;
         }
         if(user == null){
             Toast.makeText(OverallGradeActivity.this, "no user found", Toast.LENGTH_SHORT).show();
@@ -52,7 +54,7 @@ public class OverallGradeActivity extends AppCompatActivity {
         buttonCreateC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OverallGradeActivity.this, CreateCourseActivity.class);
+                Intent intent = CreateCourseActivity.getIntent(getApplicationContext(), user_name);
                 startActivity(intent);
             }
         });
