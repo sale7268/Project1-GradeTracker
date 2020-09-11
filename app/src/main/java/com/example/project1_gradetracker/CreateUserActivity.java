@@ -16,12 +16,11 @@ import com.example.project1_gradetracker.DB.User;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
 import static com.example.project1_gradetracker.LoginActivity.userDAO;
 
 public class CreateUserActivity extends AppCompatActivity {
-
-    final static String USER_NAME = "USERNAME";
 
     private Button createUser;
     private EditText username;
@@ -78,9 +77,10 @@ public class CreateUserActivity extends AppCompatActivity {
                     database.userDAO().insert(u);
                     Toast.makeText(CreateUserActivity.this, "User " + username.getText().toString() + " Created", Toast.LENGTH_SHORT).show();
 
+                    Intent i = getIntent();
                     // return to login screen
                     // TODO: return to course list
-                    Intent intent = LoginActivity.getIntent(getApplicationContext());
+                    Intent intent = LoginActivity.getIntent(getApplicationContext(), i.getStringExtra(USER_NAME));
                     startActivity(intent);
                 }
 

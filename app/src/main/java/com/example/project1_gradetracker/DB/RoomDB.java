@@ -13,7 +13,7 @@ import androidx.room.RoomDatabase;
  * there is a way around this, I just don't know it ATM
  */
 
-@Database(entities = {User.class, Course.class}, version = 3, exportSchema = false)
+@Database(entities = {User.class, Course.class}, version = 4, exportSchema = false)
 public abstract class RoomDB extends RoomDatabase {
 
     private static RoomDB database;
@@ -34,4 +34,7 @@ public abstract class RoomDB extends RoomDatabase {
 
     // Create courseDAO
     public abstract CourseDAO courseDAO();
+
+    // Create AssignmentDAO
+    public abstract AssignmentDAO assignmentDAO();
 }

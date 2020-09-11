@@ -1,16 +1,19 @@
 package com.example.project1_gradetracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.project1_gradetracker.DB.Assignment;
 
-public class AddAssignmentActicity extends AppCompatActivity {
+import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
+
+public class CreateAssignmentActivity extends AppCompatActivity {
 
     private EditText Title;
     private EditText ID;
@@ -41,8 +44,9 @@ public class AddAssignmentActicity extends AppCompatActivity {
                 // Create the new assignment
                 Assignment assignment = createNewAssignment();
 
+                Intent i = getIntent();
                 // After success add new assignment, back to upper page.
-                Intent intent = new Intent(AddAssignmentActicity.this, OverallGradeActivity.class);
+                Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), i.getStringExtra(USER_NAME));
                 startActivity(intent);
             }
         });
@@ -59,4 +63,12 @@ public class AddAssignmentActicity extends AppCompatActivity {
 
         return assignment;
     }
+
+    public static Intent getIntent(Context context, String username){
+        Intent intent = new Intent(context, CreateCourseActivity.class);
+        intent.putExtra(USER_NAME, username);
+
+        return intent;
+    }
+
 }

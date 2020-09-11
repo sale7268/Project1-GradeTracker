@@ -13,9 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1_gradetracker.DB.Course;
 import com.example.project1_gradetracker.DB.CourseDAO;
+import com.example.project1_gradetracker.DB.User;
+import com.example.project1_gradetracker.DB.UserDAO;
 
 import java.util.List;
 
+import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
 
 public class CreateCourseActivity extends AppCompatActivity {
@@ -33,6 +36,9 @@ public class CreateCourseActivity extends AppCompatActivity {
     List<Course> courseList;
     public static CourseDAO courseDAO;
 
+    List<User> userList;
+    public static UserDAO userDAO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,9 @@ public class CreateCourseActivity extends AppCompatActivity {
         // initialize the DAO and populate the list with current existing courses
         courseDAO = database.courseDAO();
         courseList = courseDAO.getAllCourses();
+
+        userDAO = database.userDAO();
+        userList = userDAO.getAllUsers();
 
         Title = (EditText)findViewById(R.id.etTitle);
         ID = (EditText)findViewById(R.id.etID);
@@ -57,6 +66,28 @@ public class CreateCourseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 boolean courseExists = false;
 
+                Intent i = getIntent();
+                String username = i.getStringExtra(USER_NAME);
+
+                User user = null;
+
+                for(User u : userList){
+                    if(u.getUsername().equals(username)){
+                        user = u;
+                        break;
+                    }
+                }
+
+                if(user == null){
+                    Toast.makeText(CreateCourseActivity.this, "User " + username + " Not Found", Toast.LENGTH_SHORT).show();
+                }
+
+                // TODO: only create course if all required fields are filled
+                /**
+                * course_id
+                 * instructor
+                 * title
+                * */
                 Course course = createNewCourse();
 
                 // check if user entered course is already in the DB
@@ -88,8 +119,9 @@ public class CreateCourseActivity extends AppCompatActivity {
                 End.getText().toString());
     }
 
-    public static Intent getIntent(Context context){
-        Intent intent = new Intent(context, CreateUserActivity.class);
+    public static Intent getIntent(Context context, String username){
+        Intent intent = new Intent(context, CreateCourseActivity.class);
+        intent.putExtra(USER_NAME, username);
 
         return intent;
     }

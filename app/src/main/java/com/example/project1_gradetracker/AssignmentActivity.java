@@ -8,11 +8,11 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
+
 public class AssignmentActivity extends AppCompatActivity {
 
     private Button buttonAddA;
-
-    final static String USER_NAME = "USERNAME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class AssignmentActivity extends AppCompatActivity {
         buttonAddA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AssignmentActivity.this, AddAssignmentActicity.class);
+                Intent intent = new Intent(AssignmentActivity.this, CreateAssignmentActivity.class);
                 startActivity(intent);
             }
         });

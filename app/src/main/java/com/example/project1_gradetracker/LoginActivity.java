@@ -20,6 +20,8 @@ public class LoginActivity extends AppCompatActivity {
     public static RoomDB database;
     public static UserDAO userDAO;
 
+    final static String USER_NAME = "USERNAME";
+
     List<User> userList;
 
     private EditText username, password;
@@ -83,8 +85,9 @@ public class LoginActivity extends AppCompatActivity {
         return (validUsername && validPassword);
     }
 
-    public static Intent getIntent(Context context){
+    public static Intent getIntent(Context context, String username){
         Intent intent = new Intent(context, LoginActivity.class);
+        intent.putExtra(USER_NAME, username);
 
         return intent;
     }
