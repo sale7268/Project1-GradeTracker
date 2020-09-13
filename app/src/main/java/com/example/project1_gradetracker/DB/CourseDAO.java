@@ -19,7 +19,7 @@ public interface CourseDAO {
     @Delete
     void deleteAll(List<Course> courses);
     // update query
-    @Query("UPDATE Course SET title = :cTitle WHERE COURSE_ID = :cID") // TODO: fix this
+    @Query("UPDATE Course SET title = :cTitle WHERE courseID = :cID") // TODO: fix this
     void update(String cTitle, String cID);
     //get all query
     @Query("SELECT * FROM Course")

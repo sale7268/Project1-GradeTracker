@@ -6,12 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1_gradetracker.DB.Assignment;
+import com.example.project1_gradetracker.DB.AssignmentDAO;
+import com.example.project1_gradetracker.DB.Course;
+
+
+import java.util.List;
 
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
+import static com.example.project1_gradetracker.LoginActivity.database;
 
 public class CreateAssignmentActivity extends AppCompatActivity {
 
@@ -22,6 +29,8 @@ public class CreateAssignmentActivity extends AppCompatActivity {
     private EditText Category;
     private Button Add;
 
+    List<Assignment> assignmentList;
+    public static AssignmentDAO assignmentDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,19 +44,36 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         Category = (EditText)findViewById(R.id.etAssignmentCategory);
         Add = (Button)findViewById(R.id.btAddAssignment);
 
+        assignmentDAO = database.assignmentDAO();
+        assignmentList = assignmentDAO.getAllAssignments();
+
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Need check assignment exist or not
-                boolean AssignmentExists = false;
+                boolean assignmentExists = false;
 
-                // Create the new assignment
                 Assignment assignment = createNewAssignment();
+
+                // Check if Assignment already exist or not
+                for(int i=0; i < assignmentList.size(); i++){
+                    Assignment inList = assignmentList.get(i);
+                    if(inList.getAssignmentID() == assignment.getAssignmentID()){
+                        assignmentExists = true;
+                        Toast.makeText(CreateAssignmentActivity.this, "Assignment Already Added to Assignmnet List!", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                }
+                if(!assignmentExists){
+                    database.assignmentDAO().insert(assignment);
+                    Toast.makeText(CreateAssignmentActivity.this, "Assignment Add to Database", Toast.LENGTH_SHORT).show();
+                }
+
 
                 Intent i = getIntent();
                 String user_name = i.getStringExtra(USER_NAME);
                 // After success add new assignment, back to upper page.
-                Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);
+                Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name); //(getApplicationContext(), user_name)
                 startActivity(intent);
             }
         });

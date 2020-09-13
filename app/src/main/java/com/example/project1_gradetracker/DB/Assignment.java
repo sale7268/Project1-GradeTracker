@@ -1,7 +1,9 @@
 package com.example.project1_gradetracker.DB;
 
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+@Entity
 public class Assignment {
     @PrimaryKey
     private int AssignmentID;
@@ -10,6 +12,22 @@ public class Assignment {
     private String dueDate;
     private int points;
     private String category;
+
+    public Assignment() {
+        this.AssignmentID = 0;
+        this.title = null;
+        this.dueDate = null;
+        this.points = 0;
+        this.category = null;
+    }
+
+    public Assignment(int assignmentID, String title, String dueDate, int points, String category) {
+        AssignmentID = assignmentID;
+        this.title = title;
+        this.dueDate = dueDate;
+        this.points = points;
+        this.category = category;
+    }
 
     public int getAssignmentID() { return AssignmentID; }
 

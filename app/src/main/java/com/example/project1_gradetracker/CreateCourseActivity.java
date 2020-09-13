@@ -11,10 +11,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.project1_gradetracker.DB.Assignment;
 import com.example.project1_gradetracker.DB.Course;
 import com.example.project1_gradetracker.DB.CourseDAO;
 import com.example.project1_gradetracker.DB.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
@@ -93,7 +95,7 @@ public class CreateCourseActivity extends AppCompatActivity {
                 // check if user entered course is already in the DB
                 for(Course c : courseList){
                     // course exists, add course to user course-list
-                    if(c.getCOURSE_ID() == course.getCOURSE_ID()){
+                    if(c.getCourseID() == course.getCourseID()){
                         courseExists = true;
                         // TODO: Add course and user connection in the DB
                         Toast.makeText(CreateCourseActivity.this, "Course Added to Course List", Toast.LENGTH_SHORT).show();
@@ -113,12 +115,15 @@ public class CreateCourseActivity extends AppCompatActivity {
     }
 
     private Course createNewCourse(){
+        List<Assignment> assignmentList = new ArrayList<>();
+
         return new Course(Integer.parseInt(ID.getText().toString()),
                 Title.getText().toString(),
                 Instructor.getText().toString(),
                 Description.getText().toString(),
                 Start.getText().toString(),
-                End.getText().toString());
+                End.getText().toString(),
+                assignmentList);
     }
 
     public static Intent getIntent(Context context, String username){

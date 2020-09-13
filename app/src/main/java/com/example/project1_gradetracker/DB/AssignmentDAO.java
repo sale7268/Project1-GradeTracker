@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -11,17 +12,17 @@ import java.util.List;
 public interface AssignmentDAO {
     // insert query
     @Insert
-    void insert(Course course);
+    void insert(Assignment assignment);
     // delete query
     @Delete
-    void delete(Course course);
+    void delete(Assignment assignment);
     // delete all query
     @Delete
-    void deleteAll(List<Course> courses);
+    void deleteAll(List<Assignment> assignments);
     // update query
-    @Query("UPDATE Course SET title = :cTitle WHERE COURSE_ID = :cID") // TODO: fix this
-    void update(String cTitle, String cID);
+    @Update
+    void updateAssignment(Assignment assignment);
     //get all query
-    @Query("SELECT * FROM Course")
-    List<Course> getAllCourses();
+    @Query("SELECT * FROM Assignment")
+    List<Assignment> getAllAssignments();
 }

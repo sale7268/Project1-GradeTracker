@@ -2,14 +2,18 @@ package com.example.project1_gradetracker.DB;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
 public class Course {
     @NonNull
     @PrimaryKey
-    private final int COURSE_ID;
+    private int courseID;
     @NonNull
     private String title;
     @NonNull
@@ -20,18 +24,33 @@ public class Course {
     private String dateStart;
     private String dateEnd;
 
-    public Course(int COURSE_ID, String title, String instructor, String description, String dateStart, String dateEnd) {
-        this.COURSE_ID = COURSE_ID;
+    @Ignore
+    private List<Assignment> assignmentList;
+
+    public Course() {
+        this.courseID = 0;
+        this.title = null;
+        this.instructor = null;
+        this.description = null;
+        this.dateStart = null;
+        this.dateEnd = null;
+        this.assignmentList = new ArrayList<Assignment>();
+    }
+
+    public Course(int COURSE_ID, String title, String instructor, String description, String dateStart, String dateEnd, List<Assignment> assignmentList) {
+        this.courseID = COURSE_ID;
         this.title = title;
         this.instructor = instructor;
         this.description = description;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
+        this.assignmentList = assignmentList;
     }
 
-    public int getCOURSE_ID() {
-        return COURSE_ID;
-    }
+
+    public int getCourseID() { return courseID; }
+
+    public void setCourseID(int courseID) { this.courseID = courseID; }
 
     public String getTitle() {
         return title;
@@ -72,4 +91,8 @@ public class Course {
     public void setDateEnd(String dateEnd) {
         this.dateEnd = dateEnd;
     }
+
+    public List<Assignment> getAssignmentList() { return assignmentList; }
+
+    public void setAssignmentList(List<Assignment> assignmentList) { this.assignmentList = assignmentList; }
 }
