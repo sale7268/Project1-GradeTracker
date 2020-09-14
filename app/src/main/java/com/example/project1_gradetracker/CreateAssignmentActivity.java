@@ -12,8 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1_gradetracker.DB.Assignment;
 import com.example.project1_gradetracker.DB.AssignmentDAO;
-import com.example.project1_gradetracker.DB.Course;
-
 
 import java.util.List;
 
@@ -73,7 +71,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 Intent i = getIntent();
                 String user_name = i.getStringExtra(USER_NAME);
                 // After success add new assignment, back to upper page.
-                Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name); //(getApplicationContext(), user_name)
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name);
                 startActivity(intent);
             }
         });
