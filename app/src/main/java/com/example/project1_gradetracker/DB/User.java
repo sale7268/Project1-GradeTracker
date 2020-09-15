@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /*@Entity(foreignKeys = @ForeignKey(entity = User.class,
         parentColumns = "courseID",
@@ -32,6 +33,13 @@ public class User {
         this.userID = "USER_ID";
         this.username = "username";
         this.password = "password";
+        this.courseList = new ArrayList<Course>();
+    }
+
+    public User(String USER_ID, String username, String password) {
+        this.userID = USER_ID;
+        this.username = username;
+        this.password = password;
         this.courseList = new ArrayList<Course>();
     }
 
@@ -75,4 +83,27 @@ public class User {
     }
 
     public void addCourse(Course course){ this.courseList.add(course); }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return userID.equals(user.userID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userID);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID='" + userID + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", courseList=" + courseList +
+                '}';
+    }
 }

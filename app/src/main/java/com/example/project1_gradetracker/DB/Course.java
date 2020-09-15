@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -37,6 +38,16 @@ public class Course {
         this.assignmentList = new ArrayList<Assignment>();
     }
 
+    public Course(int COURSE_ID, String title, String instructor, String description) {
+        this.courseID = COURSE_ID;
+        this.title = title;
+        this.instructor = instructor;
+        this.description = description;
+        this.dateStart = "";
+        this.dateEnd = "";
+        this.assignmentList = new ArrayList<Assignment>();
+    }
+
     public Course(int COURSE_ID, String title, String instructor, String description, String dateStart, String dateEnd, List<Assignment> assignmentList) {
         this.courseID = COURSE_ID;
         this.title = title;
@@ -46,7 +57,6 @@ public class Course {
         this.dateEnd = dateEnd;
         this.assignmentList = assignmentList;
     }
-
 
     public int getCourseID() { return courseID; }
 
@@ -95,4 +105,32 @@ public class Course {
     public List<Assignment> getAssignmentList() { return assignmentList; }
 
     public void setAssignmentList(List<Assignment> assignmentList) { this.assignmentList = assignmentList; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return courseID == course.courseID &&
+                title.equals(course.title) &&
+                instructor.equals(course.instructor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(courseID, title, instructor);
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseID=" + courseID +
+                ", title='" + title + '\'' +
+                ", instructor='" + instructor + '\'' +
+                ", description='" + description + '\'' +
+                ", dateStart='" + dateStart + '\'' +
+                ", dateEnd='" + dateEnd + '\'' +
+                ", assignmentList=" + assignmentList +
+                '}';
+    }
 }

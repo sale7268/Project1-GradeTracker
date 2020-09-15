@@ -13,11 +13,11 @@ import androidx.room.RoomDatabase;
  * there is a way around this, I just don't know it ATM
  */
 
-@Database(entities = {User.class, Course.class, Assignment.class}, version = 5, exportSchema = false)
+@Database(entities = {User.class, Course.class, Assignment.class}, version = 7, exportSchema = false)
 public abstract class RoomDB extends RoomDatabase {
 
     private static RoomDB database;
-    private static String DB_Name = "User-Course-Assignment";
+    public static String DB_Name = "User-Course-Assignment";
 
     public synchronized static RoomDB getInstance(Context context){
         // initialize database
