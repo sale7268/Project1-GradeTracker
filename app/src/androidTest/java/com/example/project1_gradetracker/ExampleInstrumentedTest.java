@@ -144,54 +144,21 @@ public class ExampleInstrumentedTest {
 //    @Test
 //    public void insertAssignmentTable(){
 //        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-//        UserDAO userDB = RoomDB.getInstance(appContext).userDAO();
+//        AssignmentDAO assignmentDB = RoomDB.getInstance(appContext).assignmentDAO();
 //
-//        // insert user if user does not already exist in the table
-//        User user1 = new User("apka0987", "bapk", "apka0000");
-//        if(userDB.getUserByID("apka0987") == null) {
-//            userDB.insert(user1);
-//        }
-//        User user2 = userDB.getUserByID("apka0987");
-//        //Log.i("User: ", user1.toString());
-//        assertEquals(user1.toString(), user1, user2);
 //    }
 //
 //    @Test
 //    public void deleteAssignmentTable(){
 //        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-//        UserDAO userDB = RoomDB.getInstance(appContext).userDAO();
+//        AssignmentDAO assignmentDB = RoomDB.getInstance(appContext).assignmentDAO();
 //
-//        // insert user if user does not already exist in the table
-//        User user1 = new User("apka0987", "bapk", "apka0000");
-//        if(userDB.getUserByID("apka0987") == null) {
-//            userDB.insert(user1);
-//        }
-//        User user2 = new User("bapk1234", "bapk", "apka0000");
-//        if(userDB.getUserByID("bapk1234") == null) {
-//            userDB.insert(user2);
-//        }
-//
-//        userDB.delete(user1);
-//        // checking is user1 is null wont work because when we call DAO.delete()
-//        // it removes he user from the table, but doesn't delete the user object
-//        // so instead I am checking if the object returned by getID is null
-//        assertNull(user1.toString(), userDB.getUserByID("apka0987"));
 //    }
 //
 //    @Test
 //    public void updateAssignmentTable(){
 //        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-//        UserDAO userDB = RoomDB.getInstance(appContext).userDAO();
+//        AssignmentDAO assignmentDB = RoomDB.getInstance(appContext).assignmentDAO();
 //
-//        User user = new User("J410", "J.A.R.V.I.S.", "Stone");
-//        if(userDB.getUserByID("J410") == null) {
-//            userDB.insert(user);
-//        }
-//
-//        // update doesn't update the user object, just the user in the table
-//        // so we have to pull the data from the table after we update it
-//        userDB.updatePassword("MindStone", user.getUSER_ID());
-//        user = userDB.getUserByID(user.getUSER_ID());
-//        assertNotEquals(user.toString(), user.getPassword(), "Stone");
 //    }
 }
