@@ -6,18 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".OverallGradeActivity">
 
-    <TextView
-        android:id="@+id/tvCourse4Grade"
-        android:layout_width="91dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="68dp"
-        android:text="@string/course4Grade"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.733"
-        app:layout_constraintStart_toEndOf="@+id/tvCourse4"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+<!--    <LinearLayout-->
+<!--        android:layout_marginTop="100dp"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <Button-->
+<!--            android:id="@+id/insert"-->
+<!--            android:text="insert"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/update"-->
+<!--            android:text="update"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/delete"-->
+<!--            android:text="delete"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--    </LinearLayout>-->
 
     <Button
         android:id="@+id/buttonCreateCourse"
@@ -29,96 +45,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.134"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvCourse1"
-        android:layout_width="244dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="60dp"
-        android:text="@string/course1Name"
-        android:textAlignment="viewStart"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvCourse2"
-        android:layout_width="242dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="80dp"
-        android:text="@string/course2Name"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCourse1" />
-
-    <TextView
-        android:id="@+id/tvCourse3"
-        android:layout_width="241dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="80dp"
-        android:text="@string/course3Name"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCourse2" />
-
-    <TextView
-        android:id="@+id/tvCourse4"
-        android:layout_width="242dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="68dp"
-        android:text="@string/course4Name"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCourse3" />
-
-    <TextView
-        android:id="@+id/tvCourse1Grade"
-        android:layout_width="95dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/course1Grade"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tvCourse1"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvCourse2Grade"
-        android:layout_width="96dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/course2Grade"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tvCourse2"
-        app:layout_constraintTop_toBottomOf="@+id/tvCourse1Grade" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="104dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="92dp"
-        android:text="@string/course3Grade"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.77"
-        app:layout_constraintStart_toEndOf="@+id/tvCourse3"
-        app:layout_constraintTop_toBottomOf="@+id/tvCourse2Grade" />
 
     <Button
         android:id="@+id/btnAssignments"

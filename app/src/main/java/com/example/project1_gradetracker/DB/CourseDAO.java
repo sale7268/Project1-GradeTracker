@@ -19,9 +19,15 @@ public interface CourseDAO {
     @Delete
     void deleteAll(List<Course> courses);
     // update query
-    @Query("UPDATE Course SET title = :cTitle WHERE courseID = :cID") // TODO: fix this
-    void update(String cTitle, String cID);
+    @Query("UPDATE Course SET title = :cTitle WHERE courseID = :cID")
+    void updateTitle(String cTitle, int cID);
+    @Query("UPDATE Course SET instructor = :cInstructor WHERE courseID = :cID")
+    void updateInstructor(String cInstructor, int cID);
+    @Query("UPDATE Course SET title = :cDesc WHERE courseID = :cID")
+    void updateDescription(String cDesc, int cID);
     //get all query
     @Query("SELECT * FROM Course")
     List<Course> getAllCourses();
+    @Query("SELECT * FROM Course WHERE courseID = :cID")
+    Course getCourseByID(int cID);
 }

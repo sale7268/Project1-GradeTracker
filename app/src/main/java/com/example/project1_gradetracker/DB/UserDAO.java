@@ -18,9 +18,12 @@ public interface UserDAO {
     // delete all query
     @Delete
     void deleteAll(List<User> users);
-    // update query
+    // update username
     @Query("UPDATE User SET username = :sUname WHERE userID = :sID")
-    void update(String sUname, String sID);
+    void updateUsername(String sUname, String sID);
+    // update password
+    @Query("UPDATE User SET password = :sPassword WHERE userID = :sID")
+    void updatePassword(String sPassword, String sID);
     //get all query
     @Query("SELECT * FROM User")
     List<User> getAllUsers();

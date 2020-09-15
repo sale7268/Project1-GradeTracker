@@ -52,10 +52,10 @@ public class OverallGradeActivity extends AppCompatActivity {
 
         buttonCreateC = (Button)findViewById(R.id.buttonCreateCourse);
         buttonAssignments = findViewById(R.id.btnAssignments);
-        course1 = findViewById(R.id.tvCourse1);
-        course2 = findViewById(R.id.tvCourse2);
-        course3 = findViewById(R.id.tvCourse3);
-        course4 = findViewById(R.id.tvCourse4);
+//        course1 = findViewById(R.id.tvCourse1);
+//        course2 = findViewById(R.id.tvCourse2);
+//        course3 = findViewById(R.id.tvCourse3);
+//        course4 = findViewById(R.id.tvCourse4);
 
 //        course1.setText(user.getCourseList().indexOf(0));
 //        course1.setText(user.getCourseList().indexOf(1));
