@@ -79,7 +79,7 @@
             android:layout_width="350dp"
             android:layout_height="70dp"
             android:ems="10"
-            android:hint="Grade"
+            android:hint="Points Earned"
             android:inputType="textPersonName" />
 
         <EditText
