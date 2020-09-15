@@ -24,6 +24,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
     private EditText ID;
     private EditText DueDate;
     private EditText Points;
+    private EditText Grade;
     private EditText Category;
     private Button Add;
 
@@ -39,7 +40,8 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         ID = (EditText)findViewById(R.id.etAssignmentID);
         DueDate = (EditText)findViewById(R.id.etAssignmentDue);
         Points = (EditText)findViewById(R.id.etAssignmentPoints);
-        Category = (EditText)findViewById(R.id.etAssignmentCategory);
+        Grade = (EditText)findViewById(R.id.etAssignmentGrade);
+        Category = (EditText) findViewById(R.id.etAssignmentCategory);
         Add = (Button)findViewById(R.id.btAddAssignment);
 
         assignmentDAO = database.assignmentDAO();
@@ -51,7 +53,9 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 // Need check assignment exist or not
                 boolean assignmentExists = false;
 
+
                 Assignment assignment = createNewAssignment();
+
 
                 // Check if Assignment already exist or not
                 for(int i=0; i < assignmentList.size(); i++){
@@ -78,12 +82,13 @@ public class CreateAssignmentActivity extends AppCompatActivity {
     }
 
     private Assignment createNewAssignment(){
-        Assignment assignment = new Assignment();
+        final Assignment assignment = new Assignment();
 
         assignment.setTitle(Title.getText().toString());
         assignment.setAssignmentID(Integer.parseInt(ID.getText().toString()));
         assignment.setDueDate(DueDate.getText().toString());
         assignment.setPoints(Integer.parseInt(Points.getText().toString()));
+        assignment.setGrade(Integer.parseInt(Grade.getText().toString()));
         assignment.setCategory(Category.getText().toString());
 
         return assignment;

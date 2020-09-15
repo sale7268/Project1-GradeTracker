@@ -11,6 +11,7 @@ public class Assignment {
     private String title;
     private String dueDate;
     private int points;
+    private int grade;
     private String category;
 
     public Assignment() {
@@ -18,14 +19,16 @@ public class Assignment {
         this.title = null;
         this.dueDate = null;
         this.points = 0;
+        this.grade = 0;
         this.category = null;
     }
 
-    public Assignment(int assignmentID, String title, String dueDate, int points, String category) {
+    public Assignment(int assignmentID, String title, String dueDate, int points, int grade, String category) {
         AssignmentID = assignmentID;
         this.title = title;
         this.dueDate = dueDate;
         this.points = points;
+        this.grade = grade;
         this.category = category;
     }
 
@@ -44,6 +47,10 @@ public class Assignment {
     public int getPoints() { return points; }
 
     public void setPoints(int points) { this.points = points; }
+
+    public int getGrade() { return grade; }
+
+    public void setGrade(int grade) { this.grade = grade; }
 
     public String getCategory() { return category; }
 
