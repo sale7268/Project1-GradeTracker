@@ -11,12 +11,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.project1_gradetracker.DB.Assignment;
 import com.example.project1_gradetracker.DB.Course;
 import com.example.project1_gradetracker.DB.CourseDAO;
 import com.example.project1_gradetracker.DB.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
@@ -59,71 +57,72 @@ public class CreateCourseActivity extends AppCompatActivity {
         Create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean courseExists = false;
+            boolean courseExists = false;
 
-                Intent i = getIntent();
-                String user_name = i.getStringExtra(USER_NAME);
-                User user = null;
+            Intent i = getIntent();
+            String user_name = i.getStringExtra(USER_NAME);
+            User user = null;
 
-                for(User u : database.userDAO().getAllUsers()) {
-                    if (u.getUsername().equals(user_name)) {
-                        user = u;
-                        break;
-                    }
+            for(User u : database.userDAO().getAllUsers()) {
+                if (u.getUsername().equals(user_name)) {
+                    user = u;
+                    break;
                 }
-                if(user == null){
-                    Toast.makeText(CreateCourseActivity.this, "no user found", Toast.LENGTH_SHORT).show();
-                }
+            }
+            if(user == null){
+                Toast.makeText(CreateCourseActivity.this, "no user found", Toast.LENGTH_SHORT).show();
+            }
 
-                // TODO: only create course if all required fields are filled
-                /**
-                * course_id
-                 * instructor
-                 * title
-                * */
-                if(ID.getText().toString().isEmpty()){
-                    ID.setError("ID field cannot be empty");
-                }
-                if(Title.getText().toString().isEmpty()){
-                    Title.setError("Title field cannot be empty");
-                }
-                if(Instructor.getText().toString().isEmpty()){
-                    Instructor.setError("Instructor field cannot be empty");
-                }
-                Course course = createNewCourse();
+            // TODO: only create course if all required fields are filled
+            /**
+            * course_id
+             * instructor
+             * title
+            * */
+            if(ID.getText().toString().isEmpty()){
+                ID.setError("ID field cannot be empty");
+            }
+            if(Title.getText().toString().isEmpty()){
+                Title.setError("Title field cannot be empty");
+            }
+            if(Instructor.getText().toString().isEmpty()){
+                Instructor.setError("Instructor field cannot be empty");
+            }
 
-                // check if user entered course is already in the DB
-                for(Course c : courseList){
-                    // course exists, add course to user course-list
-                    if(c.getCourseID() == course.getCourseID()){
-                        courseExists = true;
-                        // TODO: Add course and user connection in the DB
+            // populate course with data from screen (user input)
+            Course course;
+            int id = Integer.parseInt(ID.getText().toString());
+            String title = Title.getText().toString();
+            String instructor = Instructor.getText().toString();
+            String desc = Description.getText().toString();
+            course = new Course(id, title, instructor, desc);
+
+            // check if user entered course is already in the DB
+            for(Course c : courseList){
+                // course exists, add course to user course-list
+                if(c.getCourseID() == course.getCourseID()){
+                    courseExists = true;
+                    if(user.getCourseList().contains(course)){
+                        Toast.makeText(CreateCourseActivity.this, "This course is already in your Course List", Toast.LENGTH_SHORT).show();
+                    } else {
+                        user.addCourse(course);
                         Toast.makeText(CreateCourseActivity.this, "Course Added to Course List", Toast.LENGTH_SHORT).show();
-                        break;
                     }
+                    Toast.makeText(CreateCourseActivity.this, user.getCourseList().toString(), Toast.LENGTH_SHORT).show();
+                    break;
                 }
-                // if the course does not exist, add it to the database
-                if(!courseExists){
-                    database.courseDAO().insert(course);
-                    Toast.makeText(CreateCourseActivity.this, "Course Added to Database", Toast.LENGTH_SHORT).show();
-                    // add connection to User table
-                }
-                Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);
-                startActivity(intent);
+            }
+            // if the course does not exist, add it to the database and user courselist
+            if(!courseExists){
+                courseDAO.insert(course);
+                user.addCourse(course);
+                Toast.makeText(CreateCourseActivity.this, "Course Added to Database and Course List", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateCourseActivity.this, user.getCourseList().toString(), Toast.LENGTH_SHORT).show();
+            }
+            Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);
+            startActivity(intent);
             }
         });
-    }
-
-    private Course createNewCourse(){
-        List<Assignment> assignmentList = new ArrayList<>();
-
-        return new Course(Integer.parseInt(ID.getText().toString()),
-                Title.getText().toString(),
-                Instructor.getText().toString(),
-                Description.getText().toString(),
-                Start.getText().toString(),
-                End.getText().toString(),
-                assignmentList);
     }
 
     public static Intent getIntent(Context context, String username){

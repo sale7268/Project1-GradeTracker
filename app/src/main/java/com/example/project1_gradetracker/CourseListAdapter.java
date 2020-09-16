@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project1_gradetracker.DB.Course;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.ViewHolder> {
 
@@ -28,10 +28,10 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
     }
 
     // Store a member variable for the contacts
-    private ArrayList<Course> mCourseList;
+    private List<Course> mCourseList;
 
     // Pass in the contact array into the constructor
-    public CourseListAdapter(ArrayList<Course> courses) {
+    public CourseListAdapter(List<Course> courses) {
         mCourseList = courses;
     }
 

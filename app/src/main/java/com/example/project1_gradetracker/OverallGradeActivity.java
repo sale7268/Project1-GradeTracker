@@ -61,12 +61,10 @@ public class OverallGradeActivity extends AppCompatActivity {
             Toast.makeText(OverallGradeActivity.this, "no user found", Toast.LENGTH_SHORT).show();
         }
 
-        ArrayList<Course> courseList = new ArrayList<>();
+        List<Course> courseList = new ArrayList<>();
         courseList.add(new Course(438, "Software Engineering", "Dr. C", "desc"));
         courseList.add(new Course(330, "OS", "Dr. B", "desc"));
         courseList.add(new Course(238, "Data Structures", "Dr. E", "desc"));
-
-
 
         buttonCreateC = (Button)findViewById(R.id.buttonCreateCourse);
         buttonAssignments = findViewById(R.id.btnAssignments);
@@ -86,6 +84,8 @@ public class OverallGradeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //List<Course> courseList = user.getCourseList();
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
