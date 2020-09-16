@@ -25,6 +25,8 @@ public class Course {
     private String dateStart;
     private String dateEnd;
 
+    private double totalGrade;
+
     @Ignore
     private List<Assignment> assignmentList;
 
@@ -102,9 +104,28 @@ public class Course {
         this.dateEnd = dateEnd;
     }
 
+    public double getTotalGrade() {
+        return totalGrade;
+    }
+
+    public void setTotalGrade(double totalGrade) {
+        this.totalGrade = totalGrade;
+    }
+
     public List<Assignment> getAssignmentList() { return assignmentList; }
 
     public void setAssignmentList(List<Assignment> assignmentList) { this.assignmentList = assignmentList; }
+
+    public void calculateTotalGrade(){
+        List<Assignment> assign = getAssignmentList();
+        double grades = 0,totalPoints = 0;
+        for(Assignment a : assign){
+            grades += a.getGrade();
+            totalPoints += a.getPoints();
+        }
+        setTotalGrade((grades/totalPoints)*100);
+    }
+
 
     @Override
     public boolean equals(Object o) {
