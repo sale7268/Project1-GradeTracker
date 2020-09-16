@@ -22,10 +22,11 @@ import static com.example.project1_gradetracker.LoginActivity.database;
 public class AssignmentActivity extends AppCompatActivity {
 
     //Declaring variables
-    TextView assignmentDisplay;
+    TextView assignmentDisplay, gradeDisplay;
     private Button buttonAddA;
     List<Assignment> assignmentList;
     public static AssignmentDAO assignmentDAO;
+    public double grades = 0.0, totalPoints = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,9 @@ public class AssignmentActivity extends AppCompatActivity {
         //Initiating display method and scrolling movement
         assignmentDisplay = findViewById(R.id.tvAssignments);
         assignmentDisplay.setMovementMethod(new ScrollingMovementMethod());
+
+        //Setting up grade display:
+        gradeDisplay = findViewById(R.id.tvGrades);
 
         //Calling display function
         refreshDisplay();
@@ -61,16 +65,22 @@ public class AssignmentActivity extends AppCompatActivity {
         //No assignment then display message
         if(assignmentList.size() <= 0){
             assignmentDisplay.setText("No Assignments");
+            gradeDisplay.setText("0");
         }
 
         //Checking all the assignments and then printing them one by one using StringBuilder
         StringBuilder sb = new StringBuilder();
+        StringBuilder sbGrades = new StringBuilder();
         for(Assignment a : assignmentList){
-            sb.append("ID: [" + a.getAssignmentID() + "]\n" + "Title: " + a.getTitle() + "\n");
-            sb.append("Points: " + a.getPoints() + "\n");
+            sb.append("Assignment ID: [" + a.getAssignmentID() + "]\n" + "Category: " + a.getCategory() + "\n" + "Title: " + a.getTitle() + "\n");
+            sb.append("Points: " + a.getGrade() + "/" + a.getPoints() + "\n");
             sb.append("=-=-=-=-=-=-");
             sb.append("\n");
+            grades += a.getGrade();
+            totalPoints += a.getPoints();
         }
+        sbGrades.append(((grades/totalPoints) * 100) + "%");
+        gradeDisplay.setText(sbGrades.toString());
         assignmentDisplay.setText(sb.toString());
     }
 

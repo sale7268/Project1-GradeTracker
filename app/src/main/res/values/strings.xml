@@ -20,4 +20,6 @@
     <string name="rbProject">Project</string>
     <string name="rbQuiz">Quiz</string>
     <string name="rbExam">Exam</string>
+    <string name="tvtotalgrade">Overall Percentage:</string>
+    <string name="overallpercent">Overall</string>
 </resources>

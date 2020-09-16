@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#22116E"
     tools:context=".AssignmentActivity">
 
     <Button
@@ -15,15 +16,16 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.961" />
+        app:layout_constraintVertical_bias="0.96" />
 
     <TextView
         android:id="@+id/tvAssignments"
         android:layout_width="373dp"
         android:layout_height="456dp"
+        android:background="#FBC149"
         android:textAlignment="textStart"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonAddAssignment"
@@ -32,5 +34,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.326" />
+
+    <TextView
+        android:id="@+id/tvGrades"
+        android:layout_width="136dp"
+        android:layout_height="41dp"
+        android:background="#FFC247"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddAssignment"
+        app:layout_constraintTop_toBottomOf="@+id/tvAssignments"
+        app:layout_constraintVertical_bias="0.798" />
+
+    <TextView
+        android:id="@+id/tvTotal"
+        android:layout_width="138dp"
+        android:layout_height="43dp"
+        android:gravity="center"
+        android:text="@string/tvtotalgrade"
+        android:textAlignment="center"
+        android:textColor="#FFC141"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvGrades"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAssignments"
+        app:layout_constraintVertical_bias="0.942" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
