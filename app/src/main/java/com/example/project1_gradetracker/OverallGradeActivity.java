@@ -9,10 +9,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project1_gradetracker.DB.Course;
 import com.example.project1_gradetracker.DB.User;
 import com.example.project1_gradetracker.DB.UserDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
@@ -27,6 +31,13 @@ public class OverallGradeActivity extends AppCompatActivity {
 
     List<User> users;
     public static UserDAO userDAO;
+
+    private RecyclerView recyclerView;
+    // The adapter is the bridge between our data and the recycler view
+    // it improves performance by only loading as many items as we need
+    private RecyclerView.Adapter adapter;
+    // responsible for aligning the items in the list
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,17 +61,19 @@ public class OverallGradeActivity extends AppCompatActivity {
             Toast.makeText(OverallGradeActivity.this, "no user found", Toast.LENGTH_SHORT).show();
         }
 
+        ArrayList<Course> courseList = new ArrayList<>();
+//        courseList.add()
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        adapter = new CourseListAdapter(courseList);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
         buttonCreateC = (Button)findViewById(R.id.buttonCreateCourse);
         buttonAssignments = findViewById(R.id.btnAssignments);
-//        course1 = findViewById(R.id.tvCourse1);
-//        course2 = findViewById(R.id.tvCourse2);
-//        course3 = findViewById(R.id.tvCourse3);
-//        course4 = findViewById(R.id.tvCourse4);
-
-//        course1.setText(user.getCourseList().indexOf(0));
-//        course1.setText(user.getCourseList().indexOf(1));
-//        course1.setText(user.getCourseList().indexOf(2));
-//        course1.setText(user.getCourseList().indexOf(3));
 
         buttonCreateC.setOnClickListener(new View.OnClickListener() {
             @Override
