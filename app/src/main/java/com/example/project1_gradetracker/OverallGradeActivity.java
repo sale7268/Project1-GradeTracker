@@ -66,13 +66,7 @@ public class OverallGradeActivity extends AppCompatActivity {
         courseList.add(new Course(330, "OS", "Dr. B", "desc"));
         courseList.add(new Course(238, "Data Structures", "Dr. E", "desc"));
 
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        adapter = new CourseListAdapter(courseList);
 
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
 
         buttonCreateC = (Button)findViewById(R.id.buttonCreateCourse);
         buttonAssignments = findViewById(R.id.btnAssignments);
@@ -92,6 +86,14 @@ public class OverallGradeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        adapter = new CourseListAdapter(courseList);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     public static Intent getIntent(Context context, String username){
