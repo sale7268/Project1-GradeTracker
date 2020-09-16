@@ -16,8 +16,10 @@
     <string name="course4Grade" />
     <string name="addAssignment">Add assignment</string>
     <string name="btnAssignment">Assignments</string>
-    <string name="rbHw">Homework</string>
+    <string name="rbHomework">Homework</string>
     <string name="rbProject">Project</string>
     <string name="rbQuiz">Quiz</string>
     <string name="rbExam">Exam</string>
+    <string name="tvtotalgrade">Overall Percentage:</string>
+    <string name="overallpercent">Overall</string>
 </resources>

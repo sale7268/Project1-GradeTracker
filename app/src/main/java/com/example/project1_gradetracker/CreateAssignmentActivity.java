@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,11 +26,12 @@ public class CreateAssignmentActivity extends AppCompatActivity {
     private EditText DueDate;
     private EditText Points;
     private EditText Grade;
-    private EditText Category;
+    private RadioGroup Category;
     private Button Add;
 
     List<Assignment> assignmentList;
     public static AssignmentDAO assignmentDAO;
+    String cate = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +43,27 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         DueDate = (EditText)findViewById(R.id.etAssignmentDue);
         Points = (EditText)findViewById(R.id.etAssignmentPoints);
         Grade = (EditText)findViewById(R.id.etAssignmentGrade);
-        Category = (EditText) findViewById(R.id.etAssignmentCategory);
+        Category = findViewById(R.id.radioGroup);
         Add = (Button)findViewById(R.id.btAddAssignment);
 
         assignmentDAO = database.assignmentDAO();
         assignmentList = assignmentDAO.getAllAssignments();
+
+        // Set Radiobutton for Category
+        Category.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.radioButton){
+                    cate = "Homework";
+                }else if(checkedId == R.id.radioButton2){
+                    cate = "Project";
+                }else if(checkedId == R.id.radioButton3){
+                    cate = "Quiz";
+                }else{
+                    cate = "Exam";
+                }
+            }
+        });
 
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +72,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 boolean assignmentExists = false;
 
 
-                Assignment assignment = createNewAssignment();
+                Assignment assignment = createNewAssignment(cate);
 
 
                 // Check if Assignment already exist or not
@@ -81,7 +99,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         });
     }
 
-    private Assignment createNewAssignment(){
+    private Assignment createNewAssignment(String category){
         final Assignment assignment = new Assignment();
 
         assignment.setTitle(Title.getText().toString());
@@ -89,7 +107,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         assignment.setDueDate(DueDate.getText().toString());
         assignment.setPoints(Integer.parseInt(Points.getText().toString()));
         assignment.setGrade(Integer.parseInt(Grade.getText().toString()));
-        assignment.setCategory(Category.getText().toString());
+        assignment.setCategory(category);
 
         return assignment;
     }
