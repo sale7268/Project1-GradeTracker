@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project1_gradetracker.DB.Course;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.ViewHolder> {
 
@@ -28,10 +28,10 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
     }
 
     // Store a member variable for the contacts
-    private List<Course> mCourseList;
+    private ArrayList<Course> mCourseList;
 
     // Pass in the contact array into the constructor
-    public CourseListAdapter(List<Course> courses) {
+    public CourseListAdapter(ArrayList<Course> courses) {
         mCourseList = courses;
     }
 
@@ -56,7 +56,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
         Course currentCourse = mCourseList.get(position);
 
         holder.mCourse.setText(currentCourse.getTitle());
-        //holder.mGrade.setText(currentCourse.getText2());
+        holder.mGrade.setText("100%"); // TODO: once grade is calculated, use getGrade()
     }
 
     @Override

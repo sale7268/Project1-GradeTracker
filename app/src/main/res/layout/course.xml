@@ -6,36 +6,30 @@
     app:cardCornerRadius="4dp">
     
     <RelativeLayout
+        android:id="@+id/courseLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="2dp"/>
 
         <TextView
             android:id="@+id/tvCourseName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/imageView"
             android:text="course1"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvCourseGrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvCourseName"
+            android:layout_alignEnd="@id/tvCourseName"
             android:layout_marginStart="7dp"
-            android:layout_toEndOf="@+id/imageView"
-            android:text="Line 2"
-            android:textSize="15sp" />
+            android:layout_marginEnd="-300dp"
+            android:text="grade1"
+            android:textSize="20sp" />
 
     </RelativeLayout>
 

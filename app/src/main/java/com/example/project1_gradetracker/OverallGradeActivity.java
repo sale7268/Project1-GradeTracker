@@ -62,7 +62,9 @@ public class OverallGradeActivity extends AppCompatActivity {
         }
 
         ArrayList<Course> courseList = new ArrayList<>();
-//        courseList.add()
+        courseList.add(new Course(438, "Software Engineering", "Dr. C", "desc"));
+        courseList.add(new Course(330, "OS", "Dr. B", "desc"));
+        courseList.add(new Course(238, "Data Structures", "Dr. E", "desc"));
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
