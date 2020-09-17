@@ -23,7 +23,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
     //Declaring variables
     TextView assignmentDisplay, gradeDisplay;
-    private Button buttonAddA;
+    private Button buttonAddA, buttonDeleteA;
     List<Assignment> assignmentList;
     public static AssignmentDAO assignmentDAO;
     public double grades = 0.0, totalPoints = 0.0;
@@ -49,6 +49,15 @@ public class AssignmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = CreateAssignmentActivity.getIntent(getApplicationContext(), USER_NAME);
+                startActivity(intent);
+            }
+        });
+
+        buttonDeleteA = findViewById(R.id.buttonDeleteAssignment);
+        buttonDeleteA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = DeleteAssignmentActivity.getIntent(getApplicationContext(), USER_NAME);
                 startActivity(intent);
             }
         });
