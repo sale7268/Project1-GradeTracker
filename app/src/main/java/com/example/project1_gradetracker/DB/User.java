@@ -2,8 +2,8 @@ package com.example.project1_gradetracker.DB;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,7 @@ public class User {
     @NonNull
     private String password;
 
-//    @TypeConverter(ArrayListTypeConverter.class)
-    @Ignore
+    @TypeConverters({ArrayListTypeConverter.class})
     private List<Course> courseList;
 // json string to be stored in DB
     public User(){

@@ -55,7 +55,7 @@ public class CreateCourseActivity extends AppCompatActivity {
         Create = (Button)findViewById(R.id.btnCreateC);
         Remind = (TextView)findViewById(R.id.tvRemind);
 
-        Toast.makeText(CreateCourseActivity.this, courseDAO.getAllCourses().toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(CreateCourseActivity.this, courseDAO.getAllCourses().toString(), Toast.LENGTH_SHORT).show();
 
         Create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +100,6 @@ public class CreateCourseActivity extends AppCompatActivity {
             String desc = Description.getText().toString();
             course = new Course(id, title, instructor, desc);
 
-            List<Course> tempCourseList = user.getCourseList();
-
             // check if user entered course is already in the DB
             for(Course c : courseList){
                 // course exists, add course to user course-list
@@ -110,7 +108,7 @@ public class CreateCourseActivity extends AppCompatActivity {
                     if(user.getCourseList().contains(course)){
                         Toast.makeText(CreateCourseActivity.this, "This course is already in your Course List", Toast.LENGTH_SHORT).show();
                     } else {
-                        tempCourseList.add(course);
+                        user.addCourse(course);
                         Toast.makeText(CreateCourseActivity.this, "Course Added to Course List", Toast.LENGTH_SHORT).show();
                     }
                     //Toast.makeText(CreateCourseActivity.this, user.getCourseList().toString(), Toast.LENGTH_SHORT).show();
@@ -120,10 +118,9 @@ public class CreateCourseActivity extends AppCompatActivity {
             // if the course does not exist, add it to the database and user courselist
             if(!courseExists){
                 courseDAO.insert(course);
-                tempCourseList.add(course);
+                user.addCourse(course);
                 Toast.makeText(CreateCourseActivity.this, "Course Added to Database and Course List", Toast.LENGTH_SHORT).show();
             }
-            user.setCourseList(tempCourseList);
             Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);
             startActivity(intent);
             }

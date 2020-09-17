@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 /** RoomDB
  * This database holds three tables (User, Course, and Assignment)
@@ -13,7 +14,9 @@ import androidx.room.RoomDatabase;
  * there is a way around this, I just don't know it ATM
  */
 
-@Database(entities = {User.class, Course.class, Assignment.class}, version = 8, exportSchema = false)
+
+@Database(entities = {User.class, Course.class, Assignment.class}, version = 9, exportSchema = false)
+@TypeConverters({ArrayListTypeConverter.class})
 public abstract class RoomDB extends RoomDatabase {
 
     private static RoomDB database;
