@@ -35,8 +35,12 @@ public abstract class RoomDB extends RoomDatabase {
     public abstract UserDAO userDAO();
 
     // Create courseDAO
-    public abstract CourseDAO courseDAO();
+    public static CourseDAO courseDAO() {
+        return null;
+    }
 
     // Create AssignmentDAO
-    public abstract AssignmentDAO assignmentDAO();
+    public static AssignmentDAO assignmentDAO() {
+        return null;
+    }
 }

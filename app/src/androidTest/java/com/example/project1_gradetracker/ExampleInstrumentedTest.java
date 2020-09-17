@@ -141,6 +141,7 @@ public class ExampleInstrumentedTest {
         assertEquals(course.toString(), course.getTitle(), "438 Software Engineering");
     }
 
+
 //    @Test
 //    public void insertAssignmentTable(){
 //        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
