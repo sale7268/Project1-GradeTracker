@@ -42,9 +42,13 @@ public class CreateCourseActivity extends AppCompatActivity {
 
         // TODO: once course overview is finished, move the courseDAO initialization to that class
         // initialize the DAO and populate the list with current existing courses
-        courseDAO = database.courseDAO();
-        courseList = courseDAO.getAllCourses();
 
+        try {
+            courseDAO = database.courseDAO();
+            courseList = courseDAO.getAllCourses();
+        } catch (Exception e){
+            System.out.println("NullPointerException");
+        }
         Title = (EditText)findViewById(R.id.etTitle);
         ID = (EditText)findViewById(R.id.etID);
         Instructor = (EditText)findViewById(R.id.etInstructor);
