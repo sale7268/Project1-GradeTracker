@@ -26,6 +26,7 @@ public class User {
     @NonNull
     private String password;
 
+//    @TypeConverter(ArrayListTypeConverter.class)
     @Ignore
     private List<Course> courseList;
 // json string to be stored in DB

@@ -43,12 +43,9 @@ public class CreateCourseActivity extends AppCompatActivity {
         // TODO: once course overview is finished, move the courseDAO initialization to that class
         // initialize the DAO and populate the list with current existing courses
 
-        try {
-            courseDAO = database.courseDAO();
-            courseList = courseDAO.getAllCourses();
-        } catch (Exception e){
-            System.out.println("NullPointerException");
-        }
+        courseDAO = database.courseDAO();
+        courseList = courseDAO.getAllCourses();
+
         Title = (EditText)findViewById(R.id.etTitle);
         ID = (EditText)findViewById(R.id.etID);
         Instructor = (EditText)findViewById(R.id.etInstructor);
@@ -57,6 +54,8 @@ public class CreateCourseActivity extends AppCompatActivity {
         Description = (EditText)findViewById(R.id.etDescription);
         Create = (Button)findViewById(R.id.btnCreateC);
         Remind = (TextView)findViewById(R.id.tvRemind);
+
+        Toast.makeText(CreateCourseActivity.this, courseDAO.getAllCourses().toString(), Toast.LENGTH_SHORT).show();
 
         Create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +122,6 @@ public class CreateCourseActivity extends AppCompatActivity {
                 courseDAO.insert(course);
                 tempCourseList.add(course);
                 Toast.makeText(CreateCourseActivity.this, "Course Added to Database and Course List", Toast.LENGTH_SHORT).show();
-                //Toast.makeText(CreateCourseActivity.this, user.getCourseList().toString(), Toast.LENGTH_SHORT).show();
             }
             user.setCourseList(tempCourseList);
             Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);

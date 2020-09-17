@@ -81,7 +81,7 @@ public class OverallGradeActivity extends AppCompatActivity {
         buttonAssignments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), USER_NAME);
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name);
                 startActivity(intent);
             }
         });
