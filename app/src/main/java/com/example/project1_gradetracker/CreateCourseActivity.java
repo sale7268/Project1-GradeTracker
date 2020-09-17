@@ -97,6 +97,8 @@ public class CreateCourseActivity extends AppCompatActivity {
             String desc = Description.getText().toString();
             course = new Course(id, title, instructor, desc);
 
+            List<Course> tempCourseList = user.getCourseList();
+
             // check if user entered course is already in the DB
             for(Course c : courseList){
                 // course exists, add course to user course-list
@@ -105,20 +107,21 @@ public class CreateCourseActivity extends AppCompatActivity {
                     if(user.getCourseList().contains(course)){
                         Toast.makeText(CreateCourseActivity.this, "This course is already in your Course List", Toast.LENGTH_SHORT).show();
                     } else {
-                        user.addCourse(course);
+                        tempCourseList.add(course);
                         Toast.makeText(CreateCourseActivity.this, "Course Added to Course List", Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(CreateCourseActivity.this, user.getCourseList().toString(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(CreateCourseActivity.this, user.getCourseList().toString(), Toast.LENGTH_SHORT).show();
                     break;
                 }
             }
             // if the course does not exist, add it to the database and user courselist
             if(!courseExists){
                 courseDAO.insert(course);
-                user.addCourse(course);
+                tempCourseList.add(course);
                 Toast.makeText(CreateCourseActivity.this, "Course Added to Database and Course List", Toast.LENGTH_SHORT).show();
-                Toast.makeText(CreateCourseActivity.this, user.getCourseList().toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(CreateCourseActivity.this, user.getCourseList().toString(), Toast.LENGTH_SHORT).show();
             }
+            user.setCourseList(tempCourseList);
             Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);
             startActivity(intent);
             }
