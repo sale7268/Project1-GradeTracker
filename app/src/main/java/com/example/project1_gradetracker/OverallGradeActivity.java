@@ -12,11 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.project1_gradetracker.DB.Course;
 import com.example.project1_gradetracker.DB.User;
 import com.example.project1_gradetracker.DB.UserDAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
@@ -61,10 +59,10 @@ public class OverallGradeActivity extends AppCompatActivity {
             Toast.makeText(OverallGradeActivity.this, "no user found", Toast.LENGTH_SHORT).show();
         }
 
-        List<Course> courseList = new ArrayList<>();
-        courseList.add(new Course(438, "Software Engineering", "Dr. C", "desc"));
-        courseList.add(new Course(330, "OS", "Dr. B", "desc"));
-        courseList.add(new Course(238, "Data Structures", "Dr. E", "desc"));
+//        List<Course> courseList = new ArrayList<>();
+//        courseList.add(new Course(438, "Software Engineering", "Dr. C", "desc"));
+//        courseList.add(new Course(330, "OS", "Dr. B", "desc"));
+//        courseList.add(new Course(238, "Data Structures", "Dr. E", "desc"));
 
         buttonCreateC = (Button)findViewById(R.id.buttonCreateCourse);
         buttonAssignments = findViewById(R.id.btnAssignments);
@@ -85,12 +83,10 @@ public class OverallGradeActivity extends AppCompatActivity {
             }
         });
 
-        //List<Course> courseList = user.getCourseList();
-
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        adapter = new CourseListAdapter(courseList);
+        adapter = new CourseListAdapter(user.getCourseList());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
