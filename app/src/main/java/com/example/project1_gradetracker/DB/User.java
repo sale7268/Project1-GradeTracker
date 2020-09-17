@@ -82,7 +82,9 @@ public class User {
         this.courseList = courseList;
     }
 
-    public void addCourse(Course course){ this.courseList.add(course); }
+    public void addCourse(Course course){
+        this.courseList.add(course);
+    }
 
     @Override
     public boolean equals(Object o) {

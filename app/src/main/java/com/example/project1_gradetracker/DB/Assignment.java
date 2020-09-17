@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Assignment {
     @PrimaryKey
-    private int AssignmentID;
+    private int assignmentID;
 
     private String title;
     private String dueDate;
@@ -15,7 +15,7 @@ public class Assignment {
     private String category;
 
     public Assignment() {
-        this.AssignmentID = 0;
+        this.assignmentID = 0;
         this.title = null;
         this.dueDate = null;
         this.points = 0;
@@ -24,7 +24,7 @@ public class Assignment {
     }
 
     public Assignment(int assignmentID, String title, String dueDate, int points, int grade, String category) {
-        AssignmentID = assignmentID;
+        this.assignmentID = assignmentID;
         this.title = title;
         this.dueDate = dueDate;
         this.points = points;
@@ -32,9 +32,9 @@ public class Assignment {
         this.category = category;
     }
 
-    public int getAssignmentID() { return AssignmentID; }
+    public int getAssignmentID() { return assignmentID; }
 
-    public void setAssignmentID(int assignmentID) { AssignmentID = assignmentID; }
+    public void setAssignmentID(int assignmentID) { this.assignmentID = assignmentID; }
 
     public String getTitle() { return title; }
 

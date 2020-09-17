@@ -25,4 +25,7 @@ public interface AssignmentDAO {
     //get all query
     @Query("SELECT * FROM Assignment")
     List<Assignment> getAllAssignments();
+
+    @Query("SELECT * FROM Assignment WHERE assignmentID = :i")
+    Assignment getAssignmentByID(int i);
 }

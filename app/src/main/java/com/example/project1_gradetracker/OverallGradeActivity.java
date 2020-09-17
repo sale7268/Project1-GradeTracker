@@ -22,7 +22,7 @@ import static com.example.project1_gradetracker.LoginActivity.database;
 
 public class OverallGradeActivity extends AppCompatActivity {
 
-    private Button buttonCreateC, buttonAssignments;
+    private Button buttonCreateC, buttonAssignments, buttonDeleteCourse;
     private Button buttonAddA;
     private TextView course1, course2, course3, course4;
     private TextView courseGrade1, courseGrade2, courseGrade3, courseGrade4;
@@ -36,6 +36,7 @@ public class OverallGradeActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     // responsible for aligning the items in the list
     private RecyclerView.LayoutManager layoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +60,15 @@ public class OverallGradeActivity extends AppCompatActivity {
             Toast.makeText(OverallGradeActivity.this, "no user found", Toast.LENGTH_SHORT).show();
         }
 
-//        List<Course> courseList = new ArrayList<>();
-//        courseList.add(new Course(438, "Software Engineering", "Dr. C", "desc"));
-//        courseList.add(new Course(330, "OS", "Dr. B", "desc"));
-//        courseList.add(new Course(238, "Data Structures", "Dr. E", "desc"));
+        /*List<Course> courseList = new ArrayList<>();
+        courseList.add(new Course(438, "Software Engineering", "Dr. C", "desc"));
+        courseList.add(new Course(330, "OS", "Dr. B", "desc"));
+        courseList.add(new Course(238, "Data Structures", "Dr. E", "desc"));
+        user.setCourseList(courseList);*/
 
         buttonCreateC = (Button)findViewById(R.id.buttonCreateCourse);
         buttonAssignments = findViewById(R.id.btnAssignments);
+        buttonDeleteCourse = findViewById(R.id.btnDeleteCourse);
 
         buttonCreateC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +85,18 @@ public class OverallGradeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        buttonDeleteCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = DeleteCourseActivity.getIntent(getApplicationContext(), user_name);
+                startActivity(intent);
+            }
+        });
+
+        //List<Course> courseList = user.getCourseList();
+        Toast.makeText(OverallGradeActivity.this, "User:" + user.getUsername(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(OverallGradeActivity.this, "Courses:" + user.getCourseList().toString(), Toast.LENGTH_SHORT).show();
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);

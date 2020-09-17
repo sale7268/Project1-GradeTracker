@@ -22,4 +22,5 @@
     <string name="rbExam">Exam</string>
     <string name="tvtotalgrade">Overall Percentage:</string>
     <string name="overallpercent">Overall</string>
+    <string name="btnDelete">Delete</string>
 </resources>
