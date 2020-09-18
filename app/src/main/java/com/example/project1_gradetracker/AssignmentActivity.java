@@ -71,6 +71,7 @@ public class AssignmentActivity extends AppCompatActivity {
         }
 
         //Calling display function
+        if(course.getAssignmentList() != null)
         refreshDisplay(course.getAssignmentList());
 
         //Starting new activity after clicking "Add assignment" button
@@ -87,7 +88,7 @@ public class AssignmentActivity extends AppCompatActivity {
         buttonDeleteA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = DeleteAssignmentActivity.getIntent(getApplicationContext(), user_name);
+                Intent intent = DeleteAssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
                 startActivity(intent);
             }
         });

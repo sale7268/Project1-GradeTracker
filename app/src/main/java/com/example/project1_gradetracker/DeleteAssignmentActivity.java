@@ -72,9 +72,13 @@ public class DeleteAssignmentActivity extends AppCompatActivity {
 
 
 
-    public static Intent getIntent(Context context, String username){
+    public static Intent getIntent(Context context, String username, int course){
+        Bundle bundle = new Bundle();
+        bundle.putString(USER_NAME, username);
+        bundle.putInt(COURSE_ID, course);
+
         Intent intent = new Intent(context, DeleteAssignmentActivity.class);
-        intent.putExtra(USER_NAME, username);
+        intent.putExtras(bundle);
 
         return intent;
     }
