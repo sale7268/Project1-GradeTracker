@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1_gradetracker.DB.Assignment;
 import com.example.project1_gradetracker.DB.AssignmentDAO;
+import com.example.project1_gradetracker.DB.Course;
+import com.example.project1_gradetracker.DB.CourseDAO;
 
 import java.util.List;
 
@@ -27,6 +29,9 @@ public class DeleteAssignmentActivity extends AppCompatActivity {
 
     public static AssignmentDAO assignmentDAO;
     List<Assignment> assignmentList;
+    public static CourseDAO courseDAO;
+    List<Course> courseList;
+    List<Assignment> assignmentCourseList;
 
 
     @Override
@@ -38,13 +43,31 @@ public class DeleteAssignmentActivity extends AppCompatActivity {
         final String user_name = bundle.getString(USER_NAME);
         final int course_id = bundle.getInt(COURSE_ID);
 
+        //Getting course database
+        courseDAO = database.courseDAO();
+        courseList = courseDAO.getAllCourses();
+        Course course = null;
+
+        // find the course data
+        for(Course c : courseList) {
+            if (c.getCourseID() == course_id) {
+                course = c;
+                break;
+            }
+        }
+        if(course == null){
+            Toast.makeText(DeleteAssignmentActivity.this, "no course found", Toast.LENGTH_SHORT).show();
+        }
+
         deleteAssignmentID = findViewById(R.id.tvDeleteAssignmentID);
         deleteAssignment = findViewById(R.id.btDeleteA);
 
         // Assignment Database
         assignmentDAO = database.assignmentDAO();
         assignmentList = assignmentDAO.getAllAssignments();
+        assignmentCourseList = course.getAssignmentList();
 
+        final Course finalCourse = course;
         deleteAssignment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +80,20 @@ public class DeleteAssignmentActivity extends AppCompatActivity {
                         assignmentDAO.delete(a);
                         assignmentExit =true;
                         Toast.makeText(DeleteAssignmentActivity.this, "Assignment: " + title + " Successfully deleted", Toast.LENGTH_SHORT).show();
+                        break;
                     }
+                }
+
+                int index = 0;
+                for(Assignment a: assignmentCourseList){
+                    if(a.getAssignmentID() == id){
+                        assignmentCourseList.remove(index);
+                        courseDAO.update(finalCourse);
+                        assignmentExit = true;
+                        Toast.makeText(DeleteAssignmentActivity.this, "Assignment: " + title + " Successfully deleted", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    index++;
                 }
 
                 if(!assignmentExit) {

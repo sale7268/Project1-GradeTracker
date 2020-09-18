@@ -98,8 +98,6 @@ public class AssignmentActivity extends AppCompatActivity {
     //Display Function
     private void refreshDisplay(final List<Assignment> assignmentList) {
 
-        //Getting Data from database to local list
-
         //No assignment then display message
         if(assignmentList.size() <= 0){
             assignmentDisplay.setText("No Assignments");
