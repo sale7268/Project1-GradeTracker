@@ -76,8 +76,9 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Course currentCourse = mCourseList.get(position);
 
+        String grade = String.format("%.2f", currentCourse.getTotalGrade());
         holder.mCourse.setText(currentCourse.getTitle());
-        holder.mGrade.setText("                                                        " + currentCourse.getTotalGrade()); // TODO: once grade is calculated, use getGrade()
+        holder.mGrade.setText(String.format("%s%%", grade)); // TODO: once grade is calculated, use getGrade()
     }
 
     @Override

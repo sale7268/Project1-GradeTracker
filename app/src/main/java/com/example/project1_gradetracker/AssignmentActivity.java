@@ -14,12 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.project1_gradetracker.DB.Assignment;
 import com.example.project1_gradetracker.DB.AssignmentDAO;
 import com.example.project1_gradetracker.DB.Course;
+import com.example.project1_gradetracker.DB.User;
 
 import java.util.List;
 
 import static com.example.project1_gradetracker.CreateCourseActivity.courseDAO;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
+import static com.example.project1_gradetracker.LoginActivity.userDAO;
 
 
 public class AssignmentActivity extends AppCompatActivity {
@@ -33,7 +35,7 @@ public class AssignmentActivity extends AppCompatActivity {
     List<Assignment> assignmentList;
     public static AssignmentDAO assignmentDAO;
     List<Course> courseList;
-    //public static CourseDAO courseDAO;
+    List<User> userList;
 
     public double grades = 0.0, totalPoints = 0.0;
 
@@ -58,8 +60,20 @@ public class AssignmentActivity extends AppCompatActivity {
         //Getting course database
         courseDAO = database.courseDAO();
         courseList = courseDAO.getAllCourses();
+        userList = userDAO.getAllUsers();
 
+        User user = null;
         Course course = null;
+
+        for(User u : userList) {
+            if (u.getUsername().equals(user_name)) {
+                user = u;
+                break;
+            }
+        }
+        if(user == null){
+            Toast.makeText(AssignmentActivity.this, "no user found", Toast.LENGTH_SHORT).show();
+        }
 
         // find the course data
         for(Course c : courseList) {
@@ -73,8 +87,10 @@ public class AssignmentActivity extends AppCompatActivity {
         }
 
         //Calling display function
-        if(course.getAssignmentList() != null)
-        refreshDisplay(course.getAssignmentList());
+        if(user.getCourseByID(course_id) != null)
+        user.getCourseByID(course_id).setTotalGrade(refreshDisplay(course.getAssignmentList()));
+        courseDAO.update(course);
+        userDAO.update(user);
 
         //Starting new activity after clicking "Add assignment" button
         buttonAddA = findViewById(R.id.buttonAddAssignment);
@@ -107,7 +123,7 @@ public class AssignmentActivity extends AppCompatActivity {
     }
 
     //Display Function
-    private void refreshDisplay(final List<Assignment> assignmentList) {
+    private double refreshDisplay(final List<Assignment> assignmentList) {
 
         //No assignment then display message
         if(assignmentList.size() <= 0){
@@ -129,6 +145,8 @@ public class AssignmentActivity extends AppCompatActivity {
         sbGrades.append(((grades/totalPoints) * 100) + "%");
         gradeDisplay.setText(sbGrades.toString());
         assignmentDisplay.setText(sb.toString());
+
+        return ((grades/totalPoints) * 100);
     }
 
     public static Intent getIntent(Context context, String username, int course){
