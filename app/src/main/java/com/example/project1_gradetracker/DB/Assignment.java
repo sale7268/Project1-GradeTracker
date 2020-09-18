@@ -1,14 +1,20 @@
 package com.example.project1_gradetracker.DB;
 
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import androidx.room.ForeignKey;
 
 import java.util.Objects;
 
-@Entity
+@Entity(
+        primaryKeys = {"assignmentID", "courseID"},
+        foreignKeys = @ForeignKey(entity = Course.class,
+                parentColumns = "courseID",
+                childColumns = "courseID",
+                onDelete = ForeignKey.CASCADE)
+        )
 public class Assignment {
-    @PrimaryKey
     private int assignmentID;
+    private int courseID;
 
     private String title;
     private String dueDate;
@@ -17,6 +23,7 @@ public class Assignment {
     private String category;
 
     public Assignment() {
+        this.courseID = 0;
         this.assignmentID = 0;
         this.title = null;
         this.dueDate = null;
@@ -25,13 +32,22 @@ public class Assignment {
         this.category = null;
     }
 
-    public Assignment(int assignmentID, String title, String dueDate, int points, int grade, String category) {
+    public Assignment(int courseID, int assignmentID, String title, String dueDate, int points, int grade, String category) {
+        this.courseID = courseID;
         this.assignmentID = assignmentID;
         this.title = title;
         this.dueDate = dueDate;
         this.points = points;
         this.grade = grade;
         this.category = category;
+    }
+
+    public int getCourseID() {
+        return courseID;
+    }
+
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
     }
 
     public int getAssignmentID() { return assignmentID; }

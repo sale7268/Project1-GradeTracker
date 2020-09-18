@@ -14,10 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.project1_gradetracker.DB.Assignment;
 import com.example.project1_gradetracker.DB.AssignmentDAO;
 import com.example.project1_gradetracker.DB.Course;
-import com.example.project1_gradetracker.DB.CourseDAO;
 
 import java.util.List;
 
+import static com.example.project1_gradetracker.CreateCourseActivity.courseDAO;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
 
@@ -28,12 +28,12 @@ public class AssignmentActivity extends AppCompatActivity {
 
     //Declaring variables
     TextView assignmentDisplay, gradeDisplay;
-    private Button buttonAddA, buttonDeleteA;
+    private Button buttonAddA, buttonDeleteA, buttonEditA;
 
     List<Assignment> assignmentList;
     public static AssignmentDAO assignmentDAO;
     List<Course> courseList;
-    public static CourseDAO courseDAO;
+    //public static CourseDAO courseDAO;
 
     public double grades = 0.0, totalPoints = 0.0;
 
@@ -45,6 +45,8 @@ public class AssignmentActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         final String user_name = bundle.getString(USER_NAME);
         final int course_id = bundle.getInt(COURSE_ID);
+
+        Toast.makeText(AssignmentActivity.this, user_name + " " + course_id, Toast.LENGTH_SHORT).show();
 
         //Initiating display method and scrolling movement
         assignmentDisplay = findViewById(R.id.tvAssignments);
@@ -93,12 +95,19 @@ public class AssignmentActivity extends AppCompatActivity {
             }
         });
 
+        buttonEditA = findViewById(R.id.btnEditAssignment);
+        buttonEditA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = EditAssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                startActivity(intent);
+            }
+        });
+
     }
 
     //Display Function
     private void refreshDisplay(final List<Assignment> assignmentList) {
-
-        //Getting Data from database to local list
 
         //No assignment then display message
         if(assignmentList.size() <= 0){

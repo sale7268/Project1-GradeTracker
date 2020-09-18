@@ -12,19 +12,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1_gradetracker.DB.Course;
 import com.example.project1_gradetracker.DB.User;
-import com.example.project1_gradetracker.DB.UserDAO;
 
 import java.util.List;
 
 import static com.example.project1_gradetracker.CreateCourseActivity.courseDAO;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
+import static com.example.project1_gradetracker.LoginActivity.userDAO;
 
 public class DeleteCourseActivity extends AppCompatActivity {
 
     List<User> users;
     List<Course> courseList;
-    public static UserDAO userDAO;
+    //public static UserDAO userDAO;
 
     EditText deleteCourseId, deleteCourseName;
     Button deleteButton;
@@ -36,7 +36,7 @@ public class DeleteCourseActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String user_name = intent.getStringExtra(USER_NAME);
-        userDAO= database.userDAO();
+        userDAO = database.userDAO();
         users = userDAO.getAllUsers();
         User user = null;
 

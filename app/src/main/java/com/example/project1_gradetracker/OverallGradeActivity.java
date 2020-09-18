@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,23 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project1_gradetracker.DB.Course;
 import com.example.project1_gradetracker.DB.User;
-import com.example.project1_gradetracker.DB.UserDAO;
 
 import java.util.List;
 
 import static com.example.project1_gradetracker.AssignmentActivity.COURSE_ID;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
+import static com.example.project1_gradetracker.LoginActivity.userDAO;
 
 public class OverallGradeActivity extends AppCompatActivity {
 
     private Button buttonCreateC,buttonDeleteCourse, buttonEditCourse;
-    private Button buttonAddA;
-    private TextView course1, course2, course3, course4;
-    private TextView courseGrade1, courseGrade2, courseGrade3, courseGrade4;
 
     List<User> users;
-    public static UserDAO userDAO;
+    //public static UserDAO userDAO;
 
     private RecyclerView recyclerView;
     // The adapter is the bridge between our data and the recycler view
@@ -49,7 +45,7 @@ public class OverallGradeActivity extends AppCompatActivity {
         final String user_name = bundle.getString(USER_NAME);
         final int course_id = bundle.getInt(COURSE_ID);
 
-        userDAO= database.userDAO();
+        userDAO = database.userDAO();
         users = userDAO.getAllUsers();
         User user = null;
 

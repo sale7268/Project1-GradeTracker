@@ -44,6 +44,10 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_assignment);
 
+        Bundle bundle = getIntent().getExtras();
+        final String user_name = bundle.getString(USER_NAME);
+        final int course_id = bundle.getInt(COURSE_ID);
+
         Title = (EditText)findViewById(R.id.etATitle);
         ID = (EditText)findViewById(R.id.etAID);
         DueDate = (EditText)findViewById(R.id.etADue);
@@ -76,68 +80,64 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+            // Need check assignment exist or not
+            boolean assignmentExists = false;
 
-                Bundle bundle = getIntent().getExtras();
-                final String user_name = bundle.getString(USER_NAME);
-                final int course_id = bundle.getInt(COURSE_ID);
-                // Need check assignment exist or not
-                boolean assignmentExists = false;
+            Assignment assignment = createNewAssignment(cate, course_id);
 
-                Assignment assignment = createNewAssignment(cate);
+            User user = null;
 
-                User user = null;
-
-                for(User u : database.userDAO().getAllUsers()) {
-                    if (u.getUsername().equals(user_name)) {
-                        user = u;
-                        break;
-                    }
+            for(User u : database.userDAO().getAllUsers()) {
+                if (u.getUsername().equals(user_name)) {
+                    user = u;
+                    break;
                 }
-                if(user == null){
-                    Toast.makeText(CreateAssignmentActivity.this, "no user found", Toast.LENGTH_SHORT).show();
-                }
+            }
+            if(user == null){
+                Toast.makeText(CreateAssignmentActivity.this, "no user found", Toast.LENGTH_SHORT).show();
+            }
 
-                boolean courseExists = false;
-                Course course = null;
+            boolean courseExists = false;
+            Course course = null;
 
-                for(Course c : courseList){
-                    // course exists, add course to user course-list
-                    if(c.getCourseID() == course_id){
-                        courseExists = true;
-                        course = c;
-                        for(Assignment a : assignmentList){
-                            if(a.getAssignmentID() == assignment.getAssignmentID()){
-                                assignmentExists = true;
-                                Toast.makeText(CreateAssignmentActivity.this, "Assignment Already Added to Assignmnet List!", Toast.LENGTH_SHORT).show();
-                                break;
-                            }
+            for(Course c : courseList){
+                // course exists, add course to user course-list
+                if(c.getCourseID() == course_id){
+                    courseExists = true;
+                    course = c;
+                    for(Assignment a : assignmentList){
+                        if(a.getAssignmentID() == assignment.getAssignmentID()){
+                            assignmentExists = true;
+                            Toast.makeText(CreateAssignmentActivity.this, "Assignment Already Added to Assignmnet List!", Toast.LENGTH_SHORT).show();
+                            break;
                         }
                     }
                 }
+            }
 
-                if(!assignmentExists){
-                    assignmentDAO.insert(assignment);
-                    course.addAssignment(assignment);
-                    courseDAO.update(course);
-                    Toast.makeText(CreateAssignmentActivity.this, "Assignment Added to Database", Toast.LENGTH_SHORT).show();
-                }
+            if(!assignmentExists){
+                assignmentDAO.insert(assignment);
+                course.addAssignment(assignment);
+                courseDAO.update(course);
+                Toast.makeText(CreateAssignmentActivity.this, "Assignment Added to Database", Toast.LENGTH_SHORT).show();
+            }
 
-                // After success add new assignment, back to upper page.
-                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
-                startActivity(intent);
+            // After success add new assignment, back to upper page.
+            Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+            startActivity(intent);
             }
         });
     }
 
-    private Assignment createNewAssignment(String category){
-        final Assignment assignment = new Assignment();
-
-        assignment.setTitle(Title.getText().toString());
-        assignment.setAssignmentID(Integer.parseInt(ID.getText().toString()));
-        assignment.setDueDate(DueDate.getText().toString());
-        assignment.setPoints(Integer.parseInt(Points.getText().toString()));
-        assignment.setGrade(Integer.parseInt(Grade.getText().toString()));
-        assignment.setCategory(category);
+    private Assignment createNewAssignment(String category, int course_id){
+        Assignment assignment = new Assignment(
+            course_id,
+            Integer.parseInt(ID.getText().toString()),
+            Title.getText().toString(),
+            DueDate.getText().toString(),
+            Integer.parseInt(Points.getText().toString()),
+            Integer.parseInt(Grade.getText().toString()),
+            category);
 
         return assignment;
     }
@@ -152,5 +152,4 @@ public class CreateAssignmentActivity extends AppCompatActivity {
 
         return intent;
     }
-
 }

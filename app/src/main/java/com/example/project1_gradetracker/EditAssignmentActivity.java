@@ -28,18 +28,17 @@ public class EditAssignmentActivity extends AppCompatActivity {
     List<Assignment> assignmentList;
     public static AssignmentDAO assignmentDAO;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_assignment);
 
         Bundle bundle = getIntent().getExtras();
+        final String user_name = bundle.getString(USER_NAME);
         final int course_id = bundle.getInt(COURSE_ID);
 
         assignmentDAO = database.assignmentDAO();
         assignmentList = assignmentDAO.getAllAssignments();
-
 
         // Initialize edit text, button, radio gourp
         edTitle = findViewById(R.id.etTitleEd);
@@ -100,7 +99,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
                 for(Assignment a: assignmentList){
                     // Check assignmnet's id if assignment exit
                     if(a.getAssignmentID() == id){
-                        Assignment assignment = new Assignment(id, title, due, point, earned, category);
+                        Assignment assignment = new Assignment(course_id, id, title, due, point, earned, category);
                         assignmentDAO.updateAssignment(assignment);
                         Toast.makeText(EditAssignmentActivity.this, "Assignment: " + title + " [" + id +"] " + " Successfully edited", Toast.LENGTH_SHORT).show();
                         checkassignment = true;
@@ -120,10 +119,13 @@ public class EditAssignmentActivity extends AppCompatActivity {
 
     }
 
+    public static Intent getIntent(Context context, String username, int course){
+        Bundle bundle = new Bundle();
+        bundle.putString(USER_NAME, username);
+        bundle.putInt(COURSE_ID, course);
 
-    public static Intent getIntent(Context context, String username){
         Intent intent = new Intent(context, EditAssignmentActivity.class);
-        intent.putExtra(USER_NAME, username);
+        intent.putExtras(bundle);
 
         return intent;
     }
