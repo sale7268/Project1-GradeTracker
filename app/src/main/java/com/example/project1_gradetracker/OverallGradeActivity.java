@@ -72,6 +72,14 @@ public class OverallGradeActivity extends AppCompatActivity {
         displayUserName = findViewById(R.id.tvUserName);
         displayUserName.setText(user_name);
 
+        displayUserName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = EditUserActivity.getIntent(getApplicationContext(), user_name);
+                startActivity(intent);
+            }
+        });
+
         buttonCreateC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

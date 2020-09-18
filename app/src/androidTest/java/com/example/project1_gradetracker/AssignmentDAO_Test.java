@@ -38,8 +38,7 @@ public class AssignmentDAO_Test {
                 .assignmentDAO();
 
         // Ceate an assignment
-        Assignment assignment = new Assignment(101, "Homework101",
-                "9/18/2020", 100, 100, "Homework");
+        Assignment assignment = new Assignment(438, 101, "Homework101", "9/18/2020", 100, 100, "Homework");
         // Delet the assignmnet in the lsit, if it already exit
         myTestDB.delete(assignment);
         // Insert the assignment
