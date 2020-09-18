@@ -13,6 +13,9 @@ public interface AssignmentDAO {
     // insert query
     @Insert
     void insert(Assignment assignment);
+    // update query
+    @Update
+    void update(Assignment assignment);
     // delete query
     @Delete
     void delete(Assignment assignment);
