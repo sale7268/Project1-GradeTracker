@@ -16,6 +16,7 @@ import com.example.project1_gradetracker.DB.User;
 
 import java.util.List;
 
+import static com.example.project1_gradetracker.AssignmentActivity.COURSE_ID;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
 
@@ -32,6 +33,9 @@ public class EditAssignmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_assignment);
+
+        Bundle bundle = getIntent().getExtras();
+        final int course_id = bundle.getInt(COURSE_ID);
 
         assignmentDAO = database.assignmentDAO();
         assignmentList = assignmentDAO.getAllAssignments();
@@ -107,7 +111,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
                 }
 
                 //Go back to overall grade activity
-                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name);
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
                 startActivity(intent);
             }
         });

@@ -43,11 +43,11 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         final String user_name = bundle.getString(USER_NAME);
         final int course_id = bundle.getInt(COURSE_ID);
 
-        Title = (EditText)findViewById(R.id.etAssignmentTitle);
-        ID = (EditText)findViewById(R.id.etAssignmentID);
-        DueDate = (EditText)findViewById(R.id.etAssignmentDue);
-        Points = (EditText)findViewById(R.id.etAssignmentPoints);
-        Grade = (EditText)findViewById(R.id.etAssignmentGrade);
+        Title = (EditText)findViewById(R.id.etATitle);
+        ID = (EditText)findViewById(R.id.etAID);
+        DueDate = (EditText)findViewById(R.id.etADue);
+        Points = (EditText)findViewById(R.id.etAPoints);
+        Grade = (EditText)findViewById(R.id.etAGrade);
         Category = findViewById(R.id.radioGroup);
         Add = (Button)findViewById(R.id.btAddAssignment);
 
