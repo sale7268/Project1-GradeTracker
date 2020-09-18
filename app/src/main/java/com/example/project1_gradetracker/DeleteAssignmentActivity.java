@@ -68,8 +68,6 @@ public class DeleteAssignmentActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
     }
 
 

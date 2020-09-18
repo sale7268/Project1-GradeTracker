@@ -116,6 +116,10 @@ public class Course {
 
     public void setAssignmentList(List<Assignment> assignmentList) { this.assignmentList = assignmentList; }
 
+    public void addAssignment(Assignment assignment){
+        this.assignmentList.add(assignment);
+    }
+
     public void calculateTotalGrade(){
         List<Assignment> assign = getAssignmentList();
         double grades = 0,totalPoints = 0;

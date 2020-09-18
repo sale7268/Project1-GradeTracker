@@ -113,7 +113,6 @@ public class CreateCourseActivity extends AppCompatActivity {
                         userDAO.update(user);
                         Toast.makeText(CreateCourseActivity.this, "Course Added to Course List", Toast.LENGTH_SHORT).show();
                     }
-                    //Toast.makeText(CreateCourseActivity.this, user.getCourseList().toString(), Toast.LENGTH_SHORT).show();
                     break;
                 }
             }
