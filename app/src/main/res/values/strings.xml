@@ -24,4 +24,6 @@
     <string name="overallpercent">Overall</string>
     <string name="btnDelete">Delete</string>
     <string name="editcourse">Edit Course</string>
+    <string name="tvCourseGrade">tvCourseGrade</string>
+    <string name="tvCourseName">tvCourseName</string>
 </resources>

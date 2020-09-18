@@ -62,7 +62,6 @@ public class OverallGradeActivity extends AppCompatActivity {
             Toast.makeText(OverallGradeActivity.this, "no user found", Toast.LENGTH_SHORT).show();
         }
 
-
         buildRecyclerView(user.getUsername(), user.getCourseList());
 
         buttonCreateC = findViewById(R.id.buttonCreateCourse);

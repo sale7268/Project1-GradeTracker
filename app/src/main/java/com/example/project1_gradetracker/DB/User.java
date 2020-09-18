@@ -78,6 +78,15 @@ public class User {
         return courseList;
     }
 
+    public Course getCourseByID(int id){
+        for(Course c : this.courseList){
+            if(c.getCourseID() == id){
+                return c;
+            }
+        }
+        return null;
+    }
+
     public void setCourseList(List<Course> courseList) {
         this.courseList = courseList;
     }
