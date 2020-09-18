@@ -74,8 +74,6 @@ public class EditUserActivity extends AppCompatActivity {
                 user.setPassword(edPassword.getText().toString());
                 boolean checkUser = false;
 
-                //User userEd = new User(id, userName, passWord);
-
                 // Check for User in database
                 for(User u: userList){
                     if(u.getUSER_ID().equals(id)){
@@ -95,9 +93,6 @@ public class EditUserActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
     }
 
     public static Intent getIntent(Context context, String username){
