@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import static com.example.project1_gradetracker.LoginActivity.userDAO;
 public class OverallGradeActivity extends AppCompatActivity {
 
     private Button buttonCreateC,buttonDeleteCourse, buttonEditCourse;
+    private TextView displayUserName;
 
     List<User> users;
     //public static UserDAO userDAO;
@@ -66,6 +68,9 @@ public class OverallGradeActivity extends AppCompatActivity {
         buttonCreateC = findViewById(R.id.buttonCreateCourse);
         buttonDeleteCourse = findViewById(R.id.btnDeleteCourse);
         buttonEditCourse = findViewById(R.id.btnEditCourse);
+
+        displayUserName = findViewById(R.id.tvUserName);
+        displayUserName.setText(user_name);
 
         buttonCreateC.setOnClickListener(new View.OnClickListener() {
             @Override
