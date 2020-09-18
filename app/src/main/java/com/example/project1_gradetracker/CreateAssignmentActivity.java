@@ -16,6 +16,7 @@ import com.example.project1_gradetracker.DB.AssignmentDAO;
 
 import java.util.List;
 
+import static com.example.project1_gradetracker.AssignmentActivity.COURSE_ID;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
 
@@ -38,11 +39,15 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_assignment);
 
-        Title = (EditText)findViewById(R.id.etATitle);
-        ID = (EditText)findViewById(R.id.etAID);
-        DueDate = (EditText)findViewById(R.id.etADue);
-        Points = (EditText)findViewById(R.id.etAPoints);
-        Grade = (EditText)findViewById(R.id.etAGrade);
+        Bundle bundle = getIntent().getExtras();
+        final String user_name = bundle.getString(USER_NAME);
+        final int course_id = bundle.getInt(COURSE_ID);
+
+        Title = (EditText)findViewById(R.id.etAssignmentTitle);
+        ID = (EditText)findViewById(R.id.etAssignmentID);
+        DueDate = (EditText)findViewById(R.id.etAssignmentDue);
+        Points = (EditText)findViewById(R.id.etAssignmentPoints);
+        Grade = (EditText)findViewById(R.id.etAssignmentGrade);
         Category = findViewById(R.id.radioGroup);
         Add = (Button)findViewById(R.id.btAddAssignment);
 
@@ -90,10 +95,8 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 }
 
 
-                Intent i = getIntent();
-                String user_name = i.getStringExtra(USER_NAME);
                 // After success add new assignment, back to upper page.
-                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name);
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
                 startActivity(intent);
             }
         });

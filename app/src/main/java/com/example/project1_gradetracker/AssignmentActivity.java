@@ -21,6 +21,8 @@ import static com.example.project1_gradetracker.LoginActivity.database;
 
 public class AssignmentActivity extends AppCompatActivity {
 
+    final static String COURSE_ID = "course_id";
+
     //Declaring variables
     TextView assignmentDisplay, gradeDisplay;
     private Button buttonAddA, buttonDeleteA, buttonEdit;
@@ -102,9 +104,13 @@ public class AssignmentActivity extends AppCompatActivity {
         assignmentDisplay.setText(sb.toString());
     }
 
-    public static Intent getIntent(Context context, String username){
+    public static Intent getIntent(Context context, String username, int course){
+        Bundle bundle = new Bundle();
+        bundle.putString(USER_NAME, username);
+        bundle.putInt(COURSE_ID, course);
+
         Intent intent = new Intent(context, AssignmentActivity.class);
-        intent.putExtra(USER_NAME, username);
+        intent.putExtras(bundle);
 
         return intent;
     }

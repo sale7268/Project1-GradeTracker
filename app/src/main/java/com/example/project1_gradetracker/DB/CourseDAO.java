@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -12,6 +13,9 @@ public interface CourseDAO {
     // insert query
     @Insert
     void insert(Course course);
+    // update query
+    @Update
+    void update(Course course);
     // delete query
     @Delete
     void delete(Course course);
