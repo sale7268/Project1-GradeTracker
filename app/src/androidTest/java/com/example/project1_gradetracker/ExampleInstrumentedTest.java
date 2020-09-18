@@ -10,6 +10,8 @@ import com.example.project1_gradetracker.DB.CourseDAO;
 import com.example.project1_gradetracker.DB.RoomDB;
 import com.example.project1_gradetracker.DB.User;
 import com.example.project1_gradetracker.DB.UserDAO;
+import com.example.project1_gradetracker.DB.Assignment;
+import com.example.project1_gradetracker.DB.AssignmentDAO;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -141,22 +143,46 @@ public class ExampleInstrumentedTest {
         assertEquals(course.toString(), course.getTitle(), "438 Software Engineering");
     }
 
-//    @Test
-//    public void insertAssignmentTable(){
-//        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-//        AssignmentDAO assignmentDB = RoomDB.getInstance(appContext).assignmentDAO();
-//
-//        Assignment a = new Assignment(1, "hw1", "10/4", 50, 100, "homework");
-//        assignmentDB.insert(a);
-//    }
-//
-//    @Test
-//    public void deleteAssignmentTable(){
-//        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-//        AssignmentDAO assignmentDB = RoomDB.getInstance(appContext).assignmentDAO();
-//
-//    }
-//
+
+    @Test
+    public void insertAssignmentTable(){
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        AssignmentDAO assignmentDB = RoomDB.getInstance(appContext).assignmentDAO();
+
+        // insert assignment if assignment does not already exist in the table
+        Assignment assignment1 = new Assignment(101, "Grade Tracker", "9.10", 100, 100, "Project");
+        if(assignmentDB.getAssignmentByID(101) == null) {
+            assignmentDB.insert(assignment1);
+        }
+        Assignment assignment2 = assignmentDB.getAssignmentByID(101);
+        //Log.i("User: ", user1.toString());
+        assertEquals(assignment1.toString(), assignment1, assignment2);
+
+    }
+
+    @Test
+      public void deleteAssignmentTable(){
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        AssignmentDAO assignmentDB = RoomDB.getInstance(appContext).assignmentDAO();
+
+        // insert assignment if assignment does not already exist in the table
+        Assignment assignment1 = new Assignment(101, "Grade Tracker", "9.25", 100, 100, "Project");
+        if(assignmentDB.getAssignmentByID(101) == null) {
+            assignmentDB.insert(assignment1);
+        }
+        Assignment assignment2 = new Assignment(102, "Homework", "9.18", 50, 50, "Homework");
+        if(assignmentDB.getAssignmentByID(102) == null) {
+            assignmentDB.insert(assignment1);
+        }
+
+        assignmentDB.delete(assignment1);
+        // checking if assignment1 is null wont work because when we call DAO.delete()
+        // it removes he user from the table, but doesn't delete the user object
+        // so instead I am checking if the object returned by getID is null
+        assertNull(assignment1.toString(), assignmentDB.getAssignmentByID(101));
+
+    }
+
 //    @Test
 //    public void updateAssignmentTable(){
 //        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();

@@ -22,7 +22,7 @@ import static com.example.project1_gradetracker.LoginActivity.database;
 
 public class OverallGradeActivity extends AppCompatActivity {
 
-    private Button buttonCreateC, buttonAssignments, buttonDeleteCourse;
+    private Button buttonCreateC, buttonAssignments, buttonDeleteCourse, buttonEditCourse;
     private Button buttonAddA;
     private TextView course1, course2, course3, course4;
     private TextView courseGrade1, courseGrade2, courseGrade3, courseGrade4;
@@ -66,9 +66,10 @@ public class OverallGradeActivity extends AppCompatActivity {
         courseList.add(new Course(238, "Data Structures", "Dr. E", "desc"));
         user.setCourseList(courseList);*/
 
-        buttonCreateC = (Button)findViewById(R.id.buttonCreateCourse);
+        buttonCreateC = findViewById(R.id.buttonCreateCourse);
         buttonAssignments = findViewById(R.id.btnAssignments);
         buttonDeleteCourse = findViewById(R.id.btnDeleteCourse);
+        buttonEditCourse = findViewById(R.id.btnEditCourse);
 
         buttonCreateC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +91,14 @@ public class OverallGradeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = DeleteCourseActivity.getIntent(getApplicationContext(), user_name);
+                startActivity(intent);
+            }
+        });
+
+        buttonEditCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = EditCourseActivity.getIntent(getApplicationContext(), user_name);
                 startActivity(intent);
             }
         });
