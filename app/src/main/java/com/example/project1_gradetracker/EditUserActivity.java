@@ -1,7 +1,5 @@
 package com.example.project1_gradetracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.project1_gradetracker.DB.Course;
-import com.example.project1_gradetracker.DB.CourseDAO;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.project1_gradetracker.DB.User;
 import com.example.project1_gradetracker.DB.UserDAO;
 
@@ -72,8 +70,8 @@ public class EditUserActivity extends AppCompatActivity {
 
                 // Assign editText to local variables
                 String id = edID.getText().toString();
-                String userName = edUsername.getText().toString();
-                String passWord = edPassword.getText().toString();
+                user.setUsername(edUsername.getText().toString());
+                user.setPassword(edPassword.getText().toString());
                 boolean checkUser = false;
 
                 //User userEd = new User(id, userName, passWord);
@@ -81,11 +79,9 @@ public class EditUserActivity extends AppCompatActivity {
                 // Check for User in database
                 for(User u: userList){
                     if(u.getUSER_ID().equals(id)){
-                        userDAO.updateUsername(userName, id);
-                        userDAO.updatePassword(passWord, id);
-                        //userDAO.update(userEd);
+                        userDAO.update(user);
                         checkUser = true;
-                        Toast.makeText(EditUserActivity.this, "User: (" + id + ") " + userName + " " +
+                        Toast.makeText(EditUserActivity.this, "User: (" + id + ") " + user.getUsername() + " " +
                                 " Successfully edited your Username and Password!", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -93,6 +89,8 @@ public class EditUserActivity extends AppCompatActivity {
                     Toast.makeText(EditUserActivity.this, "User ID: " + id +
                             " Doesn't exist!", Toast.LENGTH_SHORT).show();
                 }
+
+                user_name = user.getUsername();
                 Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);
                 startActivity(intent);
             }
