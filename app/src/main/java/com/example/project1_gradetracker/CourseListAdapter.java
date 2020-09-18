@@ -56,7 +56,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
         Course currentCourse = mCourseList.get(position);
 
         holder.mCourse.setText(currentCourse.getTitle());
-        holder.mGrade.setText("100%"); // TODO: once grade is calculated, use getGrade()
+        holder.mGrade.setText("                                                      100%"); // TODO: once grade is calculated, use getGrade()
     }
 
     @Override
