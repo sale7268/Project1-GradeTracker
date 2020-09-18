@@ -37,6 +37,7 @@ public class EditCourseActivity extends AppCompatActivity {
         courseDAO = database.courseDAO();
         courseList = courseDAO.getAllCourses();
 
+        //Initialize edit text and button
         editTitle = findViewById(R.id.etTitle);
         editID = findViewById(R.id.etID);
         editInstructor = findViewById(R.id.etInstructor);
@@ -49,6 +50,7 @@ public class EditCourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                //Find User
                 Intent i = getIntent();
                 String user_name = i.getStringExtra(USER_NAME);
                 User user = null;
@@ -63,6 +65,7 @@ public class EditCourseActivity extends AppCompatActivity {
                     Toast.makeText(EditCourseActivity.this, "no user found", Toast.LENGTH_SHORT).show();
                 }
 
+                //Check if fields are empty
                 if(editID.getText().toString().isEmpty()){
                     editID.setError("ID field cannot be empty");
                 }
@@ -73,18 +76,21 @@ public class EditCourseActivity extends AppCompatActivity {
                     editInstructor.setError("Instructor field cannot be empty");
                 }
 
-                Course course;
+                //Assign editText to local variables
                 int id = Integer.parseInt(editID.getText().toString());
                 String title = editTitle.getText().toString();
                 String instructor = editInstructor.getText().toString();
                 String desc = editDescription.getText().toString();
                 boolean checkcourse = false;
 
+                //Check for course in database
                 for(Course c: courseList){
-                    if(c.getCourseID() == id && c.getTitle().equals(title)){
-                        courseDAO.delete(c);
-                        course = new Course(id, title, instructor, desc);
-                        courseDAO.insert(course);
+                    //If title and id is same
+                    if(c.getCourseID() == id){
+                        //Update the course in database
+                        courseDAO.updateTitle(title, id);
+                        courseDAO.updateDescription(desc, id);
+                        courseDAO.updateInstructor(instructor, id);
                         checkcourse = true;
                         Toast.makeText(EditCourseActivity.this, "Course: " + title + " Successfully edited", Toast.LENGTH_SHORT).show();
                     }
@@ -93,6 +99,7 @@ public class EditCourseActivity extends AppCompatActivity {
                     Toast.makeText(EditCourseActivity.this, "Course: " + title + " Doesn't exist!", Toast.LENGTH_SHORT).show();
                 }
 
+                //Go back to overall grade activity
                 Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);
                 startActivity(intent);
             }
