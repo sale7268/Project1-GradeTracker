@@ -13,7 +13,7 @@ public interface UserDAO {
     // insert query
     @Insert
     void insert(User user);
-    // delete query
+    // update query
     @Update
     void update(User user);
     @Delete

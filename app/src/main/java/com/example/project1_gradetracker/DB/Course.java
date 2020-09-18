@@ -2,8 +2,8 @@ package com.example.project1_gradetracker.DB;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class Course {
 
     private double totalGrade;
 
-    @Ignore
+    @TypeConverters({ArrayListTypeConverterAssignment.class})
     private List<Assignment> assignmentList;
 
     public Course() {
