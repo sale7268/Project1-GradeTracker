@@ -12,11 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project1_gradetracker.DB.Course;
 import com.example.project1_gradetracker.DB.User;
 import com.example.project1_gradetracker.DB.UserDAO;
 
 import java.util.List;
 
+import static com.example.project1_gradetracker.AssignmentActivity.COURSE_ID;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
 
@@ -33,7 +35,7 @@ public class OverallGradeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     // The adapter is the bridge between our data and the recycler view
     // it improves performance by only loading as many items as we need
-    private RecyclerView.Adapter adapter;
+    private CourseListAdapter adapter;
     // responsible for aligning the items in the list
     private RecyclerView.LayoutManager layoutManager;
 
@@ -43,8 +45,10 @@ public class OverallGradeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overallgrade);
 
-        Intent intent = getIntent();
-        final String user_name = intent.getStringExtra(USER_NAME);
+        Bundle bundle = getIntent().getExtras();
+        final String user_name = bundle.getString(USER_NAME);
+        final int course_id = bundle.getInt(COURSE_ID);
+
         userDAO= database.userDAO();
         users = userDAO.getAllUsers();
         User user = null;
@@ -66,6 +70,9 @@ public class OverallGradeActivity extends AppCompatActivity {
         courseList.add(new Course(238, "Data Structures", "Dr. E", "desc"));
         user.setCourseList(courseList);*/
 
+
+        buildRecyclerView(user.getUsername(), user.getCourseList());
+
         buttonCreateC = findViewById(R.id.buttonCreateCourse);
         buttonAssignments = findViewById(R.id.btnAssignments);
         buttonDeleteCourse = findViewById(R.id.btnDeleteCourse);
@@ -82,7 +89,7 @@ public class OverallGradeActivity extends AppCompatActivity {
         buttonAssignments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name);
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
                 startActivity(intent);
             }
         });
@@ -106,14 +113,38 @@ public class OverallGradeActivity extends AppCompatActivity {
         //List<Course> courseList = user.getCourseList();
         Toast.makeText(OverallGradeActivity.this, "User:" + user.getUsername(), Toast.LENGTH_SHORT).show();
         Toast.makeText(OverallGradeActivity.this, "Courses:" + user.getCourseList().toString(), Toast.LENGTH_SHORT).show();
+    }
 
+    public void goToAssignmentActivity(int position) {
+        adapter.notifyItemChanged(position);
+    }
+
+    public void buildRecyclerView(final String user_name, final List<Course> userCourseList) {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        adapter = new CourseListAdapter(user.getCourseList());
+        adapter = new CourseListAdapter(userCourseList);
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+        if(userCourseList != null) {
+            // when we click the course in the recycler view, go to assignmentActivity
+            adapter.setOnItemClickListener(new CourseListAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    Course currentCourse = userCourseList.get(position);
+                    int course_id = currentCourse.getCourseID();
+
+                    goToAssignmentActivity(position);
+
+                    // pass in the courseID to get the course when we get into assignmentActivity
+                    // so we can access activities attached to the course
+                    Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     public static Intent getIntent(Context context, String username){
