@@ -3,6 +3,8 @@ package com.example.project1_gradetracker.DB;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity
 public class Assignment {
     @PrimaryKey
@@ -55,4 +57,18 @@ public class Assignment {
     public String getCategory() { return category; }
 
     public void setCategory(String category) { this.category = category; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Assignment that = (Assignment) o;
+        return assignmentID == that.assignmentID &&
+                title.equals(that.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(assignmentID, title);
+    }
 }

@@ -19,6 +19,7 @@ import java.util.List;
 
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
+import static com.example.project1_gradetracker.LoginActivity.userDAO;
 
 public class CreateCourseActivity extends AppCompatActivity {
 
@@ -109,6 +110,7 @@ public class CreateCourseActivity extends AppCompatActivity {
                         Toast.makeText(CreateCourseActivity.this, "This course is already in your Course List", Toast.LENGTH_SHORT).show();
                     } else {
                         user.addCourse(course);
+                        userDAO.update(user);
                         Toast.makeText(CreateCourseActivity.this, "Course Added to Course List", Toast.LENGTH_SHORT).show();
                     }
                     //Toast.makeText(CreateCourseActivity.this, user.getCourseList().toString(), Toast.LENGTH_SHORT).show();
@@ -119,6 +121,7 @@ public class CreateCourseActivity extends AppCompatActivity {
             if(!courseExists){
                 courseDAO.insert(course);
                 user.addCourse(course);
+                userDAO.update(user);
                 Toast.makeText(CreateCourseActivity.this, "Course Added to Database and Course List", Toast.LENGTH_SHORT).show();
             }
             Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);

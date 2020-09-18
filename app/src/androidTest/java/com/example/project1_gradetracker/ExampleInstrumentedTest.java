@@ -141,12 +141,13 @@ public class ExampleInstrumentedTest {
         assertEquals(course.toString(), course.getTitle(), "438 Software Engineering");
     }
 
-
 //    @Test
 //    public void insertAssignmentTable(){
 //        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 //        AssignmentDAO assignmentDB = RoomDB.getInstance(appContext).assignmentDAO();
 //
+//        Assignment a = new Assignment(1, "hw1", "10/4", 50, 100, "homework");
+//        assignmentDB.insert(a);
 //    }
 //
 //    @Test
