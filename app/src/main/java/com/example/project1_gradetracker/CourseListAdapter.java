@@ -15,15 +15,36 @@ import java.util.List;
 
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.ViewHolder> {
 
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView mCourse;
         public TextView mGrade;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
-
             mCourse = (TextView) itemView.findViewById(R.id.tvCourseName);
             mGrade = (TextView) itemView.findViewById(R.id.tvCourseGrade);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -47,7 +68,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
         View contactView = inflater.inflate(R.layout.course, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(contactView);
+        ViewHolder viewHolder = new ViewHolder(contactView, listener);
         return viewHolder;
     }
 

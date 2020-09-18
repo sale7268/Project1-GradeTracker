@@ -15,7 +15,7 @@ import androidx.room.TypeConverters;
  */
 
 
-@Database(entities = {User.class, Course.class, Assignment.class}, version = 9, exportSchema = false)
+@Database(entities = {User.class, Course.class, Assignment.class}, version = 10, exportSchema = false)
 @TypeConverters({ArrayListTypeConverter.class, ArrayListTypeConverterAssignment.class})
 public abstract class RoomDB extends RoomDatabase {
 

@@ -1,7 +1,5 @@
 package com.example.project1_gradetracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,14 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.project1_gradetracker.DB.Assignment;
 import com.example.project1_gradetracker.DB.AssignmentDAO;
-import com.example.project1_gradetracker.DB.Course;
-import com.example.project1_gradetracker.DB.User;
-import com.example.project1_gradetracker.DB.UserDAO;
 
 import java.util.List;
 
+import static com.example.project1_gradetracker.AssignmentActivity.COURSE_ID;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
 
@@ -35,6 +33,10 @@ public class DeleteAssignmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_assignment);
+
+        Bundle bundle = getIntent().getExtras();
+        final String user_name = bundle.getString(USER_NAME);
+        final int course_id = bundle.getInt(COURSE_ID);
 
         deleteAssignmentID = findViewById(R.id.tvDeleteAssignmentID);
         deleteAssignment = findViewById(R.id.btDeleteA);
@@ -62,7 +64,7 @@ public class DeleteAssignmentActivity extends AppCompatActivity {
                     Toast.makeText(DeleteAssignmentActivity.this, "Assignment: " + title + " doesn't exist", Toast.LENGTH_SHORT).show();
                 }
 
-                Intent i = AssignmentActivity.getIntent(getApplicationContext(), USER_NAME);
+                Intent i = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
                 startActivity(i);
             }
         });
