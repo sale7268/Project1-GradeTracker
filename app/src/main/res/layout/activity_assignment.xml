@@ -16,10 +16,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/buttonDeleteAssignment"
-        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/buttonDeleteAssignment"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.819" />
+        app:layout_constraintVertical_bias="0.812" />
 
     <Button
         android:id="@+id/buttonDeleteAssignment"
@@ -29,10 +29,23 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonAddAssignment"
-        app:layout_constraintVertical_bias="0.56" />
+        app:layout_constraintVertical_bias="0.562" />
+
+    <Button
+        android:id="@+id/btnEditAssignment"
+        android:layout_width="182dp"
+        android:layout_height="48dp"
+        android:text="Edit Assignment"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.752"
+        app:layout_constraintStart_toEndOf="@+id/buttonDeleteAssignment"
+        app:layout_constraintTop_toBottomOf="@+id/tvGrades"
+        app:layout_constraintVertical_bias="0.587" />
 
     <TextView
         android:id="@+id/tvAssignments"
@@ -43,10 +56,9 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonAddAssignment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.407"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.326" />
+        app:layout_constraintVertical_bias="0.269" />
 
     <TextView
         android:id="@+id/tvGrades"
@@ -57,12 +69,12 @@
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonAddAssignment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.532"
-        app:layout_constraintStart_toEndOf="@+id/buttonDeleteAssignment"
-        app:layout_constraintTop_toBottomOf="@+id/tvAssignments"
-        app:layout_constraintVertical_bias="0.798" />
+        app:layout_constraintHorizontal_bias="0.569"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddAssignment"
+        app:layout_constraintTop_toTopOf="@+id/buttonAddAssignment"
+        app:layout_constraintVertical_bias="0.385" />
 
     <TextView
         android:id="@+id/tvTotal"
@@ -75,9 +87,9 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/tvGrades"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAssignments"
-        app:layout_constraintVertical_bias="0.914" />
+        app:layout_constraintVertical_bias="0.629" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

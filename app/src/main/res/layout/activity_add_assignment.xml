@@ -43,7 +43,7 @@
 
 
         <EditText
-            android:id="@+id/etAssignmentTitle"
+            android:id="@+id/etATitle"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:ems="10"
@@ -51,7 +51,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etAssignmentID"
+            android:id="@+id/etAID"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:ems="10"
@@ -59,7 +59,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etAssignmentDue"
+            android:id="@+id/etADue"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:ems="10"
@@ -67,7 +67,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etAssignmentPoints"
+            android:id="@+id/etAPoints"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:ems="10"
@@ -75,7 +75,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etAssignmentGrade"
+            android:id="@+id/etAGrade"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:ems="10"
@@ -83,7 +83,7 @@
             android:inputType="textPersonName" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textViewC"
             android:layout_width="350dp"
             android:layout_height="30dp"
             android:gravity="center"
