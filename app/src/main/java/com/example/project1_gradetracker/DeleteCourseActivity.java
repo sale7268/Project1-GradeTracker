@@ -15,6 +15,7 @@ import com.example.project1_gradetracker.DB.User;
 
 import java.util.List;
 
+import static com.example.project1_gradetracker.AssignmentActivity.COURSE_ID;
 import static com.example.project1_gradetracker.CreateCourseActivity.courseDAO;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
@@ -24,7 +25,7 @@ public class DeleteCourseActivity extends AppCompatActivity {
 
     List<User> users;
     List<Course> courseList;
-    //public static UserDAO userDAO;
+    List<Course> userCourseList;
 
     EditText deleteCourseId, deleteCourseName;
     Button deleteButton;
@@ -34,8 +35,10 @@ public class DeleteCourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_course);
 
-        Intent intent = getIntent();
-        final String user_name = intent.getStringExtra(USER_NAME);
+        Bundle bundle = getIntent().getExtras();
+        final String user_name = bundle.getString(USER_NAME);
+        final int course_id = bundle.getInt(COURSE_ID);
+
         userDAO = database.userDAO();
         users = userDAO.getAllUsers();
         User user = null;
@@ -54,12 +57,14 @@ public class DeleteCourseActivity extends AppCompatActivity {
         //Course Database
         courseDAO = database.courseDAO();
         courseList = courseDAO.getAllCourses();
+        userCourseList = user.getCourseList();
 
         //Initialize buttons
         deleteCourseId = findViewById(R.id.etDeleteCourseId);
         deleteCourseName = findViewById(R.id.etDeleteCourseName);
         deleteButton = findViewById(R.id.btnDelete);
 
+        final User finalUser = user;
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,6 +79,18 @@ public class DeleteCourseActivity extends AppCompatActivity {
                     }
                 }
 
+                int index = 0;
+                for(Course c: userCourseList){
+                    if(c.getCourseID() == id){
+                        userCourseList.remove(index);
+                        userDAO.update(finalUser);
+                        courseExist = true;
+                        Toast.makeText(DeleteCourseActivity.this, "Course: " + title + " Successfully deleted", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    index++;
+                }
+
                 if(!courseExist) {
                     Toast.makeText(DeleteCourseActivity.this, "Course: " + title + " doesn't exist", Toast.LENGTH_SHORT).show();
                 }
@@ -84,9 +101,13 @@ public class DeleteCourseActivity extends AppCompatActivity {
         });
     }
 
-    public static Intent getIntent(Context context, String username){
+    public static Intent getIntent(Context context, String username, int course){
+        Bundle bundle = new Bundle();
+        bundle.putString(USER_NAME, username);
+        bundle.putInt(COURSE_ID, course);
+
         Intent intent = new Intent(context, DeleteCourseActivity.class);
-        intent.putExtra(USER_NAME, username);
+        intent.putExtras(bundle);
 
         return intent;
     }
