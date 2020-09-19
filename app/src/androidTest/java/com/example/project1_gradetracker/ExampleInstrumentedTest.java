@@ -166,11 +166,11 @@ public class ExampleInstrumentedTest {
         AssignmentDAO assignmentDB = RoomDB.getInstance(appContext).assignmentDAO();
 
         // insert assignment if assignment does not already exist in the table
-        Assignment assignment1 = new Assignment(101, "Grade Tracker", "9.25", 100, 100, "Project");
+        Assignment assignment1 = new Assignment(123, 22, "CST", "08/09/2020", 20, 15, "project");
         if(assignmentDB.getAssignmentByID(101) == null) {
             assignmentDB.insert(assignment1);
         }
-        Assignment assignment2 = new Assignment(102, "Homework", "9.18", 50, 50, "Homework");
+        Assignment assignment2 = new Assignment(123, 22, "CST", "08/09/2020", 20, 15, "project");
         if(assignmentDB.getAssignmentByID(102) == null) {
             assignmentDB.insert(assignment1);
         }

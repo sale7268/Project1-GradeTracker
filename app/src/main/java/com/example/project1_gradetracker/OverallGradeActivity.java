@@ -90,7 +90,7 @@ public class OverallGradeActivity extends AppCompatActivity {
         buttonDeleteCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = DeleteCourseActivity.getIntent(getApplicationContext(), user_name);
+                Intent intent = DeleteCourseActivity.getIntent(getApplicationContext(), user_name, course_id);
                 startActivity(intent);
             }
         });

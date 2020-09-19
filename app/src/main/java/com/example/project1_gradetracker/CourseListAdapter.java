@@ -78,7 +78,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
 
         String grade = String.format("%.2f", currentCourse.getTotalGrade());
         holder.mCourse.setText(currentCourse.getTitle());
-        holder.mGrade.setText(String.format("%s%%", grade)); // TODO: once grade is calculated, use getGrade()
+        holder.mGrade.setText("                                           0"); // TODO: once grade is calculated, use getGrade()
     }
 
     @Override
