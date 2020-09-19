@@ -98,7 +98,7 @@ public class OverallGradeActivity extends AppCompatActivity {
         buttonEditCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = EditCourseActivity.getIntent(getApplicationContext(), user_name);
+                Intent intent = EditCourseActivity.getIntent(getApplicationContext(), user_name, course_id);
                 startActivity(intent);
             }
         });
