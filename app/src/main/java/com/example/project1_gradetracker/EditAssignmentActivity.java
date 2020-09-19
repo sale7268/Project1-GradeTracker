@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1_gradetracker.DB.Assignment;
 import com.example.project1_gradetracker.DB.AssignmentDAO;
+import com.example.project1_gradetracker.DB.Course;
 import com.example.project1_gradetracker.DB.User;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
 import static com.example.project1_gradetracker.AssignmentActivity.COURSE_ID;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
+import static com.example.project1_gradetracker.CreateCourseActivity.courseDAO;
 
 public class EditAssignmentActivity extends AppCompatActivity {
 
@@ -26,6 +28,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
     private Button editButton;
 
     List<Assignment> assignmentList;
+    List<Course> courseList;
     public static AssignmentDAO assignmentDAO;
 
     @Override
@@ -37,10 +40,25 @@ public class EditAssignmentActivity extends AppCompatActivity {
         final String user_name = bundle.getString(USER_NAME);
         final int course_id = bundle.getInt(COURSE_ID);
 
+        courseDAO = database.courseDAO();
+        courseList = courseDAO.getAllCourses();
         assignmentDAO = database.assignmentDAO();
         assignmentList = assignmentDAO.getAllAssignments();
 
-        // Initialize edit text, button, radio gourp
+        Course currentCourse = null;
+        for(Course c : courseList){
+            if(c.getCourseID() == course_id){
+                currentCourse = c;
+                break;
+            }
+        }
+        if(currentCourse == null){
+            Toast.makeText(EditAssignmentActivity.this, "Course Not Found", Toast.LENGTH_SHORT).show();
+        }
+
+//        Assignment currentAssignment = currentCourse.getAssignmentList().get
+
+        // Initialize edit text, button, radio group
         edTitle = findViewById(R.id.etTitleEd);
         edID = findViewById(R.id.etIDEd);
         edDue = findViewById(R.id.etDueEd);
@@ -67,26 +85,6 @@ public class EditAssignmentActivity extends AppCompatActivity {
                     Toast.makeText(EditAssignmentActivity.this, "no user found", Toast.LENGTH_SHORT).show();
                 }
 
-                // Check if fields are empty
-                if (edID.getText().toString().isEmpty()) {
-                    edID.setError("ID field cannot be empty");
-                }
-                if (edTitle.getText().toString().isEmpty()) {
-                    edTitle.setError("Title field cannot be empty");
-                }
-                if (edDue.getText().toString().isEmpty()) {
-                    edDue.setError("Duedate field cannot be empty");
-                }
-                if(edPoint.getText().toString().isEmpty()){
-                    edPoint.setError("Points field cannot be empty");
-                }
-                if(edEarned.getText().toString().isEmpty()){
-                    edEarned.setError("Earned Point field cannot be empty");
-                }
-                if(edCategory.getText().toString().isEmpty()) {
-                    edCategory.setError("Category field cannot be empty");
-                }
-
                 // Assign editText to local variables
                 int id = Integer.parseInt(edID.getText().toString());
                 String title = edTitle.getText().toString();
@@ -95,6 +93,27 @@ public class EditAssignmentActivity extends AppCompatActivity {
                 int earned = Integer.parseInt(edEarned.getText().toString());
                 String category = edCategory.getText().toString();
                 boolean checkassignment = false;
+
+                // Check if fields are empty
+                if (edDue.getText().toString().isEmpty()) {
+                    edDue.setError("Duedate field empty");
+//                    due =
+                }
+                if(edCategory.getText().toString().isEmpty()) {
+                    edCategory.setError("Category field empty");
+                }
+                if(edID.getText().toString().isEmpty()){
+                    edID.setError("ID field empty");
+                }
+                if(edTitle.getText().toString().isEmpty()){
+                    edTitle.setError("Title field empty");
+                }
+                if(edPoint.getText().toString().isEmpty()){
+                    edPoint.setError("Points field empty");
+                }
+                if(edEarned.getText().toString().isEmpty()){
+                    edEarned.setError("Grade field empty");
+                }
 
                 for(Assignment a: assignmentList){
                     // Check assignmnet's id if assignment exit

@@ -28,7 +28,6 @@ public class OverallGradeActivity extends AppCompatActivity {
     private TextView displayUserName;
 
     List<User> users;
-    //public static UserDAO userDAO;
 
     private RecyclerView recyclerView;
     // The adapter is the bridge between our data and the recycler view
