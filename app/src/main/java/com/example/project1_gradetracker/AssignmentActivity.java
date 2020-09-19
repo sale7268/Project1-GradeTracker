@@ -3,13 +3,14 @@ package com.example.project1_gradetracker;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project1_gradetracker.DB.Assignment;
 import com.example.project1_gradetracker.DB.AssignmentDAO;
@@ -27,6 +28,13 @@ import static com.example.project1_gradetracker.LoginActivity.userDAO;
 public class AssignmentActivity extends AppCompatActivity {
 
     final static String COURSE_ID = "course_id";
+
+    private RecyclerView recyclerView;
+    // The adapter is the bridge between our data and the recycler view
+    // it improves performance by only loading as many items as we need
+    private AssignmentListAdapter adapter;
+    // responsible for aligning the items in the list
+    private RecyclerView.LayoutManager layoutManager;
 
     //Declaring variables
     TextView assignmentDisplay, gradeDisplay;
@@ -51,8 +59,8 @@ public class AssignmentActivity extends AppCompatActivity {
         Toast.makeText(AssignmentActivity.this, user_name + " " + course_id, Toast.LENGTH_SHORT).show();
 
         //Initiating display method and scrolling movement
-        assignmentDisplay = findViewById(R.id.tvAssignments);
-        assignmentDisplay.setMovementMethod(new ScrollingMovementMethod());
+//        assignmentDisplay = findViewById(R.id.tvAssignments);
+//        assignmentDisplay.setMovementMethod(new ScrollingMovementMethod());
 
         //Setting up grade display:
         gradeDisplay = findViewById(R.id.tvGrades);
@@ -71,7 +79,7 @@ public class AssignmentActivity extends AppCompatActivity {
                 break;
             }
         }
-        if(user == null){
+        if(user == null) {
             Toast.makeText(AssignmentActivity.this, "no user found", Toast.LENGTH_SHORT).show();
         }
 
@@ -86,11 +94,13 @@ public class AssignmentActivity extends AppCompatActivity {
             Toast.makeText(AssignmentActivity.this, "no course found", Toast.LENGTH_SHORT).show();
         }
 
-        //Calling display function
-        if(user.getCourseByID(course_id) != null)
-        user.getCourseByID(course_id).setTotalGrade(refreshDisplay(course.getAssignmentList()));
+        buildRecyclerView(user.getUsername(), course.getAssignmentList());
+
+        course.calculateTotalGrade();
         courseDAO.update(course);
         userDAO.update(user);
+
+        gradeDisplay.setText(String.valueOf(course.getTotalGrade()));
 
         //Starting new activity after clicking "Add assignment" button
         buttonAddA = findViewById(R.id.buttonAddAssignment);
@@ -120,6 +130,41 @@ public class AssignmentActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void goToAssignmentActivity(int position) {
+        adapter.notifyItemChanged(position);
+    }
+
+    public void buildRecyclerView(final String user_name, final List<Assignment> assignmentList) {
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        adapter = new AssignmentListAdapter(assignmentList);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
+        if(assignmentList != null) {
+            // when we click the course in the recycler view, go to assignmentActivity
+            adapter.setOnItemClickListener(new AssignmentListAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    Assignment currentAssignment = assignmentList.get(position);
+                    int assignment_id = currentAssignment.getAssignmentID();
+                    int course_id = currentAssignment.getCourseID();
+
+                    goToAssignmentActivity(position);
+
+                    //Todo: go to assignment details
+
+                    // pass in the courseID to get the course when we get into assignmentActivity
+                    // so we can access activities attached to the course
+                    Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     //Display Function

@@ -80,51 +80,75 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            // Need check assignment exist or not
-            boolean assignmentExists = false;
+                // Need check assignment exist or not
+                boolean assignmentExists = false;
+                boolean switchActivity = true;
 
-            Assignment assignment = createNewAssignment(cate, course_id);
+                    if(ID.getText().toString().isEmpty()){
+                        ID.setError("ID field cannot be empty");
+                        Toast.makeText(CreateAssignmentActivity.this, "ID cannot be empty", Toast.LENGTH_SHORT).show();
+                        switchActivity = false;
+                    }
+                    if(Title.getText().toString().isEmpty()){
+                        Title.setError("Title field cannot be empty");
+                        Toast.makeText(CreateAssignmentActivity.this, "Title cannot be empty", Toast.LENGTH_SHORT).show();
+                        switchActivity = false;
+                    }
+                    if(Points.getText().toString().isEmpty()){
+                        Points.setError("Points field cannot be empty");
+                        Toast.makeText(CreateAssignmentActivity.this, "Points cannot be empty", Toast.LENGTH_SHORT).show();
+                        switchActivity = false;
+                    }
+                    if(Grade.getText().toString().isEmpty()){
+                        Grade.setError("Grade field cannot be empty");
+                        Toast.makeText(CreateAssignmentActivity.this, "Grade cannot be empty", Toast.LENGTH_SHORT).show();
+                        switchActivity = false;
+                    }
 
-            User user = null;
+                Assignment assignment = createNewAssignment(cate, course_id);
 
-            for(User u : database.userDAO().getAllUsers()) {
-                if (u.getUsername().equals(user_name)) {
-                    user = u;
-                    break;
+                User user = null;
+
+                for(User u : database.userDAO().getAllUsers()) {
+                    if (u.getUsername().equals(user_name)) {
+                        user = u;
+                        break;
+                    }
                 }
-            }
-            if(user == null){
-                Toast.makeText(CreateAssignmentActivity.this, "no user found", Toast.LENGTH_SHORT).show();
-            }
+                if(user == null){
+                    Toast.makeText(CreateAssignmentActivity.this, "no user found", Toast.LENGTH_SHORT).show();
+                }
 
-            boolean courseExists = false;
-            Course course = null;
+                boolean courseExists = false;
+                Course course = null;
 
-            for(Course c : courseList){
-                // course exists, add course to user course-list
-                if(c.getCourseID() == course_id){
-                    courseExists = true;
-                    course = c;
-                    for(Assignment a : assignmentList){
-                        if(a.getAssignmentID() == assignment.getAssignmentID()){
-                            assignmentExists = true;
-                            Toast.makeText(CreateAssignmentActivity.this, "Assignment Already Added to Assignmnet List!", Toast.LENGTH_SHORT).show();
-                            break;
+                for(Course c : courseList){
+                    // course exists, add course to user course-list
+                    if(c.getCourseID() == course_id){
+                        courseExists = true;
+                        course = c;
+                        for(Assignment a : assignmentList){
+                            if(a.getAssignmentID() == assignment.getAssignmentID()){
+                                assignmentExists = true;
+                                Toast.makeText(CreateAssignmentActivity.this, "Assignment Already Added to Assignmnet List!", Toast.LENGTH_SHORT).show();
+                                break;
+                            }
                         }
                     }
                 }
-            }
 
-            if(!assignmentExists){
-                assignmentDAO.insert(assignment);
-                course.addAssignment(assignment);
-                courseDAO.update(course);
-                Toast.makeText(CreateAssignmentActivity.this, "Assignment Added to Database", Toast.LENGTH_SHORT).show();
-            }
+                if(!assignmentExists){
+                    assignmentDAO.insert(assignment);
+                    course.addAssignment(assignment);
+                    courseDAO.update(course);
+                    Toast.makeText(CreateAssignmentActivity.this, "Assignment Added to Database", Toast.LENGTH_SHORT).show();
+                }
 
-            // After success add new assignment, back to upper page.
-            Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
-            startActivity(intent);
+                // After success add new assignment, back to upper page.
+                if(switchActivity) {
+                    Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                    startActivity(intent);
+                }
             }
         });
     }

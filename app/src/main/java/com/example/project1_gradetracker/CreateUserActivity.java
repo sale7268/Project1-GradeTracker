@@ -67,6 +67,17 @@ public class CreateUserActivity extends AppCompatActivity {
                         invalid = true;
                         break;
                     }
+
+                    if(u.getUsername().isEmpty()){
+                        username.setError("Field not filled");
+                        Toast.makeText(CreateUserActivity.this, "Username field not filled", Toast.LENGTH_SHORT).show();
+                        invalid = true;
+                    }
+                    if(u.getUSER_ID().isEmpty()){
+                        userID.setError("Field not filled");
+                        Toast.makeText(CreateUserActivity.this, "Id field not filled", Toast.LENGTH_SHORT).show();
+                        invalid = true;
+                    }
                 }
 
                 if(invalid){

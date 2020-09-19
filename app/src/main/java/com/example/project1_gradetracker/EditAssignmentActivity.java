@@ -13,13 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.project1_gradetracker.DB.Assignment;
 import com.example.project1_gradetracker.DB.AssignmentDAO;
 import com.example.project1_gradetracker.DB.Course;
-import com.example.project1_gradetracker.DB.CourseDAO;
+import com.example.project1_gradetracker.DB.User;
 
 import java.util.List;
 
 import static com.example.project1_gradetracker.AssignmentActivity.COURSE_ID;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
+import static com.example.project1_gradetracker.CreateCourseActivity.courseDAO;
 
 public class EditAssignmentActivity extends AppCompatActivity {
 
@@ -27,10 +28,8 @@ public class EditAssignmentActivity extends AppCompatActivity {
     private Button editButton;
 
     List<Assignment> assignmentList;
-    public static AssignmentDAO assignmentDAO;
     List<Course> courseList;
-    List<Assignment> assignmentCourseList;
-    public static CourseDAO courseDAO;
+    public static AssignmentDAO assignmentDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,24 +42,23 @@ public class EditAssignmentActivity extends AppCompatActivity {
 
         courseDAO = database.courseDAO();
         courseList = courseDAO.getAllCourses();
-        Course course = null;
+        assignmentDAO = database.assignmentDAO();
+        assignmentList = assignmentDAO.getAllAssignments();
 
-        // find the course data
-        for(Course c : courseList) {
-            if (c.getCourseID() == course_id) {
-                course = c;
+        Course currentCourse = null;
+        for(Course c : courseList){
+            if(c.getCourseID() == course_id){
+                currentCourse = c;
                 break;
             }
         }
-        if(course == null){
-            Toast.makeText(EditAssignmentActivity.this, "no course found", Toast.LENGTH_SHORT).show();
+        if(currentCourse == null){
+            Toast.makeText(EditAssignmentActivity.this, "Course Not Found", Toast.LENGTH_SHORT).show();
         }
 
-        assignmentDAO = database.assignmentDAO();
-        assignmentList = assignmentDAO.getAllAssignments();
-        assignmentCourseList = course.getAssignmentList();
+//        Assignment currentAssignment = currentCourse.getAssignmentList().get
 
-        // Initialize edit text, button, radio gourp
+        // Initialize edit text, button, radio group
         edTitle = findViewById(R.id.etTitleEd);
         edID = findViewById(R.id.etIDEd);
         edDue = findViewById(R.id.etDueEd);
@@ -69,72 +67,65 @@ public class EditAssignmentActivity extends AppCompatActivity {
         edCategory = findViewById(R.id.etCategoryEd);
         editButton = findViewById(R.id.btEditAssignment);
 
-        final Course finalCourse = course;
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Find User
+                Intent i = getIntent();
+                String user_name = i.getStringExtra(USER_NAME);
+                User user = null;
 
-                // Check if fields are empty
-                if (edID.getText().toString().isEmpty()) {
-                    edID.setError("ID field cannot be empty");
-                }
-                if (edTitle.getText().toString().isEmpty()) {
-                    edTitle.setError("Title field cannot be empty");
-                }
-                if (edDue.getText().toString().isEmpty()) {
-                    edDue.setError("Duedate field cannot be empty");
-                }
-                if(edPoint.getText().toString().isEmpty()){
-                    edPoint.setError("Points field cannot be empty");
-                }
-                if(edEarned.getText().toString().isEmpty()){
-                    edEarned.setError("Earned Point field cannot be empty");
-                }
-                if(edCategory.getText().toString().isEmpty()) {
-                    edCategory.setError("Category field cannot be empty");
-                }
-
-                Assignment assignment = null;
-                int id = Integer.parseInt(edID.getText().toString());
-                // find the Assignment data
-                for(Assignment a: assignmentList) {
-                    if (a.getAssignmentID() == id) {
-                        assignment = a;
+                for (User u : database.userDAO().getAllUsers()) {
+                    if (u.getUsername().equals(user_name)) {
+                        user = u;
                         break;
                     }
                 }
+                if (user == null) {
+                    Toast.makeText(EditAssignmentActivity.this, "no user found", Toast.LENGTH_SHORT).show();
+                }
+
                 // Assign editText to local variables
-                assignment.setAssignmentID(Integer.parseInt(edID.getText().toString()));
-                assignment.setTitle(edTitle.getText().toString());
-                assignment.setDueDate(edDue.getText().toString());
-                assignment.setPoints(Integer.parseInt(edPoint.getText().toString()));
-                assignment.setGrade(Integer.parseInt(edEarned.getText().toString()));
-                assignment.setCategory(edCategory.getText().toString());
+                int id = Integer.parseInt(edID.getText().toString());
+                String title = edTitle.getText().toString();
+                String due = edDue.getText().toString();
+                int point = Integer.parseInt(edPoint.getText().toString());
+                int earned = Integer.parseInt(edEarned.getText().toString());
+                String category = edCategory.getText().toString();
                 boolean checkassignment = false;
+
+                // Check if fields are empty
+                if (edDue.getText().toString().isEmpty()) {
+                    edDue.setError("Duedate field empty");
+//                    due =
+                }
+                if(edCategory.getText().toString().isEmpty()) {
+                    edCategory.setError("Category field empty");
+                }
+                if(edID.getText().toString().isEmpty()){
+                    edID.setError("ID field empty");
+                }
+                if(edTitle.getText().toString().isEmpty()){
+                    edTitle.setError("Title field empty");
+                }
+                if(edPoint.getText().toString().isEmpty()){
+                    edPoint.setError("Points field empty");
+                }
+                if(edEarned.getText().toString().isEmpty()){
+                    edEarned.setError("Grade field empty");
+                }
 
                 for(Assignment a: assignmentList){
                     // Check assignmnet's id if assignment exit
                     if(a.getAssignmentID() == id){
+                        Assignment assignment = new Assignment(course_id, id, title, due, point, earned, category);
                         assignmentDAO.updateAssignment(assignment);
-                        Toast.makeText(EditAssignmentActivity.this, "Assignment: " + assignment.getTitle() + " [" + assignment.getAssignmentID() +"] " + " Successfully edited", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditAssignmentActivity.this, "Assignment: " + title + " [" + id +"] " + " Successfully edited", Toast.LENGTH_SHORT).show();
                         checkassignment = true;
                     }
-                }
-
-                //Updating list in the course database
-                int index = 0;
-                for(Assignment a: assignmentCourseList){
-                    if(a.getAssignmentID() == id){
-                        assignmentCourseList.remove(index);
-                        assignmentCourseList.add(index, assignment);
-                        courseDAO.update(finalCourse);
-                        checkassignment = true;
-                        break;
-                    }
-                    index++;
                 }
                 if(!checkassignment){
-                    Toast.makeText(EditAssignmentActivity.this, "Assignment: " + assignment.getTitle() + " [" + assignment.getAssignmentID() +"] " + " Doesn't exist!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditAssignmentActivity.this, "Assignment: " + title + " [" + id +"] " + " Doesn't exist!", Toast.LENGTH_SHORT).show();
                 }
 
                 //Go back to overall grade activity
@@ -142,6 +133,9 @@ public class EditAssignmentActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
     }
 
     public static Intent getIntent(Context context, String username, int course){

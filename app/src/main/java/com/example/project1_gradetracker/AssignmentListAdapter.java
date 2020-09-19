@@ -9,11 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.project1_gradetracker.DB.Course;
+import com.example.project1_gradetracker.DB.Assignment;
 
 import java.util.List;
 
-public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.ViewHolder> {
+public class AssignmentListAdapter extends RecyclerView.Adapter<AssignmentListAdapter.ViewHolder> {
 
     private OnItemClickListener listener;
 
@@ -26,13 +26,13 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView mCourse;
+        public TextView mAssignment;
         public TextView mGrade;
 
         public ViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
-            mCourse = (TextView) itemView.findViewById(R.id.tvCourseName);
-            mGrade = (TextView) itemView.findViewById(R.id.tvCourseGrade);
+            mAssignment = (TextView) itemView.findViewById(R.id.tvAssignmentName);
+            mGrade = (TextView) itemView.findViewById(R.id.tvAssignmentGrade);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -49,11 +49,11 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
     }
 
     // Store a member variable for the contacts
-    private List<Course> mCourseList;
+    private List<Assignment> mAssignmentList;
 
     // Pass in the contact array into the constructor
-    public CourseListAdapter(List<Course> courses) {
-        mCourseList = courses;
+    public AssignmentListAdapter(List<Assignment> assignments) {
+        mAssignmentList = assignments;
     }
 
     @NonNull
@@ -63,9 +63,9 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        // we say R.layout.course because course is the name of the layout (xml) we created
-        // to hold our course name and grade
-        View contactView = inflater.inflate(R.layout.course, parent, false);
+        // we say R.layout.assignment because assignment is the name of the layout (xml) we created
+        // to hold our assignment name and grade
+        View contactView = inflater.inflate(R.layout.assignment, parent, false);
 
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(contactView, listener);
@@ -74,16 +74,16 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Course currentCourse = mCourseList.get(position);
-        String grade = String.format("%.2f", currentCourse.getTotalGrade());
+        Assignment currentAssignment = mAssignmentList.get(position);
+        String grade = String.valueOf(currentAssignment.getGrade());
 
-        holder.mCourse.setText(currentCourse.getTitle());
-        holder.mGrade.setText(String.format("%s%%", grade));
+        holder.mAssignment.setText(currentAssignment.getTitle());
+        holder.mGrade.setText(grade);
     }
 
     @Override
     public int getItemCount() {
-        return mCourseList.size();
+        return mAssignmentList.size();
     }
 
 }

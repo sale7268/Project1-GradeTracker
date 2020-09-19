@@ -47,18 +47,22 @@
         app:layout_constraintTop_toBottomOf="@+id/tvGrades"
         app:layout_constraintVertical_bias="0.587" />
 
-    <TextView
-        android:id="@+id/tvAssignments"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="373dp"
         android:layout_height="456dp"
         android:background="#FBC149"
-        android:textAlignment="textStart"
-        android:textSize="24sp"
+        android:layout_above="@+id/buttonCreateCourse"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:padding="4dp"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/buttonAddAssignment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.269" />
+        app:layout_constraintVertical_bias="0.269"/>
 
     <TextView
         android:id="@+id/tvGrades"
@@ -89,7 +93,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAssignments"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
         app:layout_constraintVertical_bias="0.629" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
