@@ -37,6 +37,7 @@ public class Course {
         this.description = null;
         this.dateStart = null;
         this.dateEnd = null;
+        this.totalGrade = 0.0;
         this.assignmentList = new ArrayList<Assignment>();
     }
 
@@ -47,6 +48,7 @@ public class Course {
         this.description = description;
         this.dateStart = "";
         this.dateEnd = "";
+        this.totalGrade = 0.0;
         this.assignmentList = new ArrayList<Assignment>();
     }
 
@@ -57,6 +59,7 @@ public class Course {
         this.description = description;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
+        this.totalGrade = 0.0;
         this.assignmentList = assignmentList;
     }
 
