@@ -2,6 +2,7 @@ package com.example.project1_gradetracker.DB;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
@@ -9,12 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
-@Entity
+@Entity(
+        primaryKeys = {"userID", "courseID"},
+        foreignKeys = @ForeignKey(entity = User.class,
+                parentColumns = "userID",
+                childColumns = "userID",
+                onDelete = ForeignKey.CASCADE)
+)
 public class Course {
-    @NonNull
-    @PrimaryKey
     private int courseID;
+    @NonNull
+    private String userID;
 
     private double totalGrade;
 
@@ -32,6 +38,7 @@ public class Course {
     private List<Assignment> assignmentList;
 
     public Course() {
+        this.userID = null;
         this.courseID = 0;
         this.title = null;
         this.instructor = null;
@@ -42,7 +49,8 @@ public class Course {
         this.assignmentList = new ArrayList<Assignment>();
     }
 
-    public Course(int COURSE_ID, String title, String instructor, String description) {
+    public Course(String userID, int COURSE_ID, String title, String instructor, String description) {
+        this.userID = userID;
         this.courseID = COURSE_ID;
         this.title = title;
         this.instructor = instructor;
@@ -53,7 +61,8 @@ public class Course {
         this.assignmentList = new ArrayList<Assignment>();
     }
 
-    public Course(int COURSE_ID, String title, String instructor, String description, String dateStart, String dateEnd, List<Assignment> assignmentList) {
+    public Course(String userID, int COURSE_ID, String title, String instructor, String description, String dateStart, String dateEnd, List<Assignment> assignmentList) {
+        this.userID = userID;
         this.courseID = COURSE_ID;
         this.title = title;
         this.instructor = instructor;
@@ -67,6 +76,14 @@ public class Course {
     public int getCourseID() { return courseID; }
 
     public void setCourseID(int courseID) { this.courseID = courseID; }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
 
     public String getTitle() {
         return title;

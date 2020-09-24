@@ -108,8 +108,6 @@ public class CreateAssignmentActivity extends AppCompatActivity {
 
                 if(!switchActivity) return;
 
-                Assignment assignment = createNewAssignment(cate, course_id);
-
                 User user = null;
 
                 for(User u : database.userDAO().getAllUsers()) {
@@ -121,6 +119,9 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 if(user == null){
                     Toast.makeText(CreateAssignmentActivity.this, "no user found", Toast.LENGTH_SHORT).show();
                 }
+
+                String user_id = user.getUSER_ID();
+                Assignment assignment = createNewAssignment(cate, course_id, user_id);
 
                 boolean courseExists = false;
                 Course course = null;
@@ -161,8 +162,9 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         });
     }
 
-    private Assignment createNewAssignment(String category, int course_id){
+    private Assignment createNewAssignment(String category, int course_id, String user_id){
         Assignment assignment = new Assignment(
+            user_id,
             course_id,
             Integer.parseInt(ID.getText().toString()),
             Title.getText().toString(),

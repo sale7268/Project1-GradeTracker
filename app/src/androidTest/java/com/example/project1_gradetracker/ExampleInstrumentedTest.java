@@ -150,7 +150,7 @@ public class ExampleInstrumentedTest {
         AssignmentDAO assignmentDB = RoomDB.getInstance(appContext).assignmentDAO();
 
         // insert assignment if assignment does not already exist in the table
-        Assignment assignment1 = new Assignment(101, "Grade Tracker", "9.10", 100, 100, "Project");
+        Assignment assignment1 = new Assignment(101, 1, "Grade Tracker", "9.10", 100, 100, "Project");
         if(assignmentDB.getAssignmentByID(101) == null) {
             assignmentDB.insert(assignment1);
         }

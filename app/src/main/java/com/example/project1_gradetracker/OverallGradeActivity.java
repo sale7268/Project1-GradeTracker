@@ -18,6 +18,7 @@ import com.example.project1_gradetracker.DB.User;
 import java.util.List;
 
 import static com.example.project1_gradetracker.AssignmentActivity.COURSE_ID;
+import static com.example.project1_gradetracker.CreateCourseActivity.courseDAO;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
 import static com.example.project1_gradetracker.LoginActivity.userDAO;
@@ -63,6 +64,8 @@ public class OverallGradeActivity extends AppCompatActivity {
 
         buildRecyclerView(user.getUsername(), user.getCourseList());
 
+        userDAO.update(user);
+
         buttonCreateC = findViewById(R.id.buttonCreateCourse);
         buttonDeleteCourse = findViewById(R.id.btnDeleteCourse);
         buttonEditCourse = findViewById(R.id.btnEditCourse);
@@ -103,9 +106,6 @@ public class OverallGradeActivity extends AppCompatActivity {
         });
     }
 
-    public void goToAssignmentActivity(int position) {
-        adapter.notifyItemChanged(position);
-    }
 
     public void buildRecyclerView(final String user_name, final List<Course> userCourseList) {
         recyclerView = findViewById(R.id.recyclerView);
@@ -124,7 +124,7 @@ public class OverallGradeActivity extends AppCompatActivity {
                     Course currentCourse = userCourseList.get(position);
                     int course_id = currentCourse.getCourseID();
 
-                    goToAssignmentActivity(position);
+                    adapter.notifyItemChanged(position);
 
                     // pass in the courseID to get the course when we get into assignmentActivity
                     // so we can access activities attached to the course

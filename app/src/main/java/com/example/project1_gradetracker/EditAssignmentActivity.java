@@ -118,7 +118,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
                 for(Assignment a: assignmentList){
                     // Check assignmnet's id if assignment exit
                     if(a.getAssignmentID() == id){
-                        Assignment assignment = new Assignment(course_id, id, title, due, point, earned, category);
+                        Assignment assignment = new Assignment(user.getUSER_ID(), course_id, id, title, due, point, earned, category);
                         assignmentDAO.updateAssignment(assignment);
                         Toast.makeText(EditAssignmentActivity.this, "Assignment: " + title + " [" + id +"] " + " Successfully edited", Toast.LENGTH_SHORT).show();
                         checkassignment = true;

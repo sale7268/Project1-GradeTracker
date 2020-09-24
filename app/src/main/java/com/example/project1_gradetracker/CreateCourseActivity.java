@@ -100,11 +100,12 @@ public class CreateCourseActivity extends AppCompatActivity {
 
                 // populate course with data from screen (user input)
                 Course course;
+                String userID = user.getUSER_ID();
                 int id = Integer.parseInt(ID.getText().toString());
                 String title = Title.getText().toString();
                 String instructor = Instructor.getText().toString();
                 String desc = Description.getText().toString();
-                course = new Course(id, title, instructor, desc);
+                course = new Course(userID, id, title, instructor, desc);
 
                 // check if user entered course is already in the DB
                 for(Course c : courseList){

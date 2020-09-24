@@ -76,9 +76,10 @@ public class AssignmentListAdapter extends RecyclerView.Adapter<AssignmentListAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Assignment currentAssignment = mAssignmentList.get(position);
         String grade = String.valueOf(currentAssignment.getGrade());
+        String totalPoints = String.valueOf(currentAssignment.getPoints());
 
         holder.mAssignment.setText(currentAssignment.getTitle());
-        holder.mGrade.setText(grade);
+        holder.mGrade.setText(grade + '/' + totalPoints);
     }
 
     @Override

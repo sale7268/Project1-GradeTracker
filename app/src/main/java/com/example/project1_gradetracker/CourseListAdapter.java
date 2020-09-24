@@ -13,6 +13,9 @@ import com.example.project1_gradetracker.DB.Course;
 
 import java.util.List;
 
+import static com.example.project1_gradetracker.CreateCourseActivity.courseDAO;
+import static com.example.project1_gradetracker.LoginActivity.userDAO;
+
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.ViewHolder> {
 
     private OnItemClickListener listener;
@@ -75,6 +78,8 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Course currentCourse = mCourseList.get(position);
+        currentCourse.calculateTotalGrade();
+
         String grade = String.format("%.2f", currentCourse.getTotalGrade());
 
         holder.mCourse.setText(currentCourse.getTitle());

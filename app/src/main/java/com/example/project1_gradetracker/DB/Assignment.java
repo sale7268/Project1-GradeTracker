@@ -8,13 +8,14 @@ import java.util.Objects;
 @Entity(
         primaryKeys = {"assignmentID", "courseID"},
         foreignKeys = @ForeignKey(entity = Course.class,
-                parentColumns = "courseID",
-                childColumns = "courseID",
+                parentColumns = {"courseID", "userID"},
+                childColumns = {"courseID", "userID"},
                 onDelete = ForeignKey.CASCADE)
         )
 public class Assignment {
     private int assignmentID;
     private int courseID;
+    private String userID;
 
     private String title;
     private String dueDate;
@@ -23,6 +24,7 @@ public class Assignment {
     private String category;
 
     public Assignment() {
+        this.userID = null;
         this.courseID = 0;
         this.assignmentID = 0;
         this.title = null;
@@ -32,7 +34,8 @@ public class Assignment {
         this.category = null;
     }
 
-    public Assignment(int courseID, int assignmentID, String title, String dueDate, int points, int grade, String category) {
+    public Assignment(String userID, int courseID, int assignmentID, String title, String dueDate, int points, int grade, String category) {
+        this.userID = userID;
         this.courseID = courseID;
         this.assignmentID = assignmentID;
         this.title = title;
@@ -40,6 +43,14 @@ public class Assignment {
         this.points = points;
         this.grade = grade;
         this.category = category;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public int getCourseID() {
