@@ -22,6 +22,7 @@ import java.util.List;
 import static com.example.project1_gradetracker.AssignmentActivity.COURSE_ID;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
+import static com.example.project1_gradetracker.LoginActivity.userDAO;
 
 public class CreateAssignmentActivity extends AppCompatActivity {
 
@@ -84,26 +85,28 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 boolean assignmentExists = false;
                 boolean switchActivity = true;
 
-                    if(ID.getText().toString().isEmpty()){
-                        ID.setError("ID field cannot be empty");
-                        Toast.makeText(CreateAssignmentActivity.this, "ID cannot be empty", Toast.LENGTH_SHORT).show();
-                        switchActivity = false;
-                    }
-                    if(Title.getText().toString().isEmpty()){
-                        Title.setError("Title field cannot be empty");
-                        Toast.makeText(CreateAssignmentActivity.this, "Title cannot be empty", Toast.LENGTH_SHORT).show();
-                        switchActivity = false;
-                    }
-                    if(Points.getText().toString().isEmpty()){
-                        Points.setError("Points field cannot be empty");
-                        Toast.makeText(CreateAssignmentActivity.this, "Points cannot be empty", Toast.LENGTH_SHORT).show();
-                        switchActivity = false;
-                    }
-                    if(Grade.getText().toString().isEmpty()){
-                        Grade.setError("Grade field cannot be empty");
-                        Toast.makeText(CreateAssignmentActivity.this, "Grade cannot be empty", Toast.LENGTH_SHORT).show();
-                        switchActivity = false;
-                    }
+                if(ID.getText().toString().isEmpty()){
+                    ID.setError("ID field cannot be empty");
+                    Toast.makeText(CreateAssignmentActivity.this, "ID cannot be empty", Toast.LENGTH_SHORT).show();
+                    switchActivity = false;
+                }
+                if(Title.getText().toString().isEmpty()){
+                    Title.setError("Title field cannot be empty");
+                    Toast.makeText(CreateAssignmentActivity.this, "Title cannot be empty", Toast.LENGTH_SHORT).show();
+                    switchActivity = false;
+                }
+                if(Points.getText().toString().isEmpty()){
+                    Points.setError("Points field cannot be empty");
+                    Toast.makeText(CreateAssignmentActivity.this, "Points cannot be empty", Toast.LENGTH_SHORT).show();
+                    switchActivity = false;
+                }
+                if(Grade.getText().toString().isEmpty()){
+                    Grade.setError("Grade field cannot be empty");
+                    Toast.makeText(CreateAssignmentActivity.this, "Grade cannot be empty", Toast.LENGTH_SHORT).show();
+                    switchActivity = false;
+                }
+
+                if(!switchActivity) return;
 
                 Assignment assignment = createNewAssignment(cate, course_id);
 
@@ -130,6 +133,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                         for(Assignment a : assignmentList){
                             if(a.getAssignmentID() == assignment.getAssignmentID()){
                                 assignmentExists = true;
+                                course.getAssignmentList().add(assignment);
                                 Toast.makeText(CreateAssignmentActivity.this, "Assignment Already Added to Assignmnet List!", Toast.LENGTH_SHORT).show();
                                 break;
                             }
@@ -140,14 +144,18 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 if(!assignmentExists){
                     assignmentDAO.insert(assignment);
                     course.addAssignment(assignment);
-                    courseDAO.update(course);
                     Toast.makeText(CreateAssignmentActivity.this, "Assignment Added to Database", Toast.LENGTH_SHORT).show();
                 }
+                course.calculateTotalGrade();
+                courseDAO.update(course);
+                userDAO.update(user);
 
                 // After success add new assignment, back to upper page.
                 if(switchActivity) {
                     Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
                     startActivity(intent);
+                } else {
+                    return;
                 }
             }
         });

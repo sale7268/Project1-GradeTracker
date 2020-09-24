@@ -47,7 +47,7 @@ public class EditUserActivity extends AppCompatActivity {
                 String user_name = i.getStringExtra(USER_NAME);
                 User user = null;
 
-                for(User u : database.userDAO().getAllUsers()) {
+                for(User u : userList) {
                     if (u.getUsername().equals(user_name)) {
                         user = u;
                         break;
@@ -56,6 +56,16 @@ public class EditUserActivity extends AppCompatActivity {
                 if(user == null){
                     Toast.makeText(EditUserActivity.this, "no user found", Toast.LENGTH_SHORT).show();
                 }
+
+                for(User u : userList){
+                    if(u.getUsername().equals(edUsername.getText().toString())){
+                        edUsername.setError("Username Taken");
+                        Toast.makeText(EditUserActivity.this, "Username Taken", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                }
+
+
 
                 // Check if fields are empty
                 if(edID.getText().toString().isEmpty()){
@@ -73,10 +83,21 @@ public class EditUserActivity extends AppCompatActivity {
                 user.setUsername(edUsername.getText().toString());
                 user.setPassword(edPassword.getText().toString());
                 boolean checkUser = false;
+                boolean existingUser = false;
 
                 // Check for User in database
                 for(User u: userList){
                     if(u.getUSER_ID().equals(id)){
+                        for(User eu : userList){
+                            if(eu.getUsername().equals(user.getUsername())){
+                                Toast.makeText(EditUserActivity.this, "Username: (" + user.getUsername() + ") already exists!", Toast.LENGTH_SHORT).show();
+                                existingUser = true;
+                                break;
+                            }
+                        }
+                        if(existingUser){
+                            break;
+                        }
                         userDAO.update(user);
                         checkUser = true;
                         Toast.makeText(EditUserActivity.this, "User: (" + id + ") " + user.getUsername() + " " +

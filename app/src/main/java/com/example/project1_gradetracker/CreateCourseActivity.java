@@ -94,6 +94,10 @@ public class CreateCourseActivity extends AppCompatActivity {
                     switchActivity = false;
                 }
 
+                if(!switchActivity){
+                    return;
+                }
+
                 // populate course with data from screen (user input)
                 Course course;
                 int id = Integer.parseInt(ID.getText().toString());
@@ -127,6 +131,8 @@ public class CreateCourseActivity extends AppCompatActivity {
                 if(switchActivity) {
                     Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);
                     startActivity(intent);
+                } else {
+                    return;
                 }
             }
         });

@@ -15,6 +15,9 @@ public class Course {
     @NonNull
     @PrimaryKey
     private int courseID;
+
+    private double totalGrade;
+
     @NonNull
     private String title;
     @NonNull
@@ -24,8 +27,6 @@ public class Course {
     // entered as a date, converted to a string so it can be stored in the DB
     private String dateStart;
     private String dateEnd;
-
-    private double totalGrade;
 
     @TypeConverters({ArrayListTypeConverterAssignment.class})
     private List<Assignment> assignmentList;
@@ -130,7 +131,11 @@ public class Course {
             grades += a.getGrade();
             totalPoints += a.getPoints();
         }
-        setTotalGrade((grades/totalPoints)*100);
+        if(totalPoints == 0){
+            setTotalGrade(0);
+        }else {
+            setTotalGrade((grades / totalPoints) * 100);
+        }
     }
 
 

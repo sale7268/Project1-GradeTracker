@@ -100,7 +100,7 @@ public class AssignmentActivity extends AppCompatActivity {
         courseDAO.update(course);
         userDAO.update(user);
 
-        gradeDisplay.setText(String.valueOf(course.getTotalGrade()));
+        gradeDisplay.setText(String.format("%.2f", course.getTotalGrade()));
 
         //Starting new activity after clicking "Add assignment" button
         buttonAddA = findViewById(R.id.buttonAddAssignment);
@@ -132,10 +132,6 @@ public class AssignmentActivity extends AppCompatActivity {
 
     }
 
-    public void goToAssignmentActivity(int position) {
-        adapter.notifyItemChanged(position);
-    }
-
     public void buildRecyclerView(final String user_name, final List<Assignment> assignmentList) {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -153,8 +149,7 @@ public class AssignmentActivity extends AppCompatActivity {
                     Assignment currentAssignment = assignmentList.get(position);
                     int assignment_id = currentAssignment.getAssignmentID();
                     int course_id = currentAssignment.getCourseID();
-
-                    goToAssignmentActivity(position);
+                    adapter.notifyItemChanged(position);
 
                     //Todo: go to assignment details
 
