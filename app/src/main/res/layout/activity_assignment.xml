@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#22116E"
+    android:background="#3B2B87"
     tools:context=".AssignmentActivity">
 
     <Button
@@ -51,24 +51,24 @@
         android:id="@+id/recyclerView"
         android:layout_width="373dp"
         android:layout_height="456dp"
-        android:background="#FBC149"
         android:layout_above="@+id/buttonCreateCourse"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="28dp"
+        android:background="#FBD075"
         android:padding="4dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/buttonAddAssignment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.269"/>
+        app:layout_constraintVertical_bias="0.269" />
 
     <TextView
         android:id="@+id/tvGrades"
         android:layout_width="136dp"
         android:layout_height="41dp"
-        android:background="#FFC247"
+        android:background="#FFD47E"
         android:gravity="center"
         android:textAlignment="center"
         android:textColor="#000000"

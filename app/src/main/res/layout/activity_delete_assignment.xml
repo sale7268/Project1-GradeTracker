@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#9ED5CD"
     tools:context=".DeleteAssignmentActivity">
 
     <EditText
@@ -27,6 +28,8 @@
         android:layout_height="48dp"
         android:text="Delete"
         android:textSize="18dp"
+        android:background="#3C3F41"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

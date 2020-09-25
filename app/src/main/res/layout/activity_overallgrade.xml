@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="61dp"
         android:layout_marginBottom="28dp"
-        android:background="@android:color/darker_gray"
+        android:background="@android:color/holo_blue_light"
         android:padding="4dp"
         android:scrollbars="vertical" />
 
@@ -45,7 +45,6 @@
         android:layout_marginStart="13dp"
         android:layout_marginEnd="84dp"
         android:layout_marginBottom="11dp"
-        android:layout_toStartOf="@+id/btnAssignments"
         android:background="#FF0707"
         android:text="Delete" />
 

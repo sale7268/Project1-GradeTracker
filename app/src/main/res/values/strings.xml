@@ -28,4 +28,5 @@
     <string name="tvCourseName">tvCourseName</string>
     <string name="tvAssignmentGrade">tvAssignmentGrade</string>
     <string name="tvAssignmentName">tvAssignmentName</string>
+    <string name="CreatedBy">By Blessing Apkarian, \nHamza Saleem, \nKailun Yang</string>
 </resources>

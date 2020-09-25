@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A38C5E"
+    android:background="#9ED5CD"
     tools:visibility="visible">
 
     <Button
@@ -16,7 +16,7 @@
         android:background="#3C3F41"
         android:text="Create Account"
         android:textAlignment="center"
-        android:textColor="#100000"
+        android:textColor="#FFFFFF"
         android:textColorHighlight="@color/colorPrimaryDark"
         android:textColorLink="#9F5252"
         android:textSize="14sp"
@@ -78,10 +78,10 @@
         android:background="#3C3F41"
         android:text="@string/btnLogin"
         android:textAlignment="center"
-        android:textColor="#100000"
         android:textColorHighlight="@color/colorPrimaryDark"
         android:textColorLink="#9F5252"
         android:textSize="14sp"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnCreateNewUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
