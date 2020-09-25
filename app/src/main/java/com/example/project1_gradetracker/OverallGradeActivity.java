@@ -63,7 +63,6 @@ public class OverallGradeActivity extends AppCompatActivity {
         }
 
         buildRecyclerView(user.getUsername(), user.getCourseList());
-
         userDAO.update(user);
 
         buttonCreateC = findViewById(R.id.buttonCreateCourse);
@@ -128,7 +127,7 @@ public class OverallGradeActivity extends AppCompatActivity {
 
                     // pass in the courseID to get the course when we get into assignmentActivity
                     // so we can access activities attached to the course
-                    Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                    Intent intent = CategoriesActivity.getIntent(getApplicationContext(), user_name, course_id);
                     startActivity(intent);
                 }
             });

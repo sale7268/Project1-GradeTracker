@@ -116,6 +116,7 @@ public class CreateCourseActivity extends AppCompatActivity {
                             Toast.makeText(CreateCourseActivity.this, "This course is already in your Course List", Toast.LENGTH_SHORT).show();
                         } else {
                             user.addCourse(course);
+                            courseDAO.update(course);
                             userDAO.update(user);
                             Toast.makeText(CreateCourseActivity.this, "Course Added to Course List", Toast.LENGTH_SHORT).show();
                         }
