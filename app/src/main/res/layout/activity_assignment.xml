@@ -9,83 +9,92 @@
 
     <Button
         android:id="@+id/buttonAddAssignment"
-        android:layout_width="182dp"
-        android:layout_height="48dp"
+        android:layout_width="202dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="69dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="13dp"
         android:text="@string/addAssignment"
         android:textAlignment="center"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/buttonDeleteAssignment"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/buttonDeleteAssignment"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonDeleteAssignment"
+        app:layout_constraintEnd_toStartOf="@+id/tvTotal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
     <Button
         android:id="@+id/btnEditAssignment"
         android:layout_width="182dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="613dp"
-        android:layout_marginBottom="6dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="15dp"
         android:text="Edit Assignment"
         android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/btnBack3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.752"
         app:layout_constraintStart_toEndOf="@+id/buttonDeleteAssignment"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166" />
+        app:layout_constraintTop_toBottomOf="@+id/tvGrades" />
 
     <Button
         android:id="@+id/buttonDeleteAssignment"
-        android:layout_width="182dp"
-        android:layout_height="48dp"
+        android:layout_width="206dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="18dp"
         android:text="Delete"
         android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnBack3"
         app:layout_constraintEnd_toStartOf="@+id/btnEditAssignment"
-        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddAssignment"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddAssignment" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="373dp"
-        android:layout_height="456dp"
+        android:layout_width="369dp"
+        android:layout_height="381dp"
         android:layout_above="@+id/buttonCreateCourse"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="32dp"
         android:background="#FBD075"
         android:padding="4dp"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddAssignment"
+        app:layout_constraintBottom_toTopOf="@+id/tvTotal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.269" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvGrades"
-        android:layout_width="136dp"
-        android:layout_height="41dp"
+        android:layout_width="159dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="8dp"
         android:background="#FFD47E"
         android:gravity="center"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonAddAssignment"
+        app:layout_constraintBottom_toTopOf="@+id/btnEditAssignment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.569"
         app:layout_constraintStart_toEndOf="@+id/buttonAddAssignment"
-        app:layout_constraintTop_toTopOf="@+id/buttonAddAssignment"
-        app:layout_constraintVertical_bias="0.385" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTotal" />
 
     <TextView
         android:id="@+id/tvTotal"
-        android:layout_width="149dp"
-        android:layout_height="50dp"
+        android:layout_width="172dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="14dp"
         android:gravity="center"
         android:text="@string/tvtotalgrade"
         android:textAlignment="center"
@@ -93,20 +102,19 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/tvGrades"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:layout_constraintVertical_bias="0.629" />
+        app:layout_constraintStart_toEndOf="@+id/buttonAddAssignment"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
     <Button
         android:id="@+id/btnBack3"
-        android:layout_width="0dp"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="15dp"
         android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEditAssignment" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonDeleteAssignment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

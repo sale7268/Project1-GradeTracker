@@ -146,7 +146,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
         bundle.putString(CATEGORY, category);
         bundle.putInt(COURSE_ID, course);
 
-        Intent intent = new Intent(context, DeleteAssignmentActivity.class);
+        Intent intent = new Intent(context, EditAssignmentActivity.class);
         intent.putExtras(bundle);
 
         return intent;

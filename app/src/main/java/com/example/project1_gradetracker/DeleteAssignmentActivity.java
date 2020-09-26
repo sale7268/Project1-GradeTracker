@@ -71,6 +71,11 @@ public class DeleteAssignmentActivity extends AppCompatActivity {
         assignmentCourseList = course.getAssignmentList();
 
         final Course finalCourse = course;
+
+        if(deleteAssignmentID.getText().toString().isEmpty()){
+            return;
+        }
+
         deleteAssignment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
