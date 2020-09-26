@@ -123,18 +123,19 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 String user_id = user.getUSER_ID();
                 Assignment assignment = createNewAssignment(cate, course_id, user_id);
 
-                boolean courseExists = false;
                 Course course = null;
 
                 for(Course c : courseList){
                     // course exists, add course to user course-list
                     if(c.getCourseID() == course_id){
-                        courseExists = true;
                         course = c;
                         for(Assignment a : assignmentList){
                             if(a.getAssignmentID() == assignment.getAssignmentID()){
                                 assignmentExists = true;
                                 course.getAssignmentList().add(assignment);
+                                course.calculateTotalGrade();
+                                courseDAO.update(course);
+                                userDAO.update(user);
                                 Toast.makeText(CreateAssignmentActivity.this, "Assignment Already Added to Assignmnet List!", Toast.LENGTH_SHORT).show();
                                 break;
                             }
@@ -153,7 +154,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
 
                 // After success add new assignment, back to upper page.
                 if(switchActivity) {
-                    Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                    Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id, cate);
                     startActivity(intent);
                 } else {
                     return;

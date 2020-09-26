@@ -17,6 +17,7 @@ import com.example.project1_gradetracker.DB.User;
 
 import java.util.List;
 
+import static com.example.project1_gradetracker.AssignmentActivity.CATEGORY;
 import static com.example.project1_gradetracker.AssignmentActivity.COURSE_ID;
 import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 import static com.example.project1_gradetracker.LoginActivity.database;
@@ -39,6 +40,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         final String user_name = bundle.getString(USER_NAME);
         final int course_id = bundle.getInt(COURSE_ID);
+        final String category = bundle.getString(CATEGORY);
 
         courseDAO = database.courseDAO();
         courseList = courseDAO.getAllCourses();
@@ -129,7 +131,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
                 }
 
                 //Go back to overall grade activity
-                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id, category);
                 startActivity(intent);
             }
         });
@@ -138,12 +140,13 @@ public class EditAssignmentActivity extends AppCompatActivity {
 
     }
 
-    public static Intent getIntent(Context context, String username, int course){
+    public static Intent getIntent(Context context, String username, int course, String category){
         Bundle bundle = new Bundle();
         bundle.putString(USER_NAME, username);
+        bundle.putString(CATEGORY, category);
         bundle.putInt(COURSE_ID, course);
 
-        Intent intent = new Intent(context, EditAssignmentActivity.class);
+        Intent intent = new Intent(context, DeleteAssignmentActivity.class);
         intent.putExtras(bundle);
 
         return intent;

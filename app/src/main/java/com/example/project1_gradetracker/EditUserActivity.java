@@ -20,7 +20,7 @@ import static com.example.project1_gradetracker.LoginActivity.database;
 
 public class EditUserActivity extends AppCompatActivity {
     private EditText edID, edUsername, edPassword;
-    private Button editUser;
+    private Button editUser, back;
 
     List<User> userList;
     public static UserDAO userDAO;
@@ -38,17 +38,27 @@ public class EditUserActivity extends AppCompatActivity {
         edUsername = findViewById(R.id.etUserNameEd);
         edPassword = findViewById(R.id.etUserPasswordEd);
         editUser = findViewById(R.id.btnEditUser);
+        back = findViewById(R.id.btnBack2);
+
+        Intent i = getIntent();
+        final String[] user_name = {i.getStringExtra(USER_NAME)};
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name[0]);
+                startActivity(intent);
+            }
+        });
 
         editUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Find User
-                Intent i = getIntent();
-                String user_name = i.getStringExtra(USER_NAME);
                 User user = null;
 
                 for(User u : userList) {
-                    if (u.getUsername().equals(user_name)) {
+                    if (u.getUsername().equals(user_name[0])) {
                         user = u;
                         break;
                     }
@@ -109,8 +119,8 @@ public class EditUserActivity extends AppCompatActivity {
                             " Doesn't exist!", Toast.LENGTH_SHORT).show();
                 }
 
-                user_name = user.getUsername();
-                Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);
+                user_name[0] = user.getUsername();
+                Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name[0]);
                 startActivity(intent);
             }
         });

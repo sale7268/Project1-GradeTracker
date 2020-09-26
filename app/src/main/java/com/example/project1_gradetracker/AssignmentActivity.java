@@ -28,6 +28,7 @@ import static com.example.project1_gradetracker.LoginActivity.userDAO;
 public class AssignmentActivity extends AppCompatActivity {
 
     final static String COURSE_ID = "course_id";
+    final static String CATEGORY = "CATEGORY";
 
     private RecyclerView recyclerView;
     // The adapter is the bridge between our data and the recycler view
@@ -38,7 +39,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
     //Declaring variables
     TextView assignmentDisplay, gradeDisplay;
-    private Button buttonAddA, buttonDeleteA, buttonEditA;
+    private Button buttonAddA, buttonDeleteA, buttonEditA, back;
 
     List<Assignment> assignmentList;
     public static AssignmentDAO assignmentDAO;
@@ -55,6 +56,7 @@ public class AssignmentActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         final String user_name = bundle.getString(USER_NAME);
         final int course_id = bundle.getInt(COURSE_ID);
+        final String category = bundle.getString(CATEGORY);
 
         Toast.makeText(AssignmentActivity.this, user_name + " " + course_id, Toast.LENGTH_SHORT).show();
 
@@ -116,7 +118,7 @@ public class AssignmentActivity extends AppCompatActivity {
         buttonDeleteA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = DeleteAssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                Intent intent = DeleteAssignmentActivity.getIntent(getApplicationContext(), user_name, course_id, category);
                 startActivity(intent);
             }
         });
@@ -125,7 +127,16 @@ public class AssignmentActivity extends AppCompatActivity {
         buttonEditA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = EditAssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                Intent intent = EditAssignmentActivity.getIntent(getApplicationContext(), user_name, course_id, category);
+                startActivity(intent);
+            }
+        });
+
+        back = findViewById(R.id.btnBack3);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = CategoriesActivity.getIntent(getApplicationContext(), user_name, course_id);
                 startActivity(intent);
             }
         });
@@ -155,7 +166,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
                     // pass in the courseID to get the course when we get into assignmentActivity
                     // so we can access activities attached to the course
-                    Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                    Intent intent = AssignmentDetailsActivity.getIntent(getApplicationContext(), user_name, course_id, assignment_id);
                     startActivity(intent);
                 }
             });
@@ -189,9 +200,10 @@ public class AssignmentActivity extends AppCompatActivity {
         return ((grades/totalPoints) * 100);
     }
 
-    public static Intent getIntent(Context context, String username, int course){
+    public static Intent getIntent(Context context, String username, int course, String category){
         Bundle bundle = new Bundle();
         bundle.putString(USER_NAME, username);
+        bundle.putString(CATEGORY, category);
         bundle.putInt(COURSE_ID, course);
 
         Intent intent = new Intent(context, AssignmentActivity.class);

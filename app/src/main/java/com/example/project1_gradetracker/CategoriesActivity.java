@@ -13,7 +13,7 @@ import static com.example.project1_gradetracker.LoginActivity.USER_NAME;
 
 public class CategoriesActivity extends AppCompatActivity {
 
-    Button quizzes, homework, projects, back;
+    Button quizzes, homework, projects, back, exams;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class CategoriesActivity extends AppCompatActivity {
         homework = findViewById(R.id.btnHomework);
         projects = findViewById(R.id.btnProjects);
         back = findViewById(R.id.btnBack);
+        exams = findViewById(R.id.btnExams);
 
         Bundle bundle = getIntent().getExtras();
         final String user_name = bundle.getString(USER_NAME);
@@ -32,7 +33,7 @@ public class CategoriesActivity extends AppCompatActivity {
         quizzes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id, "QUIZZES");
                 startActivity(intent);
             }
         });
@@ -40,7 +41,7 @@ public class CategoriesActivity extends AppCompatActivity {
         homework.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id, "HOMEWORK");
                 startActivity(intent);
             }
         });
@@ -48,7 +49,15 @@ public class CategoriesActivity extends AppCompatActivity {
         projects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id, "PROJECTS");
+                startActivity(intent);
+            }
+        });
+
+        exams.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id, "PROJECTS");
                 startActivity(intent);
             }
         });
@@ -56,7 +65,7 @@ public class CategoriesActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), user_name, course_id);
+                Intent intent = OverallGradeActivity.getIntent(getApplicationContext(), user_name);
                 startActivity(intent);
             }
         });

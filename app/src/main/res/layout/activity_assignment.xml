@@ -22,6 +22,21 @@
         app:layout_constraintVertical_bias="0.812" />
 
     <Button
+        android:id="@+id/btnEditAssignment"
+        android:layout_width="182dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="613dp"
+        android:layout_marginBottom="6dp"
+        android:text="Edit Assignment"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnBack3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.752"
+        app:layout_constraintStart_toEndOf="@+id/buttonDeleteAssignment"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.166" />
+
+    <Button
         android:id="@+id/buttonDeleteAssignment"
         android:layout_width="182dp"
         android:layout_height="48dp"
@@ -32,20 +47,7 @@
         app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonAddAssignment"
-        app:layout_constraintVertical_bias="0.562" />
-
-    <Button
-        android:id="@+id/btnEditAssignment"
-        android:layout_width="182dp"
-        android:layout_height="48dp"
-        android:text="Edit Assignment"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.752"
-        app:layout_constraintStart_toEndOf="@+id/buttonDeleteAssignment"
-        app:layout_constraintTop_toBottomOf="@+id/tvGrades"
-        app:layout_constraintVertical_bias="0.587" />
+        app:layout_constraintVertical_bias="0.125" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -95,5 +97,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView"
         app:layout_constraintVertical_bias="0.629" />
+
+    <Button
+        android:id="@+id/btnBack3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEditAssignment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
