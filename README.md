@@ -1,6 +1,6 @@
 # GradeTracker
 
-This is an grade tracker app with a custom Room database backend that allows a user to add class, view grades, add test scores!
+This is a grade tracker app with a custom Room database backend that allows a user to add class, view grades, add test scores!
 
 ## User Stories
 - [x] User create account
